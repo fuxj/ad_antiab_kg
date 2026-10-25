@@ -1,24 +1,25 @@
 cff-version: 1.2.0
-message: "If you use this code, knowledge graph or data tables, please cite the article below."
-title: "Triangulated multi-modal knowledge graph, heterogeneous graph transformer and Mendelian randomization analysis of ARIA risk and drug-repurposing opportunities in anti-amyloid-β immunotherapy for Alzheimer's disease"
-type: software
+message: "If you use this software or data in your work, please cite it as below."
+title: "Triangulated knowledge-graph, heterogeneous graph transformer and Mendelian randomization reveal bleeding comedications and repurposing candidates for anti-amyloid ARIA in Alzheimer's disease"
 authors:
-  - family-names: "[Corresponding Author Surname]"
-    given-names: "[Given Name]"
-    affiliation: "[Institution]"
+  - family-names: "Song"
+    given-names: "Xuxia"
     orcid: "https://orcid.org/0000-0000-0000-0000"
-repository-code: "https://github.com/[your-github-username]/ad_antiab_kg"
-url: "https://github.com/[your-github-username]/ad_antiab_kg"
-license: MIT
-version: 1.0.0
-date-released: "2026-01-01"
-doi: "10.5281/zenodo.XXXXXXX"
-preferred-citation:
-  type: article
-  title: "[Full manuscript title]"
-  journal: "Pharmacological Research"
-  year: 2026
-  doi: "[journal DOI upon acceptance]"
-  authors:
-    - family-names: "[Corresponding Author Surname]"
-      given-names: "[Given Name]"
+  - family-names: "Fu"
+    given-names: "Xianjun"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+version: "1.0.0"
+date-released: "2026-10-25"
+url: "https://github.com/fuxj/ad_antiab_kg"
+repository-code: "https://github.com/fuxj/ad_antiab_kg"
+license: "MIT"
+doi: "10.5281/zenodo.xxxxxxx"
+keywords:
+  - "Alzheimer's disease"
+  - "ARIA"
+  - "anti-amyloid immunotherapy"
+  - "knowledge graph"
+  - "heterogeneous graph transformer"
+  - "Mendelian randomization"
+  - "drug repurposing"
+  - "pharmacovigilance"

@@ -1,0 +1,69 @@
+# ===== macOS =====
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# ===== R =====
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# ===== logs / temporary =====
+*.log
+nohup.out
+nohup.out.*
+*.tmp
+*.bak
+*.bak2
+*.bak3
+checkpoint/
+.ipynb
+
+# ===== secrets (NEVER commit) =====
+.env
+.env.*
+*.key
+*_token.txt
+token*.txt
+secrets*
+config_local.*
+
+# ===== large raw downloads / regenerable caches =====
+# NOTE: the constructed KG under data/kg/ and data/kg_ext/ IS meant to be shipped.
+# Everything below is raw source data or caches that must be regenerated with src/ scripts.
+data/raw/
+data/faers/
+data/interim/
+data/cmap/
+data/docking/
+data/features/
+data/omics/
+data/tasks/
+data/mrd/
+*.vcf
+*.vcf.gz
+*.bgen
+*.bed
+*.bim
+*.fam
+*.h5
+*.ckpt
+*.pth
+*.pt
+*.faers_raw*
+
+# ===== editor =====
+.vscode/
+.idea/
+*.swp
