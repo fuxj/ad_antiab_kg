@@ -1,11 +1,12 @@
 cff-version: 1.2.0
 message: "If you use this software or data in your work, please cite it as below."
-title: "Triangulated knowledge-graph, heterogeneous graph transformer and Mendelian randomization reveal bleeding comedications and repurposing candidates for anti-amyloid ARIA in Alzheimer's disease"
+title: "Triangulating multimodal knowledge graph, heterogeneous graph transformer, and direction-aware Mendelian randomization for ARIA-H risk stratification with anti-amyloid-β therapy in Alzheimer's disease"
 authors:
+  # Song Xuxia and Zhang Wenzhu contributed equally (co-first authors).
   - family-names: "Song"
     given-names: "Xuxia"
   - family-names: "Zhang"
-    given-names: "Wenzu"
+    given-names: "Wenzhu"
   - family-names: "Fu"
     given-names: "Xianjun"
     orcid: "https://orcid.org/0000-0002-9399-4635"
@@ -14,9 +15,13 @@ date-released: "2026-10-25"
 url: "https://github.com/fuxj/ad_antiab_kg"
 repository-code: "https://github.com/fuxj/ad_antiab_kg"
 license: "MIT"
+# DOI to be registered upon acceptance: create a GitHub Release, let Zenodo mint
+# the DOI, then replace the placeholder below with the real DOI.
+doi: "10.5281/zenodo.XXXXXXX"
 keywords:
   - "Alzheimer's disease"
   - "ARIA"
+  - "ARIA-H"
   - "anti-amyloid immunotherapy"
   - "knowledge graph"
   - "heterogeneous graph transformer"
