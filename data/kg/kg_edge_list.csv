@@ -1,0 +1,682 @@
+source_id,source_type,source_name,target_id,target_type,target_name,edge_type,data_source,weight
+DRUG:CHEMBL3833321,Drug,LECANEMAB,GENE:ENSG00000142192,Gene,APP,drug_target,opentargets,1.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,IND:parkinson_disease,Indication,Parkinson disease,drug_indication,opentargets,1.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,IND:cognitive_impairment,Indication,Cognitive impairment,drug_indication,opentargets,6.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,IND:alzheimer_disease,Indication,Alzheimer disease,drug_indication,opentargets,6.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,IND:dementia,Indication,dementia,drug_indication,opentargets,6.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,GENE:ENSG00000142192,Gene,APP,drug_target,opentargets,1.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,IND:alzheimer_disease,Indication,Alzheimer disease,drug_indication,opentargets,6.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,IND:cognitive_impairment,Indication,Cognitive impairment,drug_indication,opentargets,6.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,IND:mental_deterioration,Indication,Mental deterioration,drug_indication,opentargets,3.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,IND:dementia,Indication,dementia,drug_indication,opentargets,6.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,GENE:ENSG00000142192,Gene,APP,drug_target,opentargets,1.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,IND:alzheimer_disease,Indication,Alzheimer disease,drug_indication,opentargets,6.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,IND:dementia,Indication,dementia,drug_indication,opentargets,6.0
+GENE:ENSG00000142192,Gene,APP,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.8743017509514485
+GENE:ENSG00000080815,Gene,PSEN1,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.8678833473880588
+GENE:ENSG00000143801,Gene,PSEN2,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.818963537542181
+GENE:ENSG00000130203,Gene,APOE,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.7882988926262811
+GENE:ENSG00000064687,Gene,ABCA7,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.740796098932307
+GENE:ENSG00000137642,Gene,SORL1,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.7146776827220991
+GENE:ENSG00000176884,Gene,GRIN1,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.7049058021654173
+GENE:ENSG00000137845,Gene,ADAM10,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.68705203316385
+GENE:ENSG00000164885,Gene,CDK5,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6802283721851972
+GENE:ENSG00000116032,Gene,GRIN3B,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6771580875817478
+GENE:ENSG00000159640,Gene,ACE,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6500686439034259
+GENE:ENSG00000138613,Gene,APH1B,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6458500209243263
+GENE:ENSG00000087085,Gene,ACHE,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6415699813554469
+GENE:ENSG00000030582,Gene,GRN,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6371636272211622
+GENE:ENSG00000273079,Gene,GRIN2B,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6347573469243794
+GENE:ENSG00000114200,Gene,BCHE,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6276339007069329
+GENE:ENSG00000183454,Gene,GRIN2A,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6239424818285392
+GENE:ENSG00000105383,Gene,CD33,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6236171141464621
+GENE:ENSG00000161509,Gene,GRIN2C,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6204701646440309
+GENE:ENSG00000142319,Gene,SLC6A3,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6175061728197492
+GENE:ENSG00000105464,Gene,GRIN2D,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6169162742654611
+GENE:ENSG00000176749,Gene,CDK5R1,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6148287560726069
+GENE:ENSG00000146904,Gene,EPHA1,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6131079408497452
+GENE:ENSG00000198785,Gene,GRIN3A,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6114914538780584
+GENE:ENSG00000010704,Gene,HFE,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.6036312973440967
+GENE:ENSG00000101224,Gene,CDC25B,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5990850383690725
+GENE:ENSG00000203710,Gene,CR1,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5958894934437446
+GENE:ENSG00000095970,Gene,TREM2,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5922697592467004
+GENE:ENSG00000071051,Gene,NCK2,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5879248886931446
+GENE:ENSG00000113161,Gene,HMGCR,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5852343323307129
+GENE:ENSG00000120885,Gene,CLU,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5835737951346023
+GENE:ENSG00000197943,Gene,PLCG2,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5813671208424943
+GENE:ENSG00000118689,Gene,FOXO3,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5746482507386391
+GENE:ENSG00000130208,Gene,APOC1,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5739947588912473
+GENE:ENSG00000274286,Gene,ADRA2B,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.563732831509632
+GENE:ENSG00000110077,Gene,MS4A6A,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5623023960354822
+GENE:ENSG00000197746,Gene,PSAP,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5588571650702385
+GENE:ENSG00000103546,Gene,SLC6A2,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5583443475207838
+GENE:ENSG00000108798,Gene,ABI3,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5551218152268709
+GENE:ENSG00000082701,Gene,GSK3B,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5542938971670681
+GENE:ENSG00000136717,Gene,BIN1,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5534359003603624
+GENE:ENSG00000196549,Gene,MME,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5523716899400194
+GENE:ENSG00000147883,Gene,CDKN2B,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5510479353932854
+GENE:ENSG00000153814,Gene,JAZF1,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5507056641211826
+GENE:ENSG00000166311,Gene,SMPD1,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5494364177298126
+GENE:ENSG00000103811,Gene,CTSH,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5493439983471465
+GENE:ENSG00000124762,Gene,CDKN1A,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.549132748514295
+GENE:ENSG00000004779,Gene,NDUFAB1,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5481714982096735
+GENE:ENSG00000166851,Gene,PLK1,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5429304218158207
+GENE:ENSG00000135446,Gene,CDK4,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5422132403029617
+GENE:ENSG00000073060,Gene,SCARB1,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5361943254133151
+GENE:ENSG00000168653,Gene,NDUFS5,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5360803425053371
+GENE:ENSG00000167601,Gene,AXL,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5359292340001293
+GENE:ENSG00000166035,Gene,LIPC,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.53572540484586
+GENE:ENSG00000164733,Gene,CTSB,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5354463220223273
+GENE:ENSG00000179526,Gene,SHARPIN,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5348679258361306
+GENE:ENSG00000119421,Gene,NDUFA8,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5318985414127286
+GENE:ENSG00000178127,Gene,NDUFV2,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5311192907523623
+GENE:ENSG00000178999,Gene,AURKB,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5287593320913878
+GENE:ENSG00000104043,Gene,ATP8B4,IND:alzheimer_disease,Indication,Alzheimer disease,gene_indication,opentargets,0.5277345668652018
+GENE:ENSG00000004779,Gene,NDUFAB1,PATHWAY:R-HSA-77289,Pathway,Mitochondrial Fatty Acid Beta-Oxidation,gene_pathway,opentargets,1.0
+GENE:ENSG00000004779,Gene,NDUFAB1,PATHWAY:R-HSA-9857492,Pathway,Protein lipoylation,gene_pathway,opentargets,1.0
+GENE:ENSG00000004779,Gene,NDUFAB1,PATHWAY:R-HSA-611105,Pathway,Respiratory electron transport,gene_pathway,opentargets,1.0
+GENE:ENSG00000004779,Gene,NDUFAB1,PATHWAY:R-HSA-9937383,Pathway,Mitochondrial ribosome-associated quality control,gene_pathway,opentargets,1.0
+GENE:ENSG00000004779,Gene,NDUFAB1,PATHWAY:R-HSA-6799198,Pathway,Complex I biogenesis,gene_pathway,opentargets,1.0
+GENE:ENSG00000010704,Gene,HFE,PATHWAY:R-HSA-917977,Pathway,Transferrin endocytosis and recycling,gene_pathway,opentargets,1.0
+GENE:ENSG00000030582,Gene,GRN,PATHWAY:R-HSA-6798695,Pathway,Neutrophil degranulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000064687,Gene,ABCA7,PATHWAY:R-HSA-1369062,Pathway,ABC transporters in lipid homeostasis,gene_pathway,opentargets,1.0
+GENE:ENSG00000071051,Gene,NCK2,PATHWAY:R-HSA-9013420,Pathway,RHOU GTPase cycle,gene_pathway,opentargets,1.0
+GENE:ENSG00000071051,Gene,NCK2,PATHWAY:R-HSA-8985801,Pathway,Regulation of cortical dendrite branching,gene_pathway,opentargets,1.0
+GENE:ENSG00000071051,Gene,NCK2,PATHWAY:R-HSA-373753,Pathway,Nephrin family interactions,gene_pathway,opentargets,1.0
+GENE:ENSG00000071051,Gene,NCK2,PATHWAY:R-HSA-4420097,Pathway,VEGFA-VEGFR2 Pathway,gene_pathway,opentargets,1.0
+GENE:ENSG00000071051,Gene,NCK2,PATHWAY:R-HSA-9013424,Pathway,RHOV GTPase cycle,gene_pathway,opentargets,1.0
+GENE:ENSG00000071051,Gene,NCK2,PATHWAY:R-HSA-3928664,Pathway,Ephrin signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000071051,Gene,NCK2,PATHWAY:R-HSA-186763,Pathway,Downstream signal transduction,gene_pathway,opentargets,1.0
+GENE:ENSG00000071051,Gene,NCK2,PATHWAY:R-HSA-428540,Pathway,Activation of RAC1,gene_pathway,opentargets,1.0
+GENE:ENSG00000073060,Gene,SCARB1,PATHWAY:R-HSA-3000471,Pathway,Scavenging by Class B Receptors,gene_pathway,opentargets,1.0
+GENE:ENSG00000073060,Gene,SCARB1,PATHWAY:R-HSA-8964011,Pathway,HDL clearance,gene_pathway,opentargets,1.0
+GENE:ENSG00000080815,Gene,PSEN1,PATHWAY:R-HSA-2122948,Pathway,Activated NOTCH1 Transmits Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000080815,Gene,PSEN1,PATHWAY:R-HSA-9017802,Pathway,Noncanonical activation of NOTCH3,gene_pathway,opentargets,1.0
+GENE:ENSG00000080815,Gene,PSEN1,PATHWAY:R-HSA-193692,Pathway,Regulated proteolysis of p75NTR,gene_pathway,opentargets,1.0
+GENE:ENSG00000080815,Gene,PSEN1,PATHWAY:R-HSA-2894862,Pathway,Constitutive Signaling by NOTCH1 HD+PEST Domain Mutants,gene_pathway,opentargets,1.0
+GENE:ENSG00000080815,Gene,PSEN1,PATHWAY:R-HSA-1474228,Pathway,Degradation of the extracellular matrix,gene_pathway,opentargets,1.0
+GENE:ENSG00000080815,Gene,PSEN1,PATHWAY:R-HSA-2644606,Pathway,Constitutive Signaling by NOTCH1 PEST Domain Mutants,gene_pathway,opentargets,1.0
+GENE:ENSG00000080815,Gene,PSEN1,PATHWAY:R-HSA-205043,Pathway,NRIF signals cell death from the nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000080815,Gene,PSEN1,PATHWAY:R-HSA-1251985,Pathway,Nuclear signaling by ERBB4,gene_pathway,opentargets,1.0
+GENE:ENSG00000080815,Gene,PSEN1,PATHWAY:R-HSA-6798695,Pathway,Neutrophil degranulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000080815,Gene,PSEN1,PATHWAY:R-HSA-9013700,Pathway,NOTCH4 Activation and Transmission of Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000080815,Gene,PSEN1,PATHWAY:R-HSA-2979096,Pathway,NOTCH2 Activation and Transmission of Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000080815,Gene,PSEN1,PATHWAY:R-HSA-9839383,Pathway,TGFBR3 PTM regulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000080815,Gene,PSEN1,PATHWAY:R-HSA-9013507,Pathway,NOTCH3 Activation and Transmission of Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000080815,Gene,PSEN1,PATHWAY:R-HSA-3928665,Pathway,EPH-ephrin mediated repulsion of cells,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-9762114,Pathway,GSK3B and BTRC:CUL1-mediated-degradation of NFE2L2,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-5610783,Pathway,Degradation of GLI2 by the proteasome,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-75815,Pathway,Ubiquitin-dependent degradation of Cyclin D,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-5467348,Pathway,Truncations of AMER1 destabilize the destruction complex,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-5358747,Pathway,CTNNB1 S33 mutants aren't phosphorylated,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-5339716,Pathway,Signaling by GSK3beta mutants,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-8939902,Pathway,Regulation of RUNX2 expression and activity,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-5610785,Pathway,GLI3 is processed to GLI3R by the proteasome,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-3371453,Pathway,Regulation of HSF1-mediated heat shock response,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-4641262,Pathway,Disassembly of the destruction complex and recruitment of AXIN to the membrane,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-196299,Pathway,Beta-catenin phosphorylation cascade,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-9694631,Pathway,Maturation of nucleoprotein,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-9683610,Pathway,Maturation of nucleoprotein,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-9856649,Pathway,Transcriptional and post-translational regulation of MITF-M expression and activity,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-195253,Pathway,Degradation of beta-catenin by the destruction complex,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-5358751,Pathway,CTNNB1 S45 mutants aren't phosphorylated,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-5467340,Pathway,AXIN missense mutants destabilize the destruction complex,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-5674400,Pathway,Constitutive Signaling by AKT1 E17K in Cancer,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-5358752,Pathway,CTNNB1 T41 mutants aren't phosphorylated,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-5250924,Pathway,B-WICH complex positively regulates rRNA expression,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-5467337,Pathway,APC truncation mutants have impaired AXIN binding,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-5358749,Pathway,CTNNB1 S37 mutants aren't phosphorylated,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-69601,Pathway,Ubiquitin-Mediated Degradation of Phosphorylated Cdc25A,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-198323,Pathway,AKT phosphorylates targets in the cytosol,gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-9929356,Pathway,GSK3B-mediated proteasomal degradation of PD-L1(CD274),gene_pathway,opentargets,1.0
+GENE:ENSG00000082701,Gene,GSK3B,PATHWAY:R-HSA-399956,Pathway,CRMPs in Sema3A signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000087085,Gene,ACHE,PATHWAY:R-HSA-422085,Pathway,"Synthesis, secretion, and deacylation of Ghrelin",gene_pathway,opentargets,1.0
+GENE:ENSG00000087085,Gene,ACHE,PATHWAY:R-HSA-1483191,Pathway,Synthesis of PC,gene_pathway,opentargets,1.0
+GENE:ENSG00000087085,Gene,ACHE,PATHWAY:R-HSA-112311,Pathway,Neurotransmitter clearance,gene_pathway,opentargets,1.0
+GENE:ENSG00000095970,Gene,TREM2,PATHWAY:R-HSA-2172127,Pathway,DAP12 interactions,gene_pathway,opentargets,1.0
+GENE:ENSG00000095970,Gene,TREM2,PATHWAY:R-HSA-198933,Pathway,Immunoregulatory interactions between a Lymphoid and a non-Lymphoid cell,gene_pathway,opentargets,1.0
+GENE:ENSG00000095970,Gene,TREM2,PATHWAY:R-HSA-416700,Pathway,Other semaphorin interactions,gene_pathway,opentargets,1.0
+GENE:ENSG00000095970,Gene,TREM2,PATHWAY:R-HSA-2424491,Pathway,DAP12 signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000101224,Gene,CDC25B,PATHWAY:R-HSA-69273,Pathway,Cyclin A/B1/B2 associated events during G2/M transition,gene_pathway,opentargets,1.0
+GENE:ENSG00000101224,Gene,CDC25B,PATHWAY:R-HSA-8862803,Pathway,Deregulated CDK5 triggers multiple neurodegenerative pathways in Alzheimer's disease models,gene_pathway,opentargets,1.0
+GENE:ENSG00000101224,Gene,CDC25B,PATHWAY:R-HSA-69656,Pathway,Cyclin A:Cdk2-associated events at S phase entry,gene_pathway,opentargets,1.0
+GENE:ENSG00000101224,Gene,CDC25B,PATHWAY:R-HSA-9825892,Pathway,Regulation of MITF-M-dependent genes involved in cell cycle and proliferation,gene_pathway,opentargets,1.0
+GENE:ENSG00000103546,Gene,SLC6A2,PATHWAY:R-HSA-442660,Pathway,SLC-mediated transport of neurotransmitters,gene_pathway,opentargets,1.0
+GENE:ENSG00000103546,Gene,SLC6A2,PATHWAY:R-HSA-5619109,Pathway,Defective SLC6A2 causes orthostatic intolerance (OI),gene_pathway,opentargets,1.0
+GENE:ENSG00000103811,Gene,CTSH,PATHWAY:R-HSA-6798695,Pathway,Neutrophil degranulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000103811,Gene,CTSH,PATHWAY:R-HSA-2132295,Pathway,MHC class II antigen presentation,gene_pathway,opentargets,1.0
+GENE:ENSG00000103811,Gene,CTSH,PATHWAY:R-HSA-9979719,Pathway,Processing of antigen in germinal center B cells,gene_pathway,opentargets,1.0
+GENE:ENSG00000103811,Gene,CTSH,PATHWAY:R-HSA-5683826,Pathway,Surfactant metabolism,gene_pathway,opentargets,1.0
+GENE:ENSG00000104043,Gene,ATP8B4,PATHWAY:R-HSA-6798695,Pathway,Neutrophil degranulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000104043,Gene,ATP8B4,PATHWAY:R-HSA-936837,Pathway,Ion transport by P-type ATPases,gene_pathway,opentargets,1.0
+GENE:ENSG00000105383,Gene,CD33,PATHWAY:R-HSA-6798695,Pathway,Neutrophil degranulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000105383,Gene,CD33,PATHWAY:R-HSA-198933,Pathway,Immunoregulatory interactions between a Lymphoid and a non-Lymphoid cell,gene_pathway,opentargets,1.0
+GENE:ENSG00000105383,Gene,CD33,PATHWAY:R-HSA-9918485,Pathway,Dengue Virus Attachment and Entry,gene_pathway,opentargets,1.0
+GENE:ENSG00000105464,Gene,GRIN2D,PATHWAY:R-HSA-442982,Pathway,Ras activation upon Ca2+ influx through NMDA receptor,gene_pathway,opentargets,1.0
+GENE:ENSG00000105464,Gene,GRIN2D,PATHWAY:R-HSA-6794361,Pathway,Neurexins and neuroligins,gene_pathway,opentargets,1.0
+GENE:ENSG00000105464,Gene,GRIN2D,PATHWAY:R-HSA-9609736,Pathway,Assembly and cell surface presentation of NMDA receptors,gene_pathway,opentargets,1.0
+GENE:ENSG00000105464,Gene,GRIN2D,PATHWAY:R-HSA-9617324,Pathway,Negative regulation of NMDA receptor-mediated neuronal transmission,gene_pathway,opentargets,1.0
+GENE:ENSG00000105464,Gene,GRIN2D,PATHWAY:R-HSA-5673001,Pathway,RAF/MAP kinase cascade,gene_pathway,opentargets,1.0
+GENE:ENSG00000105464,Gene,GRIN2D,PATHWAY:R-HSA-8849932,Pathway,Synaptic adhesion-like molecules,gene_pathway,opentargets,1.0
+GENE:ENSG00000105464,Gene,GRIN2D,PATHWAY:R-HSA-438066,Pathway,"Unblocking of NMDA receptors, glutamate binding and activation",gene_pathway,opentargets,1.0
+GENE:ENSG00000105464,Gene,GRIN2D,PATHWAY:R-HSA-9620244,Pathway,Long-term potentiation,gene_pathway,opentargets,1.0
+GENE:ENSG00000113161,Gene,HMGCR,PATHWAY:R-HSA-9969896,Pathway,Lanosterol biosynthesis,gene_pathway,opentargets,1.0
+GENE:ENSG00000113161,Gene,HMGCR,PATHWAY:R-HSA-1989781,Pathway,PPARA activates gene expression,gene_pathway,opentargets,1.0
+GENE:ENSG00000113161,Gene,HMGCR,PATHWAY:R-HSA-9619665,Pathway,EGR2 and SOX10-mediated initiation of Schwann cell myelination,gene_pathway,opentargets,1.0
+GENE:ENSG00000113161,Gene,HMGCR,PATHWAY:R-HSA-2426168,Pathway,Activation of gene expression by SREBF (SREBP),gene_pathway,opentargets,1.0
+GENE:ENSG00000114200,Gene,BCHE,PATHWAY:R-HSA-422085,Pathway,"Synthesis, secretion, and deacylation of Ghrelin",gene_pathway,opentargets,1.0
+GENE:ENSG00000114200,Gene,BCHE,PATHWAY:R-HSA-1483191,Pathway,Synthesis of PC,gene_pathway,opentargets,1.0
+GENE:ENSG00000114200,Gene,BCHE,PATHWAY:R-HSA-9749641,Pathway,Aspirin ADME,gene_pathway,opentargets,1.0
+GENE:ENSG00000114200,Gene,BCHE,PATHWAY:R-HSA-112311,Pathway,Neurotransmitter clearance,gene_pathway,opentargets,1.0
+GENE:ENSG00000116032,Gene,GRIN3B,PATHWAY:R-HSA-9609736,Pathway,Assembly and cell surface presentation of NMDA receptors,gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-9617828,Pathway,FOXO-mediated transcription of cell cycle genes,gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-9607240,Pathway,FLT3 Signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-9614657,Pathway,FOXO-mediated transcription of cell death genes,gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-8862803,Pathway,Deregulated CDK5 triggers multiple neurodegenerative pathways in Alzheimer's disease models,gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-9615017,Pathway,"FOXO-mediated transcription of oxidative stress, metabolic and neuronal genes",gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-9617629,Pathway,Regulation of FOXO transcriptional activity by acetylation,gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-1181150,Pathway,Signaling by NODAL,gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-9614399,Pathway,Regulation of localization of FOXO transcription factors,gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-198693,Pathway,AKT phosphorylates targets in the nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-9841251,Pathway,Mitochondrial unfolded protein response (UPRmt),gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-5674400,Pathway,Constitutive Signaling by AKT1 E17K in Cancer,gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-5687128,Pathway,MAPK6/MAPK4 signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-6785807,Pathway,Interleukin-4 and Interleukin-13 signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-9634638,Pathway,Estrogen-dependent nuclear events downstream of ESR-membrane signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000118689,Gene,FOXO3,PATHWAY:R-HSA-8952158,Pathway,RUNX3 regulates BCL2L11 (BIM) transcription,gene_pathway,opentargets,1.0
+GENE:ENSG00000119421,Gene,NDUFA8,PATHWAY:R-HSA-611105,Pathway,Respiratory electron transport,gene_pathway,opentargets,1.0
+GENE:ENSG00000119421,Gene,NDUFA8,PATHWAY:R-HSA-6799198,Pathway,Complex I biogenesis,gene_pathway,opentargets,1.0
+GENE:ENSG00000120885,Gene,CLU,PATHWAY:R-HSA-977606,Pathway,Regulation of Complement cascade,gene_pathway,opentargets,1.0
+GENE:ENSG00000120885,Gene,CLU,PATHWAY:R-HSA-114608,Pathway,Platelet degranulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000120885,Gene,CLU,PATHWAY:R-HSA-166665,Pathway,Terminal pathway of complement,gene_pathway,opentargets,1.0
+GENE:ENSG00000120885,Gene,CLU,PATHWAY:R-HSA-6803157,Pathway,Antimicrobial peptides,gene_pathway,opentargets,1.0
+GENE:ENSG00000120885,Gene,CLU,PATHWAY:R-HSA-9920588,Pathway,Dengue virus activates/modulates innate and adaptive immune responses,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-9617828,Pathway,FOXO-mediated transcription of cell cycle genes,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-2559586,Pathway,DNA Damage/Telomere Stress Induced Senescence,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-9938024,Pathway,Somatic hypermutation of immunoglobulin genes,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-9725370,Pathway,Signaling by ALK fusions and activated point mutants,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-9702518,Pathway,STAT5 activation downstream of FLT3 ITD mutants,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-8878166,Pathway,Transcriptional regulation by RUNX2,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-187577,Pathway,SCF(Skp2)-mediated degradation of p27/p21,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-9755511,Pathway,KEAP1-NFE2L2 pathway,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-69656,Pathway,Cyclin A:Cdk2-associated events at S phase entry,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-2559582,Pathway,Senescence-Associated Secretory Phenotype (SASP),gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-9825892,Pathway,Regulation of MITF-M-dependent genes involved in cell cycle and proliferation,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-2559584,Pathway,Formation of Senescence-Associated Heterochromatin Foci (SAHF),gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-69563,Pathway,p53-Dependent G1 DNA Damage Response,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-69202,Pathway,Cyclin E associated events during G1/S transition,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-9616222,Pathway,Transcriptional regulation of granulopoiesis,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-5674400,Pathway,Constitutive Signaling by AKT1 E17K in Cancer,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-69895,Pathway,Transcriptional  activation of  cell cycle inhibitor p21,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-8951664,Pathway,Neddylation,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-6804116,Pathway,TP53 Regulates Transcription of Genes Involved in G1 Cell Cycle Arrest,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-8852276,Pathway,The role of GTSE1 in G2/M progression after G2 checkpoint,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-6785807,Pathway,Interleukin-4 and Interleukin-13 signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-8866911,Pathway,TFAP2 (AP-2) family regulates transcription of cell cycle factors,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-9703465,Pathway,Signaling by FLT3 fusion proteins,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-198323,Pathway,AKT phosphorylates targets in the cytosol,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-69231,Pathway,Cyclin D associated events in G1,gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-9661069,Pathway,"Defective binding of RB1 mutants to E2F1,(E2F2, E2F3)",gene_pathway,opentargets,1.0
+GENE:ENSG00000124762,Gene,CDKN1A,PATHWAY:R-HSA-8941855,Pathway,RUNX3 regulates CDKN1A transcription,gene_pathway,opentargets,1.0
+GENE:ENSG00000130203,Gene,APOE,PATHWAY:R-HSA-1251985,Pathway,Nuclear signaling by ERBB4,gene_pathway,opentargets,1.0
+GENE:ENSG00000130203,Gene,APOE,PATHWAY:R-HSA-8964026,Pathway,Chylomicron clearance,gene_pathway,opentargets,1.0
+GENE:ENSG00000130203,Gene,APOE,PATHWAY:R-HSA-3000480,Pathway,Scavenging by Class A Receptors,gene_pathway,opentargets,1.0
+GENE:ENSG00000130203,Gene,APOE,PATHWAY:R-HSA-8963888,Pathway,Chylomicron assembly,gene_pathway,opentargets,1.0
+GENE:ENSG00000130203,Gene,APOE,PATHWAY:R-HSA-381426,Pathway,Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs),gene_pathway,opentargets,1.0
+GENE:ENSG00000130203,Gene,APOE,PATHWAY:R-HSA-8957275,Pathway,Post-translational protein phosphorylation,gene_pathway,opentargets,1.0
+GENE:ENSG00000130203,Gene,APOE,PATHWAY:R-HSA-8964058,Pathway,HDL remodeling,gene_pathway,opentargets,1.0
+GENE:ENSG00000130203,Gene,APOE,PATHWAY:R-HSA-975634,Pathway,Retinoid metabolism and transport,gene_pathway,opentargets,1.0
+GENE:ENSG00000130203,Gene,APOE,PATHWAY:R-HSA-977225,Pathway,Amyloid fiber formation,gene_pathway,opentargets,1.0
+GENE:ENSG00000130203,Gene,APOE,PATHWAY:R-HSA-8864260,Pathway,Transcriptional regulation by the AP-2 (TFAP2) family of transcription factors,gene_pathway,opentargets,1.0
+GENE:ENSG00000130203,Gene,APOE,PATHWAY:R-HSA-9029569,Pathway,NR1H3 & NR1H2 regulate gene expression linked to cholesterol transport and efflux,gene_pathway,opentargets,1.0
+GENE:ENSG00000130203,Gene,APOE,PATHWAY:R-HSA-8963901,Pathway,Chylomicron remodeling,gene_pathway,opentargets,1.0
+GENE:ENSG00000130208,Gene,APOC1,PATHWAY:R-HSA-8866423,Pathway,VLDL assembly,gene_pathway,opentargets,1.0
+GENE:ENSG00000130208,Gene,APOC1,PATHWAY:R-HSA-8964046,Pathway,VLDL clearance,gene_pathway,opentargets,1.0
+GENE:ENSG00000130208,Gene,APOC1,PATHWAY:R-HSA-9029569,Pathway,NR1H3 & NR1H2 regulate gene expression linked to cholesterol transport and efflux,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-381340,Pathway,Transcriptional regulation of white adipocyte differentiation,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-9630794,Pathway,Evasion of Oncogene Induced Senescence Due to Defective p16INK4A binding to CDK4 and CDK6,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-75815,Pathway,Ubiquitin-dependent degradation of Cyclin D,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-2559580,Pathway,Oxidative Stress Induced Senescence,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-8878166,Pathway,Transcriptional regulation by RUNX2,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-187577,Pathway,SCF(Skp2)-mediated degradation of p27/p21,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-9632697,Pathway,Evasion of Oxidative Stress Induced Senescence Due to Defective p16INK4A binding to CDK4,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-9754119,Pathway,Drug-mediated inhibition of CDK4/CDK6 activity,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-8849470,Pathway,PTK6 Regulates Cell Cycle,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-9632700,Pathway,Evasion of Oxidative Stress Induced Senescence Due to Defective p16INK4A binding to CDK4 and CDK6,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-2559582,Pathway,Senescence-Associated Secretory Phenotype (SASP),gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-912446,Pathway,Meiotic recombination,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-3214858,Pathway,RMTs methylate histone arginines,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-9616222,Pathway,Transcriptional regulation of granulopoiesis,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-9929491,Pathway,SPOP-mediated proteasomal degradation of PD-L1(CD274),gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-9630791,Pathway,Evasion of Oncogene Induced Senescence Due to Defective p16INK4A binding to CDK4,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-2559585,Pathway,Oncogene Induced Senescence,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-69231,Pathway,Cyclin D associated events in G1,gene_pathway,opentargets,1.0
+GENE:ENSG00000135446,Gene,CDK4,PATHWAY:R-HSA-9661069,Pathway,"Defective binding of RB1 mutants to E2F1,(E2F2, E2F3)",gene_pathway,opentargets,1.0
+GENE:ENSG00000136717,Gene,BIN1,PATHWAY:R-HSA-8856828,Pathway,Clathrin-mediated endocytosis,gene_pathway,opentargets,1.0
+GENE:ENSG00000137642,Gene,SORL1,PATHWAY:R-HSA-977225,Pathway,Amyloid fiber formation,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-2122948,Pathway,Activated NOTCH1 Transmits Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-177929,Pathway,Signaling by EGFR,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-2894862,Pathway,Constitutive Signaling by NOTCH1 HD+PEST Domain Mutants,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-1474228,Pathway,Degradation of the extracellular matrix,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-381426,Pathway,Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs),gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-2644606,Pathway,Constitutive Signaling by NOTCH1 PEST Domain Mutants,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-1442490,Pathway,Collagen degradation,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-2660826,Pathway,Constitutive Signaling by NOTCH1 t(7;9)(NOTCH1:M1580_K2555) Translocation Mutant,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-6798695,Pathway,Neutrophil degranulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-9013700,Pathway,NOTCH4 Activation and Transmission of Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-2979096,Pathway,NOTCH2 Activation and Transmission of Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-2691232,Pathway,Constitutive Signaling by NOTCH1 HD Domain Mutants,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-8957275,Pathway,Post-translational protein phosphorylation,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-9013507,Pathway,NOTCH3 Activation and Transmission of Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-3928665,Pathway,EPH-ephrin mediated repulsion of cells,gene_pathway,opentargets,1.0
+GENE:ENSG00000137845,Gene,ADAM10,PATHWAY:R-HSA-977225,Pathway,Amyloid fiber formation,gene_pathway,opentargets,1.0
+GENE:ENSG00000138613,Gene,APH1B,PATHWAY:R-HSA-1251985,Pathway,Nuclear signaling by ERBB4,gene_pathway,opentargets,1.0
+GENE:ENSG00000138613,Gene,APH1B,PATHWAY:R-HSA-2122948,Pathway,Activated NOTCH1 Transmits Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000138613,Gene,APH1B,PATHWAY:R-HSA-9013700,Pathway,NOTCH4 Activation and Transmission of Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000138613,Gene,APH1B,PATHWAY:R-HSA-9017802,Pathway,Noncanonical activation of NOTCH3,gene_pathway,opentargets,1.0
+GENE:ENSG00000138613,Gene,APH1B,PATHWAY:R-HSA-2979096,Pathway,NOTCH2 Activation and Transmission of Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000138613,Gene,APH1B,PATHWAY:R-HSA-2894862,Pathway,Constitutive Signaling by NOTCH1 HD+PEST Domain Mutants,gene_pathway,opentargets,1.0
+GENE:ENSG00000138613,Gene,APH1B,PATHWAY:R-HSA-193692,Pathway,Regulated proteolysis of p75NTR,gene_pathway,opentargets,1.0
+GENE:ENSG00000138613,Gene,APH1B,PATHWAY:R-HSA-9839383,Pathway,TGFBR3 PTM regulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000138613,Gene,APH1B,PATHWAY:R-HSA-2644606,Pathway,Constitutive Signaling by NOTCH1 PEST Domain Mutants,gene_pathway,opentargets,1.0
+GENE:ENSG00000138613,Gene,APH1B,PATHWAY:R-HSA-9013507,Pathway,NOTCH3 Activation and Transmission of Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000138613,Gene,APH1B,PATHWAY:R-HSA-3928665,Pathway,EPH-ephrin mediated repulsion of cells,gene_pathway,opentargets,1.0
+GENE:ENSG00000138613,Gene,APH1B,PATHWAY:R-HSA-977225,Pathway,Amyloid fiber formation,gene_pathway,opentargets,1.0
+GENE:ENSG00000138613,Gene,APH1B,PATHWAY:R-HSA-205043,Pathway,NRIF signals cell death from the nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-3000178,Pathway,ECM proteoglycans,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-114608,Pathway,Platelet degranulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-8862803,Pathway,Deregulated CDK5 triggers multiple neurodegenerative pathways in Alzheimer's disease models,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-879415,Pathway,Advanced glycosylation endproduct receptor signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-432720,Pathway,Lysosome Vesicle Biogenesis,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-9837999,Pathway,Mitochondrial protein degradation,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-381426,Pathway,Regulation of Insulin-like Growth Factor (IGF) transport and uptake by Insulin-like Growth Factor Binding Proteins (IGFBPs),gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-9609523,Pathway,Insertion of tail-anchored proteins into the endoplasmic reticulum membrane,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-933542,Pathway,TRAF6 mediated NF-kB activation,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-444473,Pathway,Formyl peptide receptors bind formyl peptides and many other ligands,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-445989,Pathway,TAK1-dependent IKK and NF-kappa-B activation,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-9936686,Pathway,Aggregated β-amyloid interacts with fibrinogen,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-9936900,Pathway,Aggregated β-amyloid induces FXII autocatalysis,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-418594,Pathway,G alpha (i) signalling events,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-844456,Pathway,The NLRP3 inflammasome,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-9660826,Pathway,Purinergic signaling in leishmaniasis infection,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-416476,Pathway,G alpha (q) signalling events,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-8957275,Pathway,Post-translational protein phosphorylation,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-977225,Pathway,Amyloid fiber formation,gene_pathway,opentargets,1.0
+GENE:ENSG00000142192,Gene,APP,PATHWAY:R-HSA-9769739,Pathway,Regulation of clotting cascade,gene_pathway,opentargets,1.0
+GENE:ENSG00000142319,Gene,SLC6A3,PATHWAY:R-HSA-442660,Pathway,SLC-mediated transport of neurotransmitters,gene_pathway,opentargets,1.0
+GENE:ENSG00000142319,Gene,SLC6A3,PATHWAY:R-HSA-5660724,Pathway,Defective transport of neurotransmitters by SLC6A3 causes Parkinsonism-dystonia infantile (PKDYS),gene_pathway,opentargets,1.0
+GENE:ENSG00000142319,Gene,SLC6A3,PATHWAY:R-HSA-379401,Pathway,Dopamine clearance from the synaptic cleft,gene_pathway,opentargets,1.0
+GENE:ENSG00000142319,Gene,SLC6A3,PATHWAY:R-HSA-5619081,Pathway,Defective neurotransmitter clearance by SLC6A3 causes Parkinsonism-dystonia infantile (PKDYS),gene_pathway,opentargets,1.0
+GENE:ENSG00000143801,Gene,PSEN2,PATHWAY:R-HSA-1251985,Pathway,Nuclear signaling by ERBB4,gene_pathway,opentargets,1.0
+GENE:ENSG00000143801,Gene,PSEN2,PATHWAY:R-HSA-2122948,Pathway,Activated NOTCH1 Transmits Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000143801,Gene,PSEN2,PATHWAY:R-HSA-9013700,Pathway,NOTCH4 Activation and Transmission of Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000143801,Gene,PSEN2,PATHWAY:R-HSA-9017802,Pathway,Noncanonical activation of NOTCH3,gene_pathway,opentargets,1.0
+GENE:ENSG00000143801,Gene,PSEN2,PATHWAY:R-HSA-2979096,Pathway,NOTCH2 Activation and Transmission of Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000143801,Gene,PSEN2,PATHWAY:R-HSA-2894862,Pathway,Constitutive Signaling by NOTCH1 HD+PEST Domain Mutants,gene_pathway,opentargets,1.0
+GENE:ENSG00000143801,Gene,PSEN2,PATHWAY:R-HSA-193692,Pathway,Regulated proteolysis of p75NTR,gene_pathway,opentargets,1.0
+GENE:ENSG00000143801,Gene,PSEN2,PATHWAY:R-HSA-9839383,Pathway,TGFBR3 PTM regulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000143801,Gene,PSEN2,PATHWAY:R-HSA-2644606,Pathway,Constitutive Signaling by NOTCH1 PEST Domain Mutants,gene_pathway,opentargets,1.0
+GENE:ENSG00000143801,Gene,PSEN2,PATHWAY:R-HSA-9013507,Pathway,NOTCH3 Activation and Transmission of Signal to the Nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000143801,Gene,PSEN2,PATHWAY:R-HSA-3928665,Pathway,EPH-ephrin mediated repulsion of cells,gene_pathway,opentargets,1.0
+GENE:ENSG00000143801,Gene,PSEN2,PATHWAY:R-HSA-205043,Pathway,NRIF signals cell death from the nucleus,gene_pathway,opentargets,1.0
+GENE:ENSG00000146904,Gene,EPHA1,PATHWAY:R-HSA-2892247,Pathway,"POU5F1 (OCT4), SOX2, NANOG activate genes related to proliferation",gene_pathway,opentargets,1.0
+GENE:ENSG00000146904,Gene,EPHA1,PATHWAY:R-HSA-2682334,Pathway,EPH-Ephrin signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000146904,Gene,EPHA1,PATHWAY:R-HSA-3928665,Pathway,EPH-ephrin mediated repulsion of cells,gene_pathway,opentargets,1.0
+GENE:ENSG00000146904,Gene,EPHA1,PATHWAY:R-HSA-3928663,Pathway,EPHA-mediated growth cone collapse,gene_pathway,opentargets,1.0
+GENE:ENSG00000147883,Gene,CDKN2B,PATHWAY:R-HSA-2559580,Pathway,Oxidative Stress Induced Senescence,gene_pathway,opentargets,1.0
+GENE:ENSG00000147883,Gene,CDKN2B,PATHWAY:R-HSA-2559585,Pathway,Oncogene Induced Senescence,gene_pathway,opentargets,1.0
+GENE:ENSG00000147883,Gene,CDKN2B,PATHWAY:R-HSA-69231,Pathway,Cyclin D associated events in G1,gene_pathway,opentargets,1.0
+GENE:ENSG00000147883,Gene,CDKN2B,PATHWAY:R-HSA-2173796,Pathway,SMAD2/SMAD3:SMAD4 heterotrimer regulates transcription,gene_pathway,opentargets,1.0
+GENE:ENSG00000147883,Gene,CDKN2B,PATHWAY:R-HSA-2559582,Pathway,Senescence-Associated Secretory Phenotype (SASP),gene_pathway,opentargets,1.0
+GENE:ENSG00000159640,Gene,ACE,PATHWAY:R-HSA-2022377,Pathway,Metabolism of Angiotensinogen to Angiotensins,gene_pathway,opentargets,1.0
+GENE:ENSG00000161509,Gene,GRIN2C,PATHWAY:R-HSA-6794361,Pathway,Neurexins and neuroligins,gene_pathway,opentargets,1.0
+GENE:ENSG00000161509,Gene,GRIN2C,PATHWAY:R-HSA-9609736,Pathway,Assembly and cell surface presentation of NMDA receptors,gene_pathway,opentargets,1.0
+GENE:ENSG00000161509,Gene,GRIN2C,PATHWAY:R-HSA-9617324,Pathway,Negative regulation of NMDA receptor-mediated neuronal transmission,gene_pathway,opentargets,1.0
+GENE:ENSG00000161509,Gene,GRIN2C,PATHWAY:R-HSA-8849932,Pathway,Synaptic adhesion-like molecules,gene_pathway,opentargets,1.0
+GENE:ENSG00000161509,Gene,GRIN2C,PATHWAY:R-HSA-438066,Pathway,"Unblocking of NMDA receptors, glutamate binding and activation",gene_pathway,opentargets,1.0
+GENE:ENSG00000161509,Gene,GRIN2C,PATHWAY:R-HSA-9620244,Pathway,Long-term potentiation,gene_pathway,opentargets,1.0
+GENE:ENSG00000164733,Gene,CTSB,PATHWAY:R-HSA-2022090,Pathway,Assembly of collagen fibrils and other multimeric structures,gene_pathway,opentargets,1.0
+GENE:ENSG00000164733,Gene,CTSB,PATHWAY:R-HSA-6798695,Pathway,Neutrophil degranulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000164733,Gene,CTSB,PATHWAY:R-HSA-1679131,Pathway,Trafficking and processing of endosomal TLR,gene_pathway,opentargets,1.0
+GENE:ENSG00000164733,Gene,CTSB,PATHWAY:R-HSA-2132295,Pathway,MHC class II antigen presentation,gene_pathway,opentargets,1.0
+GENE:ENSG00000164733,Gene,CTSB,PATHWAY:R-HSA-9958810,Pathway,"SRC activates STAT3 in a quantitative manner, through Cadherin-11 (CDH11), RAC1 and gp130 (IL6ST)",gene_pathway,opentargets,1.0
+GENE:ENSG00000164733,Gene,CTSB,PATHWAY:R-HSA-9766229,Pathway,Degradation of CDH1,gene_pathway,opentargets,1.0
+GENE:ENSG00000164733,Gene,CTSB,PATHWAY:R-HSA-1442490,Pathway,Collagen degradation,gene_pathway,opentargets,1.0
+GENE:ENSG00000164733,Gene,CTSB,PATHWAY:R-HSA-9979719,Pathway,Processing of antigen in germinal center B cells,gene_pathway,opentargets,1.0
+GENE:ENSG00000164885,Gene,CDK5,PATHWAY:R-HSA-983231,Pathway,Factors involved in megakaryocyte development and platelet production,gene_pathway,opentargets,1.0
+GENE:ENSG00000164885,Gene,CDK5,PATHWAY:R-HSA-9031628,Pathway,NGF-stimulated transcription,gene_pathway,opentargets,1.0
+GENE:ENSG00000164885,Gene,CDK5,PATHWAY:R-HSA-9931529,Pathway,Phosphorylation and nuclear translocation of BMAL1 (ARNTL) and CLOCK,gene_pathway,opentargets,1.0
+GENE:ENSG00000164885,Gene,CDK5,PATHWAY:R-HSA-6804756,Pathway,Regulation of TP53 Activity through Phosphorylation,gene_pathway,opentargets,1.0
+GENE:ENSG00000164885,Gene,CDK5,PATHWAY:R-HSA-8862803,Pathway,Deregulated CDK5 triggers multiple neurodegenerative pathways in Alzheimer's disease models,gene_pathway,opentargets,1.0
+GENE:ENSG00000164885,Gene,CDK5,PATHWAY:R-HSA-9768919,Pathway,NPAS4 regulates expression of target genes,gene_pathway,opentargets,1.0
+GENE:ENSG00000164885,Gene,CDK5,PATHWAY:R-HSA-9931530,Pathway,Phosphorylation and nuclear translocation of the CRY:PER:kinase complex,gene_pathway,opentargets,1.0
+GENE:ENSG00000164885,Gene,CDK5,PATHWAY:R-HSA-180024,Pathway,DARPP-32 events,gene_pathway,opentargets,1.0
+GENE:ENSG00000164885,Gene,CDK5,PATHWAY:R-HSA-9032845,Pathway,Activated NTRK2 signals through CDK5,gene_pathway,opentargets,1.0
+GENE:ENSG00000164885,Gene,CDK5,PATHWAY:R-HSA-9841922,Pathway,MLL4 and MLL3 complexes regulate expression of PPARG target genes in adipogenesis and hepatic steatosis,gene_pathway,opentargets,1.0
+GENE:ENSG00000164885,Gene,CDK5,PATHWAY:R-HSA-399956,Pathway,CRMPs in Sema3A signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000166035,Gene,LIPC,PATHWAY:R-HSA-8964026,Pathway,Chylomicron clearance,gene_pathway,opentargets,1.0
+GENE:ENSG00000166035,Gene,LIPC,PATHWAY:R-HSA-8963889,Pathway,Assembly of active LPL and LIPC lipase complexes,gene_pathway,opentargets,1.0
+GENE:ENSG00000166311,Gene,SMPD1,PATHWAY:R-HSA-9840310,Pathway,Glycosphingolipid catabolism,gene_pathway,opentargets,1.0
+GENE:ENSG00000166311,Gene,SMPD1,PATHWAY:R-HSA-9769739,Pathway,Regulation of clotting cascade,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-174178,Pathway,APC/C:Cdh1 mediated degradation of Cdc20 and other APC/C:Cdh1 targeted proteins in late mitosis/early G1,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-2500257,Pathway,Resolution of Sister Chromatid Cohesion,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-380259,Pathway,Loss of Nlp from mitotic centrosomes,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-380284,Pathway,Loss of proteins required for interphase microtubule organization from the centrosome,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-162658,Pathway,Golgi Cisternae Pericentriolar Stack Reorganization,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-5663220,Pathway,RHO GTPases Activate Formins,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-380320,Pathway,Recruitment of NuMA to mitotic centrosomes,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-68884,Pathway,Mitotic Telophase/Cytokinesis,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-2299718,Pathway,Condensation of Prophase Chromosomes,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-156711,Pathway,Polo-like kinase mediated events,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-2980767,Pathway,"Activation of NIMA Kinases NEK9, NEK6, NEK7",gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-5620912,Pathway,Anchoring of the basal body to the plasma membrane,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-8854518,Pathway,AURKA Activation by TPX2,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-9825892,Pathway,Regulation of MITF-M-dependent genes involved in cell cycle and proliferation,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-380270,Pathway,Recruitment of mitotic centrosome proteins and complexes,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-69273,Pathway,Cyclin A/B1/B2 associated events during G2/M transition,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-176412,Pathway,Phosphorylation of the APC/C,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-68877,Pathway,Mitotic Prometaphase,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-141444,Pathway,Amplification  of signal from unattached  kinetochores via a MAD2  inhibitory signal,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-8852276,Pathway,The role of GTSE1 in G2/M progression after G2 checkpoint,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-176417,Pathway,Phosphorylation of Emi1,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-9648025,Pathway,EML4 and NUDC in mitotic spindle formation,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-2565942,Pathway,Regulation of PLK1 Activity at G2/M Transition,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-68881,Pathway,Mitotic Metaphase/Anaphase Transition,gene_pathway,opentargets,1.0
+GENE:ENSG00000166851,Gene,PLK1,PATHWAY:R-HSA-2467813,Pathway,Separation of Sister Chromatids,gene_pathway,opentargets,1.0
+GENE:ENSG00000167601,Gene,AXL,PATHWAY:R-HSA-4420097,Pathway,VEGFA-VEGFR2 Pathway,gene_pathway,opentargets,1.0
+GENE:ENSG00000167601,Gene,AXL,PATHWAY:R-HSA-9918485,Pathway,Dengue Virus Attachment and Entry,gene_pathway,opentargets,1.0
+GENE:ENSG00000168653,Gene,NDUFS5,PATHWAY:R-HSA-611105,Pathway,Respiratory electron transport,gene_pathway,opentargets,1.0
+GENE:ENSG00000168653,Gene,NDUFS5,PATHWAY:R-HSA-6799198,Pathway,Complex I biogenesis,gene_pathway,opentargets,1.0
+GENE:ENSG00000176749,Gene,CDK5R1,PATHWAY:R-HSA-9031628,Pathway,NGF-stimulated transcription,gene_pathway,opentargets,1.0
+GENE:ENSG00000176749,Gene,CDK5R1,PATHWAY:R-HSA-6804756,Pathway,Regulation of TP53 Activity through Phosphorylation,gene_pathway,opentargets,1.0
+GENE:ENSG00000176749,Gene,CDK5R1,PATHWAY:R-HSA-8862803,Pathway,Deregulated CDK5 triggers multiple neurodegenerative pathways in Alzheimer's disease models,gene_pathway,opentargets,1.0
+GENE:ENSG00000176749,Gene,CDK5R1,PATHWAY:R-HSA-9768919,Pathway,NPAS4 regulates expression of target genes,gene_pathway,opentargets,1.0
+GENE:ENSG00000176749,Gene,CDK5R1,PATHWAY:R-HSA-9032845,Pathway,Activated NTRK2 signals through CDK5,gene_pathway,opentargets,1.0
+GENE:ENSG00000176749,Gene,CDK5R1,PATHWAY:R-HSA-399956,Pathway,CRMPs in Sema3A signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000176884,Gene,GRIN1,PATHWAY:R-HSA-442982,Pathway,Ras activation upon Ca2+ influx through NMDA receptor,gene_pathway,opentargets,1.0
+GENE:ENSG00000176884,Gene,GRIN1,PATHWAY:R-HSA-6794361,Pathway,Neurexins and neuroligins,gene_pathway,opentargets,1.0
+GENE:ENSG00000176884,Gene,GRIN1,PATHWAY:R-HSA-9609736,Pathway,Assembly and cell surface presentation of NMDA receptors,gene_pathway,opentargets,1.0
+GENE:ENSG00000176884,Gene,GRIN1,PATHWAY:R-HSA-9617324,Pathway,Negative regulation of NMDA receptor-mediated neuronal transmission,gene_pathway,opentargets,1.0
+GENE:ENSG00000176884,Gene,GRIN1,PATHWAY:R-HSA-5673001,Pathway,RAF/MAP kinase cascade,gene_pathway,opentargets,1.0
+GENE:ENSG00000176884,Gene,GRIN1,PATHWAY:R-HSA-8849932,Pathway,Synaptic adhesion-like molecules,gene_pathway,opentargets,1.0
+GENE:ENSG00000176884,Gene,GRIN1,PATHWAY:R-HSA-3928662,Pathway,EPHB-mediated forward signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000176884,Gene,GRIN1,PATHWAY:R-HSA-438066,Pathway,"Unblocking of NMDA receptors, glutamate binding and activation",gene_pathway,opentargets,1.0
+GENE:ENSG00000176884,Gene,GRIN1,PATHWAY:R-HSA-9620244,Pathway,Long-term potentiation,gene_pathway,opentargets,1.0
+GENE:ENSG00000178127,Gene,NDUFV2,PATHWAY:R-HSA-611105,Pathway,Respiratory electron transport,gene_pathway,opentargets,1.0
+GENE:ENSG00000178127,Gene,NDUFV2,PATHWAY:R-HSA-6799198,Pathway,Complex I biogenesis,gene_pathway,opentargets,1.0
+GENE:ENSG00000178999,Gene,AURKB,PATHWAY:R-HSA-174178,Pathway,APC/C:Cdh1 mediated degradation of Cdc20 and other APC/C:Cdh1 targeted proteins in late mitosis/early G1,gene_pathway,opentargets,1.0
+GENE:ENSG00000178999,Gene,AURKB,PATHWAY:R-HSA-2500257,Pathway,Resolution of Sister Chromatid Cohesion,gene_pathway,opentargets,1.0
+GENE:ENSG00000178999,Gene,AURKB,PATHWAY:R-HSA-6804756,Pathway,Regulation of TP53 Activity through Phosphorylation,gene_pathway,opentargets,1.0
+GENE:ENSG00000178999,Gene,AURKB,PATHWAY:R-HSA-5663220,Pathway,RHO GTPases Activate Formins,gene_pathway,opentargets,1.0
+GENE:ENSG00000178999,Gene,AURKB,PATHWAY:R-HSA-68877,Pathway,Mitotic Prometaphase,gene_pathway,opentargets,1.0
+GENE:ENSG00000178999,Gene,AURKB,PATHWAY:R-HSA-141444,Pathway,Amplification  of signal from unattached  kinetochores via a MAD2  inhibitory signal,gene_pathway,opentargets,1.0
+GENE:ENSG00000178999,Gene,AURKB,PATHWAY:R-HSA-9648025,Pathway,EML4 and NUDC in mitotic spindle formation,gene_pathway,opentargets,1.0
+GENE:ENSG00000178999,Gene,AURKB,PATHWAY:R-HSA-9022692,Pathway,Regulation of MECP2 expression and activity,gene_pathway,opentargets,1.0
+GENE:ENSG00000178999,Gene,AURKB,PATHWAY:R-HSA-4615885,Pathway,SUMOylation of DNA replication proteins,gene_pathway,opentargets,1.0
+GENE:ENSG00000178999,Gene,AURKB,PATHWAY:R-HSA-2467813,Pathway,Separation of Sister Chromatids,gene_pathway,opentargets,1.0
+GENE:ENSG00000179526,Gene,SHARPIN,PATHWAY:R-HSA-5357786,Pathway,TNFR1-induced proapoptotic signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000179526,Gene,SHARPIN,PATHWAY:R-HSA-5357905,Pathway,Regulation of TNFR1 signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000179526,Gene,SHARPIN,PATHWAY:R-HSA-5357956,Pathway,TNFR1-induced NF-kappa-B signaling pathway,gene_pathway,opentargets,1.0
+GENE:ENSG00000179526,Gene,SHARPIN,PATHWAY:R-HSA-6794361,Pathway,Neurexins and neuroligins,gene_pathway,opentargets,1.0
+GENE:ENSG00000183454,Gene,GRIN2A,PATHWAY:R-HSA-9022699,Pathway,MECP2 regulates neuronal receptors and channels,gene_pathway,opentargets,1.0
+GENE:ENSG00000183454,Gene,GRIN2A,PATHWAY:R-HSA-6794361,Pathway,Neurexins and neuroligins,gene_pathway,opentargets,1.0
+GENE:ENSG00000183454,Gene,GRIN2A,PATHWAY:R-HSA-9609736,Pathway,Assembly and cell surface presentation of NMDA receptors,gene_pathway,opentargets,1.0
+GENE:ENSG00000183454,Gene,GRIN2A,PATHWAY:R-HSA-9617324,Pathway,Negative regulation of NMDA receptor-mediated neuronal transmission,gene_pathway,opentargets,1.0
+GENE:ENSG00000183454,Gene,GRIN2A,PATHWAY:R-HSA-8849932,Pathway,Synaptic adhesion-like molecules,gene_pathway,opentargets,1.0
+GENE:ENSG00000183454,Gene,GRIN2A,PATHWAY:R-HSA-438066,Pathway,"Unblocking of NMDA receptors, glutamate binding and activation",gene_pathway,opentargets,1.0
+GENE:ENSG00000183454,Gene,GRIN2A,PATHWAY:R-HSA-9620244,Pathway,Long-term potentiation,gene_pathway,opentargets,1.0
+GENE:ENSG00000196549,Gene,MME,PATHWAY:R-HSA-9927432,Pathway,Developmental Lineage of Mammary Gland Myoepithelial Cells,gene_pathway,opentargets,1.0
+GENE:ENSG00000196549,Gene,MME,PATHWAY:R-HSA-6798695,Pathway,Neutrophil degranulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000196549,Gene,MME,PATHWAY:R-HSA-5578768,Pathway,Physiological factors,gene_pathway,opentargets,1.0
+GENE:ENSG00000196549,Gene,MME,PATHWAY:R-HSA-2022377,Pathway,Metabolism of Angiotensinogen to Angiotensins,gene_pathway,opentargets,1.0
+GENE:ENSG00000197746,Gene,PSAP,PATHWAY:R-HSA-418594,Pathway,G alpha (i) signalling events,gene_pathway,opentargets,1.0
+GENE:ENSG00000197746,Gene,PSAP,PATHWAY:R-HSA-6798695,Pathway,Neutrophil degranulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000197746,Gene,PSAP,PATHWAY:R-HSA-114608,Pathway,Platelet degranulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000197746,Gene,PSAP,PATHWAY:R-HSA-9840310,Pathway,Glycosphingolipid catabolism,gene_pathway,opentargets,1.0
+GENE:ENSG00000197746,Gene,PSAP,PATHWAY:R-HSA-375276,Pathway,Peptide ligand-binding receptors,gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-114604,Pathway,GPVI-mediated activation cascade,gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-1855204,Pathway,Synthesis of IP3 and IP4 in the cytosol,gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-9027277,Pathway,Erythropoietin activates Phospholipase C gamma (PLCG),gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-5607764,Pathway,CLEC7A (Dectin-1) signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-202433,Pathway,Generation of second messenger molecules,gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-9680350,Pathway,Signaling by CSF1 (M-CSF) in myeloid cells,gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-9679191,Pathway,Potential therapeutics for SARS,gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-2029485,Pathway,Role of phospholipids in phagocytosis,gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-2871809,Pathway,FCERI mediated Ca+2 mobilization,gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-5621480,Pathway,Dectin-2 family,gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-2871796,Pathway,FCERI mediated MAPK activation,gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-2424491,Pathway,DAP12 signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-983695,Pathway,Antigen activates B Cell Receptor (BCR) leading to generation of second messengers,gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-166016,Pathway,Toll Like Receptor 4 (TLR4) Cascade,gene_pathway,opentargets,1.0
+GENE:ENSG00000197943,Gene,PLCG2,PATHWAY:R-HSA-9664323,Pathway,FCGR3A-mediated IL10 synthesis,gene_pathway,opentargets,1.0
+GENE:ENSG00000198785,Gene,GRIN3A,PATHWAY:R-HSA-9609736,Pathway,Assembly and cell surface presentation of NMDA receptors,gene_pathway,opentargets,1.0
+GENE:ENSG00000203710,Gene,CR1,PATHWAY:R-HSA-977606,Pathway,Regulation of Complement cascade,gene_pathway,opentargets,1.0
+GENE:ENSG00000203710,Gene,CR1,PATHWAY:R-HSA-6798695,Pathway,Neutrophil degranulation,gene_pathway,opentargets,1.0
+GENE:ENSG00000203710,Gene,CR1,PATHWAY:R-HSA-9938027,Pathway,Affinity selection of immunoglobulins,gene_pathway,opentargets,1.0
+GENE:ENSG00000203710,Gene,CR1,PATHWAY:R-HSA-8877330,Pathway,RUNX1 and FOXP3 control the development of regulatory T lymphocytes (Tregs),gene_pathway,opentargets,1.0
+GENE:ENSG00000273079,Gene,GRIN2B,PATHWAY:R-HSA-9022699,Pathway,MECP2 regulates neuronal receptors and channels,gene_pathway,opentargets,1.0
+GENE:ENSG00000273079,Gene,GRIN2B,PATHWAY:R-HSA-442982,Pathway,Ras activation upon Ca2+ influx through NMDA receptor,gene_pathway,opentargets,1.0
+GENE:ENSG00000273079,Gene,GRIN2B,PATHWAY:R-HSA-6794361,Pathway,Neurexins and neuroligins,gene_pathway,opentargets,1.0
+GENE:ENSG00000273079,Gene,GRIN2B,PATHWAY:R-HSA-9609736,Pathway,Assembly and cell surface presentation of NMDA receptors,gene_pathway,opentargets,1.0
+GENE:ENSG00000273079,Gene,GRIN2B,PATHWAY:R-HSA-9617324,Pathway,Negative regulation of NMDA receptor-mediated neuronal transmission,gene_pathway,opentargets,1.0
+GENE:ENSG00000273079,Gene,GRIN2B,PATHWAY:R-HSA-9032500,Pathway,Activated NTRK2 signals through FYN,gene_pathway,opentargets,1.0
+GENE:ENSG00000273079,Gene,GRIN2B,PATHWAY:R-HSA-5673001,Pathway,RAF/MAP kinase cascade,gene_pathway,opentargets,1.0
+GENE:ENSG00000273079,Gene,GRIN2B,PATHWAY:R-HSA-8849932,Pathway,Synaptic adhesion-like molecules,gene_pathway,opentargets,1.0
+GENE:ENSG00000273079,Gene,GRIN2B,PATHWAY:R-HSA-3928662,Pathway,EPHB-mediated forward signaling,gene_pathway,opentargets,1.0
+GENE:ENSG00000273079,Gene,GRIN2B,PATHWAY:R-HSA-438066,Pathway,"Unblocking of NMDA receptors, glutamate binding and activation",gene_pathway,opentargets,1.0
+GENE:ENSG00000273079,Gene,GRIN2B,PATHWAY:R-HSA-9620244,Pathway,Long-term potentiation,gene_pathway,opentargets,1.0
+GENE:ENSG00000274286,Gene,ADRA2B,PATHWAY:R-HSA-418594,Pathway,G alpha (i) signalling events,gene_pathway,opentargets,1.0
+GENE:ENSG00000274286,Gene,ADRA2B,PATHWAY:R-HSA-390696,Pathway,Adrenoceptors,gene_pathway,opentargets,1.0
+GENE:ENSG00000274286,Gene,ADRA2B,PATHWAY:R-HSA-392023,Pathway,Adrenaline signalling through Alpha-2 adrenergic receptor,gene_pathway,opentargets,1.0
+GENE:ENSG00000274286,Gene,ADRA2B,PATHWAY:R-HSA-418597,Pathway,G alpha (z) signalling events,gene_pathway,opentargets,1.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:ARIA-NOS,AdverseEvent,"ARIA, unspecified",drug_ae,faers,92.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:ARIA-H,AdverseEvent,"ARIA-H (amyloid-related imaging abnormality, microbleeds/hemosiderin)",drug_ae,faers,453.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:ARIA-E,AdverseEvent,"ARIA-E (amyloid-related imaging abnormality, edema/effusion)",drug_ae,faers,488.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:aortic dissection,AdverseEvent,AORTIC DISSECTION,drug_ae,faers,7.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:aphasia,AdverseEvent,APHASIA,drug_ae,faers,23.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:atrial fibrillation,AdverseEvent,ATRIAL FIBRILLATION,drug_ae,faers,45.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:basal ganglia hemorrhage,AdverseEvent,BASAL GANGLIA HAEMORRHAGE,drug_ae,faers,3.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:brain fog,AdverseEvent,BRAIN FOG,drug_ae,faers,19.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:CEREBRAL_EDEMA,AdverseEvent,Cerebral edema,drug_ae,faers,30.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:cerebellar infarction,AdverseEvent,CEREBELLAR INFARCTION,drug_ae,faers,13.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:CEREBRAL_HEMORRHAGE,AdverseEvent,Cerebral hemorrhage,drug_ae,faers,117.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:cerebral infarction,AdverseEvent,CEREBRAL INFARCTION,drug_ae,faers,78.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:cerebral mass effect,AdverseEvent,CEREBRAL MASS EFFECT,drug_ae,faers,5.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:CEREBRAL_MICROHEMORRHAGE,AdverseEvent,Cerebral microhemorrhage,drug_ae,faers,27.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:cervical vertebral fracture,AdverseEvent,CERVICAL VERTEBRAL FRACTURE,drug_ae,faers,4.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:chills,AdverseEvent,CHILLS,drug_ae,faers,243.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:cognitive disorder,AdverseEvent,COGNITIVE DISORDER,drug_ae,faers,31.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:confusional state,AdverseEvent,CONFUSIONAL STATE,drug_ae,faers,166.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:craniofacial fracture,AdverseEvent,CRANIOFACIAL FRACTURE,drug_ae,faers,3.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:dementia alzheimer s type,AdverseEvent,DEMENTIA ALZHEIMER'S TYPE,drug_ae,faers,61.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:disorientation,AdverseEvent,DISORIENTATION,drug_ae,faers,30.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:drowning,AdverseEvent,DROWNING,drug_ae,faers,3.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:encephalitis,AdverseEvent,ENCEPHALITIS,drug_ae,faers,6.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:extradural hematoma,AdverseEvent,EXTRADURAL HAEMATOMA,drug_ae,faers,3.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:feeling cold,AdverseEvent,FEELING COLD,drug_ae,faers,42.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:femoral neck fracture,AdverseEvent,FEMORAL NECK FRACTURE,drug_ae,faers,8.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:fibrin d dimer increased,AdverseEvent,FIBRIN D DIMER INCREASED,drug_ae,faers,5.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:haemorrhagic stroke,AdverseEvent,HAEMORRHAGIC STROKE,drug_ae,faers,8.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:head discomfort,AdverseEvent,HEAD DISCOMFORT,drug_ae,faers,14.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:headache,AdverseEvent,HEADACHE,drug_ae,faers,478.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:hypertensive urgency,AdverseEvent,HYPERTENSIVE URGENCY,drug_ae,faers,3.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:influenza like illness,AdverseEvent,INFLUENZA LIKE ILLNESS,drug_ae,faers,75.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:infusion related reaction,AdverseEvent,INFUSION RELATED REACTION,drug_ae,faers,316.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:infusion site extravasation,AdverseEvent,INFUSION SITE EXTRAVASATION,drug_ae,faers,9.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:intraventricular hemorrhage,AdverseEvent,INTRAVENTRICULAR HAEMORRHAGE,drug_ae,faers,4.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:ischaemic stroke,AdverseEvent,ISCHAEMIC STROKE,drug_ae,faers,14.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:lacunar infarction,AdverseEvent,LACUNAR INFARCTION,drug_ae,faers,19.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:lacunar stroke,AdverseEvent,LACUNAR STROKE,drug_ae,faers,3.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:lethargy,AdverseEvent,LETHARGY,drug_ae,faers,29.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:magnetic resonance imaging abnormal,AdverseEvent,MAGNETIC RESONANCE IMAGING ABNORMAL,drug_ae,faers,15.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:magnetic resonance imaging head abnormal,AdverseEvent,MAGNETIC RESONANCE IMAGING HEAD ABNORMAL,drug_ae,faers,9.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:neuropsychological symptoms,AdverseEvent,NEUROPSYCHOLOGICAL SYMPTOMS,drug_ae,faers,5.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:pyrexia,AdverseEvent,PYREXIA,drug_ae,faers,174.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:seizure,AdverseEvent,SEIZURE,drug_ae,faers,54.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:status epilepticus,AdverseEvent,STATUS EPILEPTICUS,drug_ae,faers,11.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:subarachnoid hemorrhage,AdverseEvent,SUBARACHNOID HAEMORRHAGE,drug_ae,faers,11.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:subdural hematoma,AdverseEvent,SUBDURAL HAEMATOMA,drug_ae,faers,28.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:subdural hemorrhage,AdverseEvent,SUBDURAL HAEMORRHAGE,drug_ae,faers,5.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:SUPERFICIAL_SIDEROSIS,AdverseEvent,Superficial siderosis of the CNS,drug_ae,faers,46.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:traumatic subarachnoid hemorrhage,AdverseEvent,TRAUMATIC SUBARACHNOID HAEMORRHAGE,drug_ae,faers,3.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:RAW:tremor,AdverseEvent,TREMOR,drug_ae,faers,91.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:CEREBRAL_EDEMA,AdverseEvent,Cerebral edema,drug_ae,faers,3.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:ARIA-NOS,AdverseEvent,"ARIA, unspecified",drug_ae,faers,155.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:ARIA-H,AdverseEvent,"ARIA-H (amyloid-related imaging abnormality, microbleeds/hemosiderin)",drug_ae,faers,369.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:ARIA-E,AdverseEvent,"ARIA-E (amyloid-related imaging abnormality, edema/effusion)",drug_ae,faers,452.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:anaphylactic reaction,AdverseEvent,ANAPHYLACTIC REACTION,drug_ae,faers,50.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:anaphylactic shock,AdverseEvent,ANAPHYLACTIC SHOCK,drug_ae,faers,29.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:anaphylactoid reaction,AdverseEvent,ANAPHYLACTOID REACTION,drug_ae,faers,9.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:aphasia,AdverseEvent,APHASIA,drug_ae,faers,17.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:blood pressure decreased,AdverseEvent,BLOOD PRESSURE DECREASED,drug_ae,faers,43.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:blood pressure immeasurable,AdverseEvent,BLOOD PRESSURE IMMEASURABLE,drug_ae,faers,3.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:blood pressure increased,AdverseEvent,BLOOD PRESSURE INCREASED,drug_ae,faers,79.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:blood pressure systolic increased,AdverseEvent,BLOOD PRESSURE SYSTOLIC INCREASED,drug_ae,faers,10.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:brain fog,AdverseEvent,BRAIN FOG,drug_ae,faers,13.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:CEREBRAL_EDEMA,AdverseEvent,Cerebral edema,drug_ae,faers,69.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:cerebellar infarction,AdverseEvent,CEREBELLAR INFARCTION,drug_ae,faers,5.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:cerebral amyloid angiopathy,AdverseEvent,CEREBRAL AMYLOID ANGIOPATHY,drug_ae,faers,5.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:cerebral atrophy,AdverseEvent,CEREBRAL ATROPHY,drug_ae,faers,10.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:CEREBRAL_HEMORRHAGE,AdverseEvent,Cerebral hemorrhage,drug_ae,faers,162.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:cerebral infarction,AdverseEvent,CEREBRAL INFARCTION,drug_ae,faers,32.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:cerebral ischaemia,AdverseEvent,CEREBRAL ISCHAEMIA,drug_ae,faers,6.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:CEREBRAL_MICROHEMORRHAGE,AdverseEvent,Cerebral microhemorrhage,drug_ae,faers,88.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:cerebral small vessel ischaemic disease,AdverseEvent,CEREBRAL SMALL VESSEL ISCHAEMIC DISEASE,drug_ae,faers,7.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:cerebrovascular accident,AdverseEvent,CEREBROVASCULAR ACCIDENT,drug_ae,faers,63.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:chest discomfort,AdverseEvent,CHEST DISCOMFORT,drug_ae,faers,73.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:chills,AdverseEvent,CHILLS,drug_ae,faers,94.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:cognitive disorder,AdverseEvent,COGNITIVE DISORDER,drug_ae,faers,24.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:confusional state,AdverseEvent,CONFUSIONAL STATE,drug_ae,faers,88.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:dementia alzheimer s type,AdverseEvent,DEMENTIA ALZHEIMER'S TYPE,drug_ae,faers,14.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:dizziness postural,AdverseEvent,DIZZINESS POSTURAL,drug_ae,faers,9.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:erythema,AdverseEvent,ERYTHEMA,drug_ae,faers,70.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:feeling cold,AdverseEvent,FEELING COLD,drug_ae,faers,19.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:feeling hot,AdverseEvent,FEELING HOT,drug_ae,faers,41.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:flushing,AdverseEvent,FLUSHING,drug_ae,faers,189.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:haemorrhagic hepatic cyst,AdverseEvent,HAEMORRHAGIC HEPATIC CYST,drug_ae,faers,3.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:haemorrhagic stroke,AdverseEvent,HAEMORRHAGIC STROKE,drug_ae,faers,8.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:head discomfort,AdverseEvent,HEAD DISCOMFORT,drug_ae,faers,14.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:head injury,AdverseEvent,HEAD INJURY,drug_ae,faers,18.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:headache,AdverseEvent,HEADACHE,drug_ae,faers,259.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:hippocampal atrophy,AdverseEvent,HIPPOCAMPAL ATROPHY,drug_ae,faers,4.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:infusion related hypersensitivity reaction,AdverseEvent,INFUSION RELATED HYPERSENSITIVITY REACTION,drug_ae,faers,30.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:infusion related reaction,AdverseEvent,INFUSION RELATED REACTION,drug_ae,faers,342.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:infusion site extravasation,AdverseEvent,INFUSION SITE EXTRAVASATION,drug_ae,faers,6.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:ischaemic cerebral infarction,AdverseEvent,ISCHAEMIC CEREBRAL INFARCTION,drug_ae,faers,3.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:ischaemic stroke,AdverseEvent,ISCHAEMIC STROKE,drug_ae,faers,23.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:lacunar infarction,AdverseEvent,LACUNAR INFARCTION,drug_ae,faers,16.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:magnetic resonance imaging abnormal,AdverseEvent,MAGNETIC RESONANCE IMAGING ABNORMAL,drug_ae,faers,16.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:magnetic resonance imaging head abnormal,AdverseEvent,MAGNETIC RESONANCE IMAGING HEAD ABNORMAL,drug_ae,faers,6.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:meningeal disorder,AdverseEvent,MENINGEAL DISORDER,drug_ae,faers,3.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:oxygen saturation decreased,AdverseEvent,OXYGEN SATURATION DECREASED,drug_ae,faers,28.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:pallor,AdverseEvent,PALLOR,drug_ae,faers,13.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:seizure,AdverseEvent,SEIZURE,drug_ae,faers,45.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:slow response to stimuli,AdverseEvent,SLOW RESPONSE TO STIMULI,drug_ae,faers,3.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:subarachnoid hemorrhage,AdverseEvent,SUBARACHNOID HAEMORRHAGE,drug_ae,faers,8.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:subdural hematoma,AdverseEvent,SUBDURAL HAEMATOMA,drug_ae,faers,22.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:SUPERFICIAL_SIDEROSIS,AdverseEvent,Superficial siderosis of the CNS,drug_ae,faers,16.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:CEREBRAL_EDEMA,AdverseEvent,Cerebral edema,drug_ae,faers,3.0
+DRUG:CHEMBL4297245,Drug,DONANEMAB,AE:RAW:white matter lesion,AdverseEvent,WHITE MATTER LESION,drug_ae,faers,6.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:ARIA-NOS,AdverseEvent,"ARIA, unspecified",drug_ae,faers,17.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:ARIA-H,AdverseEvent,"ARIA-H (amyloid-related imaging abnormality, microbleeds/hemosiderin)",drug_ae,faers,101.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:ARIA-E,AdverseEvent,"ARIA-E (amyloid-related imaging abnormality, edema/effusion)",drug_ae,faers,143.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:RAW:aphasia,AdverseEvent,APHASIA,drug_ae,faers,4.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:RAW:atrial fibrillation,AdverseEvent,ATRIAL FIBRILLATION,drug_ae,faers,11.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:CEREBRAL_EDEMA,AdverseEvent,Cerebral edema,drug_ae,faers,14.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:CEREBRAL_HEMORRHAGE,AdverseEvent,Cerebral hemorrhage,drug_ae,faers,27.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:CEREBRAL_MICROHEMORRHAGE,AdverseEvent,Cerebral microhemorrhage,drug_ae,faers,7.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:RAW:cognitive disorder,AdverseEvent,COGNITIVE DISORDER,drug_ae,faers,13.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:RAW:confusional state,AdverseEvent,CONFUSIONAL STATE,drug_ae,faers,35.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:RAW:dementia alzheimer s type,AdverseEvent,DEMENTIA ALZHEIMER'S TYPE,drug_ae,faers,22.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:RAW:head injury,AdverseEvent,HEAD INJURY,drug_ae,faers,8.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:RAW:memory impairment,AdverseEvent,MEMORY IMPAIRMENT,drug_ae,faers,12.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:RAW:mental status changes,AdverseEvent,MENTAL STATUS CHANGES,drug_ae,faers,5.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:RAW:seizure,AdverseEvent,SEIZURE,drug_ae,faers,20.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:RAW:subarachnoid hemorrhage,AdverseEvent,SUBARACHNOID HAEMORRHAGE,drug_ae,faers,9.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:SUPERFICIAL_SIDEROSIS,AdverseEvent,Superficial siderosis of the CNS,drug_ae,faers,23.0
+DRUG:CHEMBL3039540,Drug,ADUCANUMAB,AE:RAW:transient ischaemic attack,AdverseEvent,TRANSIENT ISCHAEMIC ATTACK,drug_ae,faers,5.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:ARIA-E,AdverseEvent,"ARIA-E (amyloid-related imaging abnormality, edema/effusion)",drug_ae,opentargets,15.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:ARIA-H,AdverseEvent,"ARIA-H (amyloid-related imaging abnormality, microbleeds/hemosiderin)",drug_ae,opentargets,14.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:CEREBRAL_MICROHEMORRHAGE,AdverseEvent,Cerebral microhemorrhage,drug_ae,opentargets,4.0
+DRUG:CHEMBL3833321,Drug,LECANEMAB,AE:SUPERFICIAL_SIDEROSIS,AdverseEvent,Superficial siderosis of the CNS,drug_ae,opentargets,2.0
+GENE:ENSG00000142192,Gene,APP,AE:ARIA-NOS,AdverseEvent,"ARIA, unspecified",gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:encephalitis,AdverseEvent,ENCEPHALITIS,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:intraventricular hemorrhage,AdverseEvent,INTRAVENTRICULAR HAEMORRHAGE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:seizure,AdverseEvent,SEIZURE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:cerebral infarction,AdverseEvent,CEREBRAL INFARCTION,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:drowning,AdverseEvent,DROWNING,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:subdural hematoma,AdverseEvent,SUBDURAL HAEMATOMA,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:dementia alzheimer s type,AdverseEvent,DEMENTIA ALZHEIMER'S TYPE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:ischaemic stroke,AdverseEvent,ISCHAEMIC STROKE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:pyrexia,AdverseEvent,PYREXIA,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:CEREBRAL_EDEMA,AdverseEvent,Cerebral edema,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:lacunar stroke,AdverseEvent,LACUNAR STROKE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:traumatic subarachnoid hemorrhage,AdverseEvent,TRAUMATIC SUBARACHNOID HAEMORRHAGE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:SUPERFICIAL_SIDEROSIS,AdverseEvent,Superficial siderosis of the CNS,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:head discomfort,AdverseEvent,HEAD DISCOMFORT,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:cognitive disorder,AdverseEvent,COGNITIVE DISORDER,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:lacunar infarction,AdverseEvent,LACUNAR INFARCTION,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:lethargy,AdverseEvent,LETHARGY,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:confusional state,AdverseEvent,CONFUSIONAL STATE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:infusion related reaction,AdverseEvent,INFUSION RELATED REACTION,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:cerebral mass effect,AdverseEvent,CEREBRAL MASS EFFECT,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:brain fog,AdverseEvent,BRAIN FOG,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:CEREBRAL_HEMORRHAGE,AdverseEvent,Cerebral hemorrhage,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:subarachnoid hemorrhage,AdverseEvent,SUBARACHNOID HAEMORRHAGE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:influenza like illness,AdverseEvent,INFLUENZA LIKE ILLNESS,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:fibrin d dimer increased,AdverseEvent,FIBRIN D DIMER INCREASED,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:ARIA-H,AdverseEvent,"ARIA-H (amyloid-related imaging abnormality, microbleeds/hemosiderin)",gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:chills,AdverseEvent,CHILLS,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:extradural hematoma,AdverseEvent,EXTRADURAL HAEMATOMA,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:status epilepticus,AdverseEvent,STATUS EPILEPTICUS,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:basal ganglia hemorrhage,AdverseEvent,BASAL GANGLIA HAEMORRHAGE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:headache,AdverseEvent,HEADACHE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:disorientation,AdverseEvent,DISORIENTATION,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:hypertensive urgency,AdverseEvent,HYPERTENSIVE URGENCY,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:haemorrhagic stroke,AdverseEvent,HAEMORRHAGIC STROKE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:tremor,AdverseEvent,TREMOR,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:cervical vertebral fracture,AdverseEvent,CERVICAL VERTEBRAL FRACTURE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:subdural hemorrhage,AdverseEvent,SUBDURAL HAEMORRHAGE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:cerebellar infarction,AdverseEvent,CEREBELLAR INFARCTION,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:feeling cold,AdverseEvent,FEELING COLD,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:atrial fibrillation,AdverseEvent,ATRIAL FIBRILLATION,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:ARIA-E,AdverseEvent,"ARIA-E (amyloid-related imaging abnormality, edema/effusion)",gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:femoral neck fracture,AdverseEvent,FEMORAL NECK FRACTURE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:neuropsychological symptoms,AdverseEvent,NEUROPSYCHOLOGICAL SYMPTOMS,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:craniofacial fracture,AdverseEvent,CRANIOFACIAL FRACTURE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:magnetic resonance imaging head abnormal,AdverseEvent,MAGNETIC RESONANCE IMAGING HEAD ABNORMAL,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:aphasia,AdverseEvent,APHASIA,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:infusion site extravasation,AdverseEvent,INFUSION SITE EXTRAVASATION,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:CEREBRAL_MICROHEMORRHAGE,AdverseEvent,Cerebral microhemorrhage,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:magnetic resonance imaging abnormal,AdverseEvent,MAGNETIC RESONANCE IMAGING ABNORMAL,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:aortic dissection,AdverseEvent,AORTIC DISSECTION,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:feeling hot,AdverseEvent,FEELING HOT,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:cerebrovascular accident,AdverseEvent,CEREBROVASCULAR ACCIDENT,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:chest discomfort,AdverseEvent,CHEST DISCOMFORT,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:pallor,AdverseEvent,PALLOR,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:infusion related hypersensitivity reaction,AdverseEvent,INFUSION RELATED HYPERSENSITIVITY REACTION,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:white matter lesion,AdverseEvent,WHITE MATTER LESION,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:cerebral amyloid angiopathy,AdverseEvent,CEREBRAL AMYLOID ANGIOPATHY,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:anaphylactic shock,AdverseEvent,ANAPHYLACTIC SHOCK,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:cerebral small vessel ischaemic disease,AdverseEvent,CEREBRAL SMALL VESSEL ISCHAEMIC DISEASE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:anaphylactoid reaction,AdverseEvent,ANAPHYLACTOID REACTION,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:cerebral ischaemia,AdverseEvent,CEREBRAL ISCHAEMIA,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:dizziness postural,AdverseEvent,DIZZINESS POSTURAL,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:haemorrhagic hepatic cyst,AdverseEvent,HAEMORRHAGIC HEPATIC CYST,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:anaphylactic reaction,AdverseEvent,ANAPHYLACTIC REACTION,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:cerebral atrophy,AdverseEvent,CEREBRAL ATROPHY,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:head injury,AdverseEvent,HEAD INJURY,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:blood pressure systolic increased,AdverseEvent,BLOOD PRESSURE SYSTOLIC INCREASED,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:erythema,AdverseEvent,ERYTHEMA,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:slow response to stimuli,AdverseEvent,SLOW RESPONSE TO STIMULI,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:blood pressure immeasurable,AdverseEvent,BLOOD PRESSURE IMMEASURABLE,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:oxygen saturation decreased,AdverseEvent,OXYGEN SATURATION DECREASED,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:blood pressure increased,AdverseEvent,BLOOD PRESSURE INCREASED,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:meningeal disorder,AdverseEvent,MENINGEAL DISORDER,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:flushing,AdverseEvent,FLUSHING,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:hippocampal atrophy,AdverseEvent,HIPPOCAMPAL ATROPHY,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:ischaemic cerebral infarction,AdverseEvent,ISCHAEMIC CEREBRAL INFARCTION,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:blood pressure decreased,AdverseEvent,BLOOD PRESSURE DECREASED,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:transient ischaemic attack,AdverseEvent,TRANSIENT ISCHAEMIC ATTACK,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:mental status changes,AdverseEvent,MENTAL STATUS CHANGES,gene_ae,derived,1.0
+GENE:ENSG00000142192,Gene,APP,AE:RAW:memory impairment,AdverseEvent,MEMORY IMPAIRMENT,gene_ae,derived,1.0

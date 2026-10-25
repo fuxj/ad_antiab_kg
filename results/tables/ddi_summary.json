@@ -1,0 +1,15 @@
+{
+  "exposure_set": "anticoag_antiplatelet",
+  "n_target_reports": 6951,
+  "n_exposed_reports": 534,
+  "aria_rate_exposed": 0.2808988764044944,
+  "aria_rate_unexposed": 0.2136512388966807,
+  "overall_OR": 1.4377051422319476,
+  "overall_OR_ci": [
+    1.179526839721924,
+    1.7523942706445603
+  ],
+  "overall_fisher_p": 0.0002612825068995228,
+  "has_scipy": true,
+  "generated_at": "2026-10-23 23:53:52"
+}

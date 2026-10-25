@@ -1,0 +1,8 @@
+﻿ae_node,label,aria_concept,event_group,n_sources,sources,n_faers_pt,faers_pt,ot_name,cross_source_confirmed
+AE:ARIA-NOS,"ARIA, unspecified",ARIA-NOS,ARIA,1,faers,1.0,AMYLOID RELATED IMAGING ABNORMALITIES,,False
+AE:ARIA-H,"ARIA-H (amyloid-related imaging abnormality, microbleeds/hemosiderin)",ARIA-H,ARIA,2,faers+opentargets,1.0,AMYLOID RELATED IMAGING ABNORMALITY-MICROHAEMORRHAGES AND HAEMOSIDERIN DEPOSITS,amyloid related imaging abnormality-microhaemorrhages and haemosiderin deposits,True
+AE:ARIA-E,"ARIA-E (amyloid-related imaging abnormality, edema/effusion)",ARIA-E,ARIA,2,faers+opentargets,1.0,AMYLOID RELATED IMAGING ABNORMALITY-OEDEMA/EFFUSION,amyloid related imaging abnormality-oedema/effusion,True
+AE:CEREBRAL_EDEMA,Cerebral edema,CEREBRAL_EDEMA,ARIA,1,faers,2.0,BRAIN OEDEMA | VASOGENIC CEREBRAL OEDEMA,,False
+AE:CEREBRAL_HEMORRHAGE,Cerebral hemorrhage,CEREBRAL_HEMORRHAGE,ARIA,1,faers,1.0,CEREBRAL HAEMORRHAGE,,False
+AE:CEREBRAL_MICROHEMORRHAGE,Cerebral microhemorrhage,CEREBRAL_MICROHEMORRHAGE,ARIA,2,faers+opentargets,1.0,CEREBRAL MICROHAEMORRHAGE,cerebral microhaemorrhage,True
+AE:SUPERFICIAL_SIDEROSIS,Superficial siderosis of the CNS,SUPERFICIAL_SIDEROSIS,ARIA,2,faers+opentargets,1.0,SUPERFICIAL SIDEROSIS OF CENTRAL NERVOUS SYSTEM,superficial siderosis of central nervous system,True

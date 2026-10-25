@@ -1,0 +1,68 @@
+{
+  "version": "3.0.1",
+  "generated_at": "2026-10-24 10:54:49",
+  "n_novel_candidates": 107,
+  "outcome_strata": {
+    "AD_efficacy": [
+      "ad",
+      "ad_repl1",
+      "ad_repl2"
+    ],
+    "bleeding": [
+      "ich",
+      "ich_fin",
+      "sah"
+    ],
+    "control_not_scored": [
+      "is",
+      "ldl",
+      "svd"
+    ]
+  },
+  "genetic_strata": {
+    "ad_efficacy_genes": [
+      "ACE",
+      "APP",
+      "BIN1",
+      "LRP1",
+      "PLCG2",
+      "VKORC1"
+    ],
+    "bleeding_genes": [
+      "ACE",
+      "APP",
+      "F10",
+      "PTGS1",
+      "VKORC1"
+    ],
+    "bleeding_gene_direction": {
+      "ACE": "risk",
+      "APP": "risk",
+      "F10": "risk",
+      "PTGS1": "protective",
+      "VKORC1": "protective"
+    },
+    "control_genes": [
+      "CLU",
+      "CR1",
+      "F10",
+      "HMGCR",
+      "PSEN1",
+      "VKORC1"
+    ]
+  },
+  "score_definition": {
+    "f_repurpose": "0.45*pct(gnn_repurpose)+0.25*pct(gnn_synergy)+0.20*AD_eff_evidence+0.10*CNS",
+    "liability": "0.45*pct(max_aria_risk)+0.40*bleeding_gene_evidence+0.15*FAERS_ARIA",
+    "f_partner": "partner_eligible * [0.50*pct(gnn_synergy)+0.30*(1-liability)+0.20*CNS]",
+    "has_active_route": "synergy_score>0 OR n_synergy_pathways>0 OR n_ad_prior_targets>0 OR AD-efficacy genetic evidence",
+    "partner_eligible": "has_active_route==1 AND has_bleed==0"
+  },
+  "counts": {
+    "with_AD_efficacy_evidence": 0,
+    "with_bleeding_liability": 5,
+    "CNS_penetrant": 107,
+    "passive_only_demoted": 99,
+    "bleed_excluded_from_partners": 5
+  }
+}

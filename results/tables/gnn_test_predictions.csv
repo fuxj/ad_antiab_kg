@@ -1,0 +1,183 @@
+src,dst,type,score
+DRUG:CHEMBL1491,AE:RAW:vasoplegia syndrome,positive,-16.671484
+DRUG:CHEMBL393220,AE:RAW:muscle atrophy,positive,-35.126347
+DRUG:CHEMBL1201293,AE:RAW:cardiovascular disorder,positive,-39.48856
+DRUG:CHEMBL25,AE:RAW:haematemesis,positive,-16.10456
+DRUG:CHEMBL1201834,AE:RAW:renal failure,positive,-23.126661
+DRUG:CHEMBL600,AE:RAW:toxicity to various agents,positive,-9.85253
+DRUG:CHEMBL493,AE:RAW:serotonin syndrome,positive,-11.217953
+DRUG:CHEMBL4297245,AE:RAW:white matter lesion,positive,-26.716124
+DRUG:CHEMBL1702,AE:RAW:agitation,positive,2.469933
+DRUG:CHEMBL1200963,AE:RAW:blepharitis,positive,-22.22771
+DRUG:CHEMBL3833321,AE:ARIA-H,positive,5.446402
+DRUG:CHEMBL607400,AE:RAW:multiple drug resistance,positive,-16.53424
+DRUG:CHEMBL1702,AE:RAW:aggression,positive,2.9208567
+DRUG:CHEMBL4297245,AE:RAW:anaphylactic shock,positive,-13.380051
+DRUG:CHEMBL1072,AE:RAW:renal impairment,positive,-12.9629755
+DRUG:CHEMBL3833321,AE:RAW:intraventricular hemorrhage,positive,-27.885138
+DRUG:CHEMBL493,AE:RAW:compulsive shopping,positive,-31.208021
+DRUG:CHEMBL1485,AE:RAW:right ventricular failure,positive,-20.79991
+DRUG:CHEMBL1201438,AE:RAW:metabolic disorder,positive,-19.630135
+DRUG:CHEMBL1201451,AE:RAW:premature baby,positive,0.9854149
+DRUG:CHEMBL1200706,AE:RAW:mucous stools,positive,-21.120377
+DRUG:CHEMBL4297245,AE:RAW:chest discomfort,positive,-26.695778
+DRUG:CHEMBL118,AE:RAW:osteopenia,positive,-18.611181
+DRUG:CHEMBL1702,AE:RAW:abnormal behaviour,positive,0.81537503
+DRUG:CHEMBL118,AE:RAW:pleural thickening,positive,-18.526703
+DRUG:CHEMBL493,AE:RAW:mitral valve incompetence,positive,-31.23281
+DRUG:CHEMBL1112,AE:RAW:blood prolactin abnormal,positive,-24.571909
+DRUG:CHEMBL3833321,AE:CEREBRAL_MICROHEMORRHAGE,positive,5.384333
+DRUG:CHEMBL1131,AE:RAW:tongue ulceration,positive,-38.1617
+DRUG:CHEMBL190461,AE:RAW:poisoning,positive,-13.927266
+DRUG:CHEMBL1200963,AE:RAW:eye discharge,positive,-22.403751
+DRUG:CHEMBL113,AE:RAW:hypotension,positive,2.065868
+DRUG:CHEMBL1023,AE:RAW:urinary hesitation,positive,-16.33478
+DRUG:CHEMBL607400,AE:RAW:status epilepticus,positive,-8.860121
+DRUG:CHEMBL894,AE:RAW:unresponsive to stimuli,positive,-0.8714898
+DRUG:CHEMBL2105759,AE:RAW:covid 19,positive,-22.421865
+DRUG:CHEMBL600,AE:RAW:infection susceptibility increased,positive,-20.852503
+DRUG:CHEMBL1201834,AE:RAW:thrombosis,positive,-23.279888
+DRUG:CHEMBL894,AE:RAW:suicidal ideation,positive,-0.45795333
+DRUG:CHEMBL1485,AE:RAW:haematuria,positive,-6.090258
+DRUG:CHEMBL600,AE:RAW:breath sounds abnormal,positive,-20.966541
+DRUG:CHEMBL1112,AE:RAW:anosognosia,positive,-24.927273
+DRUG:CHEMBL1702,AE:RAW:tic,positive,-16.247139
+DRUG:CHEMBL1702,AE:RAW:mania,positive,-3.8777997
+DRUG:CHEMBL2105760,AE:RAW:oculogyric crisis,positive,-24.777918
+DRUG:CHEMBL1042,AE:RAW:hepatic enzyme increased,positive,2.06212
+DRUG:CHEMBL493,AE:RAW:borderline personality disorder,positive,-31.047161
+DRUG:CHEMBL25,AE:RAW:haematochezia,positive,-16.12719
+DRUG:CHEMBL1201834,AE:RAW:diverticulitis,positive,-24.693817
+DRUG:CHEMBL2105760,AE:RAW:inability to afford medication,positive,-24.739975
+DRUG:CHEMBL1485,AE:RAW:maternal exposure timing unspecified,positive,-20.753206
+DRUG:CHEMBL4297245,AE:CEREBRAL_HEMORRHAGE,positive,4.3702664
+DRUG:CHEMBL1201834,AE:RAW:joint swelling,positive,-3.9702013
+DRUG:CHEMBL1702,AE:RAW:suicidal ideation,positive,0.636777
+DRUG:CHEMBL607400,AE:RAW:petit mal epilepsy,positive,-16.408035
+DRUG:CHEMBL47,AE:RAW:abortion,positive,-20.82129
+DRUG:CHEMBL112,AE:RAW:anti cyclic citrullinated peptide antibody positive,positive,0.74179745
+DRUG:CHEMBL3833321,AE:RAW:drowning,positive,-27.610249
+DRUG:CHEMBL1131,AE:RAW:erythrodermic psoriasis,positive,-38.16119
+DRUG:CHEMBL1201451,AE:RAW:clostridium test positive,positive,-19.87521
+DRUG:CHEMBL1023,AE:RAW:secondary hypothyroidism,positive,-36.72096
+DRUG:CHEMBL113,AE:RAW:pain,positive,2.524608
+DRUG:CHEMBL1042,AE:RAW:anti cyclic citrullinated peptide antibody positive,positive,2.2156312
+DRUG:CHEMBL1200963,AE:RAW:lacrimation increased,positive,-22.275621
+DRUG:CHEMBL5095437,AE:RAW:cerebral venous thrombosis,positive,-21.275564
+DRUG:CHEMBL1201293,AE:RAW:alcoholism,positive,-41.507637
+DRUG:CHEMBL1201834,AE:RAW:terminal state,positive,-23.38118
+DRUG:CHEMBL118,AE:RAW:presbyacusis,positive,-18.221857
+DRUG:CHEMBL493,AE:RAW:low birth weight baby,positive,-30.242031
+DRUG:CHEMBL1131,AE:RAW:venous injury,positive,-38.128784
+DRUG:CHEMBL2105759,AE:RAW:ovarian adenoma,positive,-22.285181
+DRUG:CHEMBL1016,AE:RAW:hyponatraemia,positive,2.587288
+DRUG:CHEMBL2105760,AE:RAW:tremor,positive,2.2376392
+DRUG:CHEMBL701,AE:RAW:muscle spasticity,positive,-30.174484
+DRUG:CHEMBL4297245,AE:RAW:infusion related hypersensitivity reaction,positive,-26.611618
+DRUG:CHEMBL1200963,AE:RAW:treatment failure,positive,-0.94767636
+DRUG:CHEMBL4297245,AE:RAW:cerebral atrophy,positive,-26.725763
+DRUG:CHEMBL1201451,AE:RAW:tachypnoea,positive,-20.177216
+DRUG:CHEMBL118,AE:RAW:musculoskeletal stiffness,positive,-18.5373
+DRUG:CHEMBL1072,AE:RAW:infection susceptibility increased,positive,-13.050448
+DRUG:CHEMBL1201451,AE:RAW:foetal growth restriction,positive,-19.462889
+DRUG:CHEMBL3039540,AE:RAW:memory impairment,positive,-30.136274
+DRUG:CHEMBL196,AE:RAW:pemphigus,positive,2.6958768
+DRUG:CHEMBL3833321,AE:RAW:disorientation,positive,-27.645628
+DRUG:CHEMBL25,AE:RAW:epistaxis,positive,-13.488166
+DRUG:CHEMBL4297245,AE:RAW:ischaemic stroke,positive,-22.69777
+DRUG:CHEMBL3039540,AE:ARIA-NOS,positive,3.843045
+DRUG:CHEMBL112,AE:RAW:sleep disorder due to general medical condition insomnia type,positive,-35.935547
+DRUG:CHEMBL607400,AE:RAW:affective disorder,positive,-16.529675
+DRUG:CHEMBL1201438,AE:RAW:hypophosphataemia,positive,-19.636757
+DRUG:CHEMBL4297245,AE:RAW:oxygen saturation decreased,positive,-26.724537
+DRUG:CHEMBL1023,AE:RAW:thrombocytopenia,negative,-12.394725
+DRUG:CHEMBL1487,AE:RAW:cerebral amyloid angiopathy,negative,-3.9791753
+DRUG:CHEMBL1201438,AE:RAW:jaundice,negative,-11.491059
+DRUG:CHEMBL1201451,AE:RAW:disturbance in social behaviour,negative,-28.230267
+DRUG:CHEMBL2105759,AE:RAW:gingival hyperplasia,negative,-10.080152
+DRUG:CHEMBL1702,AE:RAW:thrombocytopenia,negative,1.0827996
+DRUG:CHEMBL577294,AE:RAW:diarrhoea,negative,-35.20855
+DRUG:CHEMBL118,AE:RAW:bradycardia,negative,-4.033163
+DRUG:CHEMBL4297245,AE:RAW:juvenile idiopathic arthritis,negative,-46.678745
+DRUG:CHEMBL5095437,AE:RAW:injection site papule,negative,-43.32298
+DRUG:CHEMBL1023,AE:RAW:musculoskeletal stiffness,negative,-37.02499
+DRUG:CHEMBL1192517,AE:RAW:infusion related reaction,negative,-15.911829
+DRUG:CHEMBL1131,AE:RAW:neglect of personal appearance,negative,0.06610882
+DRUG:CHEMBL113,AE:RAW:ventricular fibrillation,negative,-25.495333
+DRUG:CHEMBL1023,AE:RAW:acute myocardial infarction,negative,-13.917851
+DRUG:CHEMBL2105760,AE:RAW:meningeal disorder,negative,-10.478847
+DRUG:CHEMBL1112,AE:RAW:fall,negative,-14.041701
+DRUG:CHEMBL894,AE:RAW:mania,negative,-5.9703918
+DRUG:CHEMBL47,AE:RAW:toxic epidermal necrolysis,negative,-0.44691354
+DRUG:CHEMBL5095437,AE:RAW:tardive dyskinesia,negative,0.79365015
+DRUG:CHEMBL196,AE:RAW:distributive shock,negative,-2.7149026
+DRUG:CHEMBL207538,AE:RAW:muscle rigidity,negative,-8.5004225
+DRUG:CHEMBL894,AE:RAW:brain fog,negative,-9.759849
+DRUG:CHEMBL4303665,AE:RAW:malignant melanoma in situ,negative,-12.040829
+DRUG:CHEMBL577294,AE:RAW:homicidal ideation,negative,-34.62623
+DRUG:CHEMBL1201834,AE:RAW:pulse absent,negative,-0.5912279
+DRUG:CHEMBL1072,AE:RAW:jaundice,negative,-29.72951
+DRUG:CHEMBL1072,AE:RAW:feeding disorder neonatal,negative,-24.00317
+DRUG:CHEMBL1702,AE:RAW:trichorrhexis,negative,-30.208038
+DRUG:CHEMBL1487,AE:RAW:plantar fasciitis,negative,-55.500633
+DRUG:CHEMBL14249,AE:RAW:hyponatraemia,negative,-26.460365
+DRUG:CHEMBL894,AE:RAW:ovarian adenoma,negative,-15.66316
+DRUG:CHEMBL1487,AE:RAW:pruritus,negative,-42.308144
+DRUG:CHEMBL1072,AE:RAW:mucous stools,negative,-13.374271
+DRUG:CHEMBL1200963,AE:RAW:dizziness,negative,-20.602175
+DRUG:CHEMBL701,AE:RAW:vasoplegia syndrome,negative,-13.428243
+DRUG:CHEMBL4303665,AE:RAW:amnesia,negative,-31.936592
+DRUG:CHEMBL493,AE:RAW:atrial fibrillation,negative,-11.174674
+DRUG:CHEMBL1200706,AE:RAW:myoclonic epilepsy,negative,-22.128876
+DRUG:CHEMBL1023,AE:RAW:thrombosis,negative,-36.94118
+DRUG:CHEMBL1702,AE:RAW:hypoalbuminaemia,negative,-20.068764
+DRUG:CHEMBL190461,AE:RAW:haematochezia,negative,-13.91809
+DRUG:CHEMBL2105760,AE:RAW:hypokalaemia,negative,-14.929163
+DRUG:CHEMBL600,AE:RAW:implant site erosion,negative,-17.170893
+DRUG:CHEMBL1201834,AE:RAW:erythema of eyelid,negative,0.1670637
+DRUG:CHEMBL1491,AE:RAW:psychomotor hyperactivity,negative,-16.151897
+DRUG:CHEMBL113,AE:RAW:seizure cluster,negative,-2.8532274
+DRUG:CHEMBL1042,AE:RAW:vasoplegia syndrome,negative,-20.244633
+DRUG:CHEMBL1487,AE:RAW:hypertensive crisis,negative,-28.871548
+DRUG:CHEMBL1491,AE:RAW:madarosis,negative,-16.092346
+DRUG:CHEMBL1023,AE:RAW:vaginal flatulence,negative,-61.818516
+DRUG:CHEMBL5095437,AE:RAW:paraesthesia,negative,-24.565624
+DRUG:CHEMBL2105760,AE:RAW:diverticulitis,negative,-24.434437
+DRUG:CHEMBL1201451,AE:RAW:generalised tonic clonic seizure,negative,-18.205257
+DRUG:CHEMBL207538,AE:RAW:infusion site extravasation,negative,-7.9295154
+DRUG:CHEMBL2105759,AE:RAW:mania,negative,-29.374287
+DRUG:CHEMBL1042,AE:RAW:cognitive disorder,negative,-1.5845394
+DRUG:CHEMBL577294,AE:RAW:cardiovascular disorder,negative,-45.88785
+DRUG:CHEMBL1702,AE:RAW:glucose tolerance impaired,negative,-16.459715
+DRUG:CHEMBL5095437,AE:RAW:hypotonia,negative,-16.08485
+DRUG:CHEMBL113,AE:RAW:venous injury,negative,-15.671357
+DRUG:CHEMBL1491,AE:RAW:sepsis,negative,-21.381363
+DRUG:CHEMBL113,AE:RAW:white matter lesion,negative,-15.544558
+DRUG:CHEMBL894,AE:RAW:haematuria,negative,-18.295198
+DRUG:CHEMBL393220,AE:RAW:haemophagocytic lymphohistiocytosis,negative,-56.182747
+DRUG:CHEMBL2105760,AE:RAW:musculoskeletal stiffness,negative,-24.809774
+DRUG:CHEMBL1072,AE:RAW:sinus tachycardia,negative,-5.5783544
+DRUG:CHEMBL393220,AE:RAW:hypophosphataemia,negative,-35.174118
+DRUG:CHEMBL207538,AE:RAW:fibromyalgia,negative,-50.535545
+DRUG:CHEMBL1702,AE:RAW:nausea,negative,-30.217333
+DRUG:CHEMBL196,AE:RAW:mycosis fungoides,negative,-19.287277
+DRUG:CHEMBL493,AE:RAW:seizure,negative,-1.6924574
+DRUG:CHEMBL14249,AE:RAW:transient ischaemic attack,negative,-10.4882965
+DRUG:CHEMBL493,AE:RAW:hypokalaemia,negative,-21.232338
+DRUG:CHEMBL894,AE:RAW:head discomfort,negative,-9.907263
+DRUG:CHEMBL577294,AE:RAW:prolactin producing pituitary tumour,negative,-39.155792
+DRUG:CHEMBL4303665,AE:RAW:skin plaque,negative,-39.85325
+DRUG:CHEMBL2105759,AE:RAW:neglect of personal appearance,negative,-43.619015
+DRUG:CHEMBL1072,AE:RAW:magnetic resonance imaging abnormal,negative,-13.264022
+DRUG:CHEMBL1023,AE:RAW:decubitus ulcer,negative,-60.35338
+DRUG:CHEMBL600,AE:RAW:hippocampal atrophy,negative,-27.464197
+DRUG:CHEMBL1201438,AE:RAW:diaphragmatic disorder,negative,-12.436382
+DRUG:CHEMBL1491,AE:RAW:umbilical hernia,negative,-13.798946
+DRUG:CHEMBL1485,AE:RAW:hypovolaemia,negative,-10.6167755
+DRUG:CHEMBL1491,AE:RAW:hypersexuality,negative,-16.380457
+DRUG:CHEMBL118,AE:RAW:emphysema,negative,-8.037925
+DRUG:CHEMBL493,AE:RAW:cervical vertebral fracture,negative,-31.20051
+DRUG:CHEMBL600,AE:RAW:quadriplegia,negative,1.7687639
+DRUG:CHEMBL4297245,AE:RAW:sinus tachycardia,negative,-13.703535
+DRUG:CHEMBL190461,AE:RAW:inhibitory drug interaction,negative,-26.833408
+DRUG:CHEMBL3039540,AE:RAW:akathisia,negative,-17.213936

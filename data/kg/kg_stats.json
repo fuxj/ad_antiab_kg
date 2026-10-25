@@ -1,0 +1,210 @@
+{
+ "generated_at": "2026-10-23 02:08:50",
+ "n_nodes": 396,
+ "n_edges": 681,
+ "nodes_by_type": {
+  "AdverseEvent": 81,
+  "Drug": 3,
+  "Gene": 60,
+  "Indication": 5,
+  "Pathway": 247
+ },
+ "edges_by_type": {
+  "drug_ae": 130,
+  "drug_indication": 10,
+  "drug_target": 3,
+  "gene_ae": 81,
+  "gene_indication": 60,
+  "gene_pathway": 397
+ },
+ "graph": {
+  "is_dag": true,
+  "n_weakly_connected_components": 1,
+  "largest_component_size": 396,
+  "top_component_sizes": [
+   396
+  ],
+  "avg_degree": 3.4091,
+  "median_degree": 2.0,
+  "max_degree": 105,
+  "density": 0.004315
+ },
+ "top_hubs": [
+  {
+   "node_id": "GENE:ENSG00000142192",
+   "name": "APP",
+   "node_type": "Gene",
+   "degree": 105
+  },
+  {
+   "node_id": "IND:alzheimer_disease",
+   "name": "Alzheimer disease",
+   "node_type": "Indication",
+   "degree": 63
+  },
+  {
+   "node_id": "DRUG:CHEMBL4297245",
+   "name": "DONANEMAB",
+   "node_type": "Drug",
+   "degree": 60
+  },
+  {
+   "node_id": "DRUG:CHEMBL3833321",
+   "name": "LECANEMAB",
+   "node_type": "Drug",
+   "degree": 56
+  },
+  {
+   "node_id": "GENE:ENSG00000124762",
+   "name": "CDKN1A",
+   "node_type": "Gene",
+   "degree": 28
+  },
+  {
+   "node_id": "GENE:ENSG00000082701",
+   "name": "GSK3B",
+   "node_type": "Gene",
+   "degree": 27
+  },
+  {
+   "node_id": "GENE:ENSG00000166851",
+   "name": "PLK1",
+   "node_type": "Gene",
+   "degree": 26
+  },
+  {
+   "node_id": "DRUG:CHEMBL3039540",
+   "name": "ADUCANUMAB",
+   "node_type": "Drug",
+   "degree": 21
+  },
+  {
+   "node_id": "GENE:ENSG00000135446",
+   "name": "CDK4",
+   "node_type": "Gene",
+   "degree": 20
+  },
+  {
+   "node_id": "GENE:ENSG00000137845",
+   "name": "ADAM10",
+   "node_type": "Gene",
+   "degree": 17
+  },
+  {
+   "node_id": "GENE:ENSG00000118689",
+   "name": "FOXO3",
+   "node_type": "Gene",
+   "degree": 16
+  },
+  {
+   "node_id": "GENE:ENSG00000197943",
+   "name": "PLCG2",
+   "node_type": "Gene",
+   "degree": 16
+  },
+  {
+   "node_id": "GENE:ENSG00000080815",
+   "name": "PSEN1",
+   "node_type": "Gene",
+   "degree": 15
+  },
+  {
+   "node_id": "GENE:ENSG00000138613",
+   "name": "APH1B",
+   "node_type": "Gene",
+   "degree": 14
+  },
+  {
+   "node_id": "GENE:ENSG00000143801",
+   "name": "PSEN2",
+   "node_type": "Gene",
+   "degree": 13
+  }
+ ],
+ "aria_cross_source": [
+  {
+   "ae_node": "AE:ARIA-NOS",
+   "label": "ARIA, unspecified",
+   "aria_concept": "ARIA-NOS",
+   "event_group": "ARIA",
+   "n_sources": 1,
+   "sources": "faers",
+   "n_faers_pt": 1.0,
+   "faers_pt": "AMYLOID RELATED IMAGING ABNORMALITIES",
+   "ot_name": null,
+   "cross_source_confirmed": false
+  },
+  {
+   "ae_node": "AE:ARIA-H",
+   "label": "ARIA-H (amyloid-related imaging abnormality, microbleeds/hemosiderin)",
+   "aria_concept": "ARIA-H",
+   "event_group": "ARIA",
+   "n_sources": 2,
+   "sources": "faers+opentargets",
+   "n_faers_pt": 1.0,
+   "faers_pt": "AMYLOID RELATED IMAGING ABNORMALITY-MICROHAEMORRHAGES AND HAEMOSIDERIN DEPOSITS",
+   "ot_name": "amyloid related imaging abnormality-microhaemorrhages and haemosiderin deposits",
+   "cross_source_confirmed": true
+  },
+  {
+   "ae_node": "AE:ARIA-E",
+   "label": "ARIA-E (amyloid-related imaging abnormality, edema/effusion)",
+   "aria_concept": "ARIA-E",
+   "event_group": "ARIA",
+   "n_sources": 2,
+   "sources": "faers+opentargets",
+   "n_faers_pt": 1.0,
+   "faers_pt": "AMYLOID RELATED IMAGING ABNORMALITY-OEDEMA/EFFUSION",
+   "ot_name": "amyloid related imaging abnormality-oedema/effusion",
+   "cross_source_confirmed": true
+  },
+  {
+   "ae_node": "AE:CEREBRAL_EDEMA",
+   "label": "Cerebral edema",
+   "aria_concept": "CEREBRAL_EDEMA",
+   "event_group": "ARIA",
+   "n_sources": 1,
+   "sources": "faers",
+   "n_faers_pt": 2.0,
+   "faers_pt": "BRAIN OEDEMA | VASOGENIC CEREBRAL OEDEMA",
+   "ot_name": null,
+   "cross_source_confirmed": false
+  },
+  {
+   "ae_node": "AE:CEREBRAL_HEMORRHAGE",
+   "label": "Cerebral hemorrhage",
+   "aria_concept": "CEREBRAL_HEMORRHAGE",
+   "event_group": "ARIA",
+   "n_sources": 1,
+   "sources": "faers",
+   "n_faers_pt": 1.0,
+   "faers_pt": "CEREBRAL HAEMORRHAGE",
+   "ot_name": null,
+   "cross_source_confirmed": false
+  },
+  {
+   "ae_node": "AE:CEREBRAL_MICROHEMORRHAGE",
+   "label": "Cerebral microhemorrhage",
+   "aria_concept": "CEREBRAL_MICROHEMORRHAGE",
+   "event_group": "ARIA",
+   "n_sources": 2,
+   "sources": "faers+opentargets",
+   "n_faers_pt": 1.0,
+   "faers_pt": "CEREBRAL MICROHAEMORRHAGE",
+   "ot_name": "cerebral microhaemorrhage",
+   "cross_source_confirmed": true
+  },
+  {
+   "ae_node": "AE:SUPERFICIAL_SIDEROSIS",
+   "label": "Superficial siderosis of the CNS",
+   "aria_concept": "SUPERFICIAL_SIDEROSIS",
+   "event_group": "ARIA",
+   "n_sources": 2,
+   "sources": "faers+opentargets",
+   "n_faers_pt": 1.0,
+   "faers_pt": "SUPERFICIAL SIDEROSIS OF CENTRAL NERVOUS SYSTEM",
+   "ot_name": "superficial siderosis of central nervous system",
+   "cross_source_confirmed": true
+  }
+ ]
+}

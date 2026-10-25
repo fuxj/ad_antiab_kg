@@ -1,0 +1,29 @@
+drug_id,drug,pool,cns_label,is_cns,targets,n_tg,gene_prior,n_prior_targets,ad_eff_genes,ad_eff_dir,ad_eff_evidence,ad_eff_aligned,ad_eff_counter,bleed_genes,bleed_dir,bleed_class,clinical_bleed,bleed_dir_conflict,ctrl_genes,gnn_repurpose_score,gnn_synergy_score,gnn_mitigation_score,max_aria_risk,faers_aria_signal,evidence_tier,f_repurpose,rank_repurpose
+POOL:NIROGACESTAT_HYDROBROMIDE,NIROGACESTAT HYDROBROMIDE,OT_expanded,CNS-unknown,0,"APH1B,PSEN1,PSEN2",3,"PSEN1,PSEN2",2,,,0.0,0.0,0.0,,,-,0.0,0.0,PSEN1,0.9732667803764344,,,,0,target-prior,0.365,70
+DRUG:CHEMBL1200826,LITHIUM CARBONATE,HGT_scored,CNS-known,1,"GSK3A,GSK3B,IMPA1",3,GSK3B,1,,,0.0,0.0,0.0,,,-,0.0,0.0,,0.976769208908081,1.039720770839918,0.9391775354743004,0.0608224645256996,0,target-prior,0.5817757009345794,12
+POOL:BENAZEPRIL,BENAZEPRIL,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:BENAZEPRIL_HYDROCHLORIDE,BENAZEPRIL HYDROCHLORIDE,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:CAPTOPRIL,CAPTOPRIL,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:CILAZAPRIL,CILAZAPRIL,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:DELAPRIL,DELAPRIL,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:ENALAPRIL,ENALAPRIL,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:ENALAPRIL_MALEATE,ENALAPRIL MALEATE,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:ENALAPRILAT,ENALAPRILAT,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:FOSINOPRIL,FOSINOPRIL,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:FOSINOPRIL_SODIUM,FOSINOPRIL SODIUM,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:IMIDAPRIL,IMIDAPRIL,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:LISINOPRIL,LISINOPRIL,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:LISINOPRIL_ANHYDROUS,LISINOPRIL ANHYDROUS,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:MOEXIPRIL,MOEXIPRIL,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:MOEXIPRIL_HYDROCHLORIDE,MOEXIPRIL HYDROCHLORIDE,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:PERINDOPRIL_ARGININE,PERINDOPRIL ARGININE,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:PERINDOPRIL_ERBUMINE,PERINDOPRIL ERBUMINE,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:QUINAPRIL,QUINAPRIL,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:QUINAPRIL_HYDROCHLORIDE,QUINAPRIL HYDROCHLORIDE,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:RAMIPRIL,RAMIPRIL,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:SPIRAPRIL,SPIRAPRIL,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:TRANDOLAPRIL,TRANDOLAPRIL,OT_expanded,CNS-unknown,0,ACE,1,ACE,1,ACE,ACE(protective),0.0,0.0,1.0,ACE,ACE(risk),-,0.0,0.0,,0.9732667803764344,,,,0,genetic-counter,0.365,70
+POOL:VANDETANIB,VANDETANIB,OT_expanded,CNS-unknown,0,"EGFR,EPHA1",2,EPHA1,1,,,0.0,0.0,0.0,,,-,0.0,0.0,,0.9732667803764344,,,,0,target-prior,0.365,70
+POOL:LITHIUM_CITRATE,LITHIUM CITRATE,OT_expanded,CNS-unknown,0,GSK3B,1,GSK3B,1,,,0.0,0.0,0.0,,,-,0.0,0.0,,0.9732667803764344,,,,0,target-prior,0.365,70
+POOL:RACECADOTRIL,RACECADOTRIL,OT_expanded,CNS-unknown,0,MME,1,MME,1,,,0.0,0.0,0.0,,,-,0.0,0.0,,0.9732667803764344,,,,0,target-prior,0.365,70
+POOL:SACUBITRIL,SACUBITRIL,OT_expanded,CNS-unknown,0,MME,1,MME,1,,,0.0,0.0,0.0,,,-,0.0,0.0,,0.9732667803764344,,,,0,target-prior,0.365,70

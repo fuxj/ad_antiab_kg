@@ -1,0 +1,12 @@
+{
+  "n_reports": 6951,
+  "n_exposed": 534,
+  "n_age_observed": 4525,
+  "age_observed_rate": 0.6509854697165876,
+  "n_female_observed": 5951,
+  "female_observed_rate": 0.8561358077974393,
+  "n_model_complete_case": 4450,
+  "n_model_categorical": 6951,
+  "n_model_missing_indicator": 6951,
+  "generated_at": "2026-10-24 00:23:44"
+}

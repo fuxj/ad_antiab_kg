@@ -1,0 +1,22 @@
+{
+  "version": "1.0.0",
+  "tables": {
+    "S2_comedication": {
+      "rows_in": 550,
+      "rows_out": 421,
+      "mr_neutralised": 5
+    },
+    "S1_repositioning": {
+      "rows_in": 550,
+      "rows_out": 421
+    },
+    "S3_partners": {
+      "rows_in": 405,
+      "rows_out": 303,
+      "eligible": 8
+    }
+  },
+  "n_dedup_groups": 332,
+  "generated_at": "2026-10-24 13:13:32",
+  "output_dir": "/home/hyzyai/ad_antiab_kg/results/paper_tables"
+}

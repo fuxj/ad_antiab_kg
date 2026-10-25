@@ -1,0 +1,906 @@
+#!/usr/bin/env Rscript
+# =============================================================================
+# 05_mr_validation.R  --  Chapter 5: Mendelian randomization (MR) triangulation
+# -----------------------------------------------------------------------------
+# Project : AD anti-amyloid drug safety  (FAERS + KG + GNN + MR)
+# Purpose : Take the candidate genes surfaced by Chapter 4 (interpretable GNN)
+#           and test, with two-sample MR using cis-eQTL instruments, whether
+#           genetically proxied gene expression causally affects:
+#             (a) Alzheimer's disease risk          -> efficacy axis
+#             (b) intracerebral / subarachnoid bleed -> ARIA-H safety axis
+#           i.e. push "association" towards "causation", closing the
+#           cross-source triangulation loop.
+#
+# Data    : IEU OpenGWAS REST API (https://api.opengwas.io/api).
+#           Since 2024-05-01 a free JWT token is REQUIRED.
+#           Register (free) at https://api.opengwas.io/profile/ and either
+#           export OPENGWAS_JWT=<token>  or pass --token <token>.
+#
+# Deps    : base R (>=4.1) + jsonlite only.  HTTP is done through the system
+#           `curl` binary, so no httr / TwoSampleMR / ieugwasr install needed.
+#           All MR statistics are implemented natively and unit-verified by
+#           `--stage selftest`.
+#
+# Stages  : probe | fetch | analyse | all | selftest
+#
+# Every dataset ID baked into this script was verified against the public
+# OpenGWAS catalogue dump (opengwas.io/data/gwasinfo/gwasinfo.json, 50,066
+# datasets) at build time.  Genes without an eQTLGen dataset are excluded
+# from the default panel on purpose (see GENE_PANEL below).
+# =============================================================================
+
+suppressWarnings(suppressMessages({
+  options(stringsAsFactors = FALSE, warn = -1)
+}))
+
+VERSION <- "1.0.0"
+CRAN_MIRROR <- "https://mirrors.tuna.tsinghua.edu.cn/CRAN/"
+MAX_TIME <- "180"
+
+# =============================================================================
+# 0. Verified gene panel  (symbol -> Ensembl gene id, GRCh37/eQTLGen namespace)
+# -----------------------------------------------------------------------------
+# All of the genes below were confirmed to have an `eqtl-a-ENSG...` cis-eQTL
+# dataset in OpenGWAS.  Genes that looked attractive but have NO eQTL dataset
+# (F2, AGT, AGTR1, AGTR2, PCSK9, MMP2, MMP3, TNF, BCHE, CYP2C19, F11, F9, ...)
+# are deliberately omitted - including them only produces empty results.
+# =============================================================================
+GENE_ENSEMBL <- c(
+  # --- AD / amyloid-tau core ------------------------------------------------
+  APOE    = "ENSG00000130203",
+  APP     = "ENSG00000142192",
+  PSEN1   = "ENSG00000080815",
+  PSEN2   = "ENSG00000143801",
+  MAPT    = "ENSG00000186868",
+  SORL1   = "ENSG00000137642",
+  PICALM  = "ENSG00000073921",
+  ABCA7   = "ENSG00000064687",
+  ADAM10  = "ENSG00000137845",
+  GSK3B   = "ENSG00000082701",
+  # --- microglia / neuroinflammation ----------------------------------------
+  TREM2   = "ENSG00000095970",
+  CR1     = "ENSG00000203710",
+  CLU     = "ENSG00000120885",
+  BIN1    = "ENSG00000136717",
+  MS4A6A  = "ENSG00000110077",
+  CD33    = "ENSG00000105383",
+  EPHA1   = "ENSG00000146904",
+  PLCG2   = "ENSG00000197943",
+  IL1B    = "ENSG00000125538",
+  IL6     = "ENSG00000136244",
+  NLRP3   = "ENSG00000162711",
+  C3      = "ENSG00000125730",
+  C5      = "ENSG00000106804",
+  CX3CR1  = "ENSG00000168329",
+  TLR4    = "ENSG00000136869",
+  # --- BBB / vascular / pericyte  (ARIA biology) ----------------------------
+  MMP9    = "ENSG00000100985",
+  ACE     = "ENSG00000159640",
+  LRP1    = "ENSG00000123384",
+  PDGFRB  = "ENSG00000113721",
+  CLDN5   = "ENSG00000184113",
+  OCLN    = "ENSG00000197822",
+  VEGFA   = "ENSG00000112715",
+  NOS3    = "ENSG00000164867",
+  EDN1    = "ENSG00000078401",
+  TIMP1   = "ENSG00000102265",
+  CTSB    = "ENSG00000164733",
+  ABCB1   = "ENSG00000085563",
+  # --- haemostasis / anticoagulant-antiplatelet targets ---------------------
+  VKORC1  = "ENSG00000167397",   # warfarin
+  F10     = "ENSG00000126218",   # direct oral Xa inhibitors
+  F5      = "ENSG00000198734",
+  F7      = "ENSG00000057593",
+  PROC    = "ENSG00000115718",
+  PROS1   = "ENSG00000184500",
+  SERPINC1= "ENSG00000117601",
+  SERPINA1= "ENSG00000197249",
+  PLAT    = "ENSG00000104368",
+  PLAU    = "ENSG00000122861",
+  ITGB3   = "ENSG00000259207",   # integrin beta-3, antiplatelet
+  TF      = "ENSG00000091513",
+  P2RY12  = "ENSG00000169313",   # clopidogrel / ticagrelor
+  PTGS1   = "ENSG00000095303",   # aspirin (COX-1)
+  PTGS2   = "ENSG00000073756",   # COX-2
+  # --- other licensed drug targets / positive controls ----------------------
+  HMGCR   = "ENSG00000113161",   # statins   (positive control vs LDL-C)
+  NPC1L1  = "ENSG00000015520",
+  SREBF2  = "ENSG00000198911",
+  PPARG   = "ENSG00000132170",
+  GLP1R   = "ENSG00000112164",
+  DPP4    = "ENSG00000197635",
+  SLC6A4  = "ENSG00000108576",
+  ACHE    = "ENSG00000087085"
+)
+
+# Default focused panel = GNN mechanism hits + AD core + key licensed targets
+PANEL_PRIORITY <- c(
+  "APOE","APP","MAPT","TREM2","CR1","CLU","BIN1","P2RY12","HMGCR","MMP9",
+  "ACE","PTGS1","PTGS2","VKORC1","F10","PROC","ITGB3","PDGFRB","LRP1",
+  "CLDN5","PSEN1","SORL1","PLCG2","IL1B"
+)
+PANEL_FULL <- names(GENE_ENSEMBL)
+
+# =============================================================================
+# 0b. Verified outcome datasets (id, label, role)
+# -----------------------------------------------------------------------------
+# AD_discovery  : Bellenguez 2022  (n = 487,511)  -> primary efficacy outcome
+# AD_repl1      : Woolf 2022       (n = 488,285)  -> independent replication
+# AD_repl2      : Lambert 2013 IGAP               -> historical replication
+# ICH / ICH_finngen / SAH : haemorrhagic safety axis (ARIA-H proxy)
+# SVD           : small vessel disease            -> vascular contribution
+# IS            : ischaemic stroke  (contrast, expected null/negative)
+# LDL           : LDL-cholesterol   -> positive control for HMGCR
+# =============================================================================
+OUTCOMES <- list(
+  list(id = "ebi-a-GCST90027158", label = "Alzheimer disease (Bellenguez 2022)",  short = "AD",       role = "primary"),
+  list(id = "ieu-b-5067",         label = "Alzheimer disease (Woolf 2022)",       short = "AD_repl1", role = "replication"),
+  list(id = "ieu-a-297",          label = "Alzheimer disease (Lambert 2013)",     short = "AD_repl2", role = "replication"),
+  list(id = "ebi-a-GCST90018870", label = "Intracerebral hemorrhage (Sakaue 2021)", short = "ICH",    role = "safety"),
+  list(id = "finn-b-I9_ICH",      label = "Intracerebral haemorrhage (FinnGen)",  short = "ICH_fin",  role = "safety"),
+  list(id = "ebi-a-GCST90018923", label = "Subarachnoid hemorrhage (Sakaue 2021)", short = "SAH",     role = "safety"),
+  list(id = "ieu-a-1111",         label = "Small vessel disease (Malik 2016)",    short = "SVD",      role = "safety"),
+  list(id = "ebi-a-GCST90018864", label = "Ischemic stroke (Sakaue 2021)",        short = "IS",       role = "contrast"),
+  list(id = "ieu-b-110",          label = "LDL cholesterol (GLGC)",               short = "LDL",      role = "positive_control")
+)
+
+# =============================================================================
+# 1. Small utilities
+# =============================================================================
+`%||%` <- function(a, b) if (is.null(a) || length(a) == 0 || (length(a) == 1 && is.na(a))) b else a
+
+log_msg <- function(...) {
+  cat(sprintf("[%s] %s\n", format(Sys.time(), "%H:%M:%S"), paste0(...)))
+  flush.console()
+}
+
+ensure_dir <- function(p) if (!dir.exists(p)) dir.create(p, recursive = TRUE, showWarnings = FALSE)
+
+save_json <- function(x, path) {
+  ensure_dir(dirname(path))
+  writeLines(jsonlite::toJSON(x, auto_unbox = TRUE, pretty = TRUE, null = "null", digits = NA), path)
+}
+
+fmt_p <- function(p) {
+  ifelse(is.na(p), "NA", ifelse(p < 1e-15, "<1e-15", ifelse(p < 0.001, formatC(p, format = "e", digits = 2), sprintf("%.4f", p))))
+}
+
+have_pkg <- function(p) isTRUE(requireNamespace(p, quietly = TRUE))
+
+need_pkg <- function(p) {
+  if (have_pkg(p)) return(invisible(TRUE))
+  log_msg("Installing R package: ", p, " (from ", CRAN_MIRROR, ")")
+  try(install.packages(p, repos = c(CRAN = CRAN_MIRROR), quiet = TRUE), silent = TRUE)
+  if (!have_pkg(p)) stop(sprintf("Required R package '%s' could not be installed. Please run install.packages('%s').", p, p))
+  invisible(TRUE)
+}
+
+have_curl_bin <- function() nzchar(Sys.which("curl"))
+
+# rbind that tolerates differing columns
+rbind_fill <- function(dflist) {
+  dflist <- Filter(function(x) !is.null(x) && nrow(x) > 0, dflist)
+  if (length(dflist) == 0) return(NULL)
+  cols <- unique(unlist(lapply(dflist, names)))
+  dflist <- lapply(dflist, function(d) {
+    for (cc in setdiff(cols, names(d))) d[[cc]] <- NA
+    d[, cols, drop = FALSE]
+  })
+  do.call(rbind, dflist)
+}
+
+pick_col <- function(df, aliases) {
+  hit <- aliases[aliases %in% names(df)]
+  if (length(hit) == 0) return(NA_character_)
+  hit[1]
+}
+
+# normalise whatever the API returns into a plain data.frame of records
+normalise_records <- function(j) {
+  if (is.null(j)) return(NULL)
+  if (is.data.frame(j)) { if (nrow(j) == 0) return(NULL); return(as.data.frame(j, stringsAsFactors = FALSE)) }
+  if (!is.list(j)) return(NULL)
+  if (length(j) == 0) return(NULL)
+  # named list that already looks like a single record
+  if (!is.null(names(j)) && any(c("rsid", "SNP", "beta") %in% names(j))) {
+    return(as.data.frame(j, stringsAsFactors = FALSE))
+  }
+  dfs <- list()
+  for (el in j) {
+    if (is.data.frame(el)) dfs[[length(dfs) + 1]] <- el
+    else if (is.list(el) && !is.null(names(el))) {
+      dfs[[length(dfs) + 1]] <- tryCatch(as.data.frame(el, stringsAsFactors = FALSE), error = function(e) NULL)
+    }
+  }
+  rbind_fill(dfs)
+}
+
+# =============================================================================
+# 2. OpenGWAS REST client (via system curl, no R http packages)
+# =============================================================================
+api_post <- function(endpoint, body, cfg, tag = NULL) {
+  if (!have_curl_bin()) stop("The `curl` command line tool was not found in PATH - it is required for HTTP access.")
+  tf <- tempfile(fileext = ".json")
+  on.exit(unlink(tf), add = TRUE)
+  writeLines(jsonlite::toJSON(body, auto_unbox = TRUE, null = "null"), tf)
+  url <- paste0(cfg$api, "/", endpoint)
+  args <- c("-sS", "-X", "POST",
+            "-H", shQuote("Content-Type: application/json"),
+            "-H", shQuote(paste0("Authorization: Bearer ", cfg$token)),
+            "--max-time", MAX_TIME,
+            "-d", shQuote(paste0("@", tf)),
+            shQuote(url))
+  out <- suppressWarnings(system2("curl", args, stdout = TRUE, stderr = TRUE))
+  txt <- paste(out, collapse = "\n")
+  if (!is.null(tag) && !is.null(cfg$raw_dir)) {
+    ensure_dir(cfg$raw_dir)
+    writeLines(txt, file.path(cfg$raw_dir, paste0(tag, ".json")))
+  }
+  if (length(txt) == 0 || !nzchar(txt)) stop(sprintf("Empty response from %s", endpoint))
+  parsed <- tryCatch(jsonlite::fromJSON(txt, simplifyVector = TRUE, simplifyDataFrame = TRUE),
+                     error = function(e) NULL)
+  # --- detect API error envelopes: {"message": "..."} in any of its shapes ---
+  err_msg <- NULL
+  if (is.list(parsed) && !is.data.frame(parsed) && !is.null(names(parsed)) && "message" %in% names(parsed)) {
+    err_msg <- as.character(parsed$message)[1]
+  } else if (is.data.frame(parsed) && "message" %in% names(parsed)) {
+    err_msg <- as.character(parsed$message)[1]
+  } else if (is.character(parsed)) {
+    bad <- grep("Invalid token|ERROR|Unauthorized|Forbidden", parsed, value = TRUE)
+    if (length(bad)) err_msg <- bad[1]
+  }
+  if (is.null(err_msg) && grepl("Invalid token|ERROR|Unauthorized|Forbidden", txt) &&
+      !grepl("\"rsid\"|\"beta\"|\"SNP\"", txt)) {
+    err_msg <- substr(txt, 1, 300)
+  }
+  if (!is.null(err_msg)) stop(sprintf("OpenGWAS API error: %s", substr(err_msg, 1, 300)))
+  if (is.null(parsed)) {
+    if (cfg$verbose) log_msg("  [warn] could not parse JSON from ", endpoint)
+    return(NULL)
+  }
+  parsed
+}
+
+# ---- fetch cis-eQTL instruments for one gene --------------------------------
+fetch_instruments <- function(ensembl, cfg) {
+  ds <- paste0("eqtl-a-", ensembl)
+  cache <- file.path(cfg$cache_dir, paste0("exp_", ensembl, ".rds"))
+  if (file.exists(cache) && cfg$reuse) {
+    obj <- readRDS(cache)
+    if (cfg$verbose) log_msg("  [cache] instruments ", ensembl, " (", nrow(obj), " SNPs)")
+    return(obj)
+  }
+  best <- NULL
+  for (thr in cfg$pval_ladder) {
+    j <- tryCatch(api_post("tophits",
+                           list(id = I(ds), pval = thr, clump = 1, r2 = cfg$r2, kb = cfg$kb, pop = cfg$pop),
+                           cfg, tag = sprintf("tophits_%s_p%s", ensembl, format(thr, scientific = TRUE))),
+                  error = function(e) { log_msg("  [error] tophits ", ensembl, " @p=", thr, " : ", conditionMessage(e)); NULL })
+    rec <- normalise_records(j)
+    if (!is.null(rec) && nrow(rec) > 0) { best <- rec; break }
+    Sys.sleep(0.4)
+  }
+  if (is.null(best)) {
+    rec <- data.frame()
+  } else {
+    rec <- as.data.frame(best, stringsAsFactors = FALSE)
+    c_snp <- pick_col(rec, c("rsid", "SNP", "variant"))
+    c_b   <- pick_col(rec, c("beta", "b", "beta.exposure"))
+    c_se  <- pick_col(rec, c("se", "sebeta", "se.exposure"))
+    c_ea  <- pick_col(rec, c("ea", "effect_allele", "alt", "a1"))
+    c_oa  <- pick_col(rec, c("nea", "other_allele", "ref", "a0"))
+    c_eaf <- pick_col(rec, c("eaf", "freq", "af"))
+    c_p   <- pick_col(rec, c("p", "pval", "pval.exposure"))
+    c_n   <- pick_col(rec, c("n", "samplesize", "n_total"))
+    if (any(is.na(c(c_snp, c_b, c_se, c_ea, c_oa)))) {
+      log_msg("  [warn] unexpected tophits schema for ", ensembl, ": ", paste(names(rec), collapse = ","))
+      rec <- data.frame()
+    } else {
+      rec <- data.frame(
+        SNP = rec[[c_snp]],
+        beta.exposure = as.numeric(rec[[c_b]]),
+        se.exposure = as.numeric(rec[[c_se]]),
+        effect_allele.exposure = as.character(rec[[c_ea]]),
+        other_allele.exposure = as.character(rec[[c_oa]]),
+        eaf.exposure = if (!is.na(c_eaf)) as.numeric(rec[[c_eaf]]) else NA_real_,
+        pval.exposure = if (!is.na(c_p)) as.numeric(rec[[c_p]]) else NA_real_,
+        samplesize.exposure = if (!is.na(c_n)) as.numeric(rec[[c_n]]) else NA_real_,
+        stringsAsFactors = FALSE
+      )
+      rec <- rec[!is.na(rec$SNP) & !is.na(rec$beta.exposure) & !is.na(rec$se.exposure), ]
+    }
+  }
+  saveRDS(rec, cache)
+  if (cfg$verbose) log_msg("  instruments ", ensembl, " -> ", nrow(rec), " SNP(s)")
+  rec
+}
+
+# ---- fetch outcome effects for a set of rsids -------------------------------
+fetch_outcome <- function(outcome_id, rsids, cfg) {
+  rsids <- unique(rsids)
+  if (length(rsids) == 0) return(data.frame())
+  cache <- file.path(cfg$cache_dir, paste0("out_", outcome_id, ".rds"))
+  if (file.exists(cache) && cfg$reuse) {
+    obj <- readRDS(cache)
+    if (all(rsids %in% obj$SNP)) {
+      if (cfg$verbose) log_msg("  [cache] outcome ", outcome_id)
+      return(obj[obj$SNP %in% rsids, , drop = FALSE])
+    }
+  }
+  chunks <- split(rsids, ceiling(seq_along(rsids) / cfg$batch))
+  parts <- list()
+  for (i in seq_along(chunks)) {
+    j <- tryCatch(api_post("associations",
+                           list(rsid = I(chunks[[i]]), id = I(outcome_id), proxies = 0),
+                           cfg, tag = sprintf("assoc_%s_b%d", outcome_id, i)),
+                  error = function(e) { log_msg("  [error] associations ", outcome_id, " batch ", i, " : ", conditionMessage(e)); NULL })
+    rec <- normalise_records(j)
+    if (!is.null(rec) && nrow(rec) > 0) parts[[length(parts) + 1]] <- as.data.frame(rec, stringsAsFactors = FALSE)
+    Sys.sleep(0.4)
+  }
+  raw <- rbind_fill(parts)
+  if (is.null(raw) || nrow(raw) == 0) return(data.frame())
+  c_snp <- pick_col(raw, c("rsid", "SNP", "variant"))
+  c_b   <- pick_col(raw, c("beta", "b", "beta.outcome"))
+  c_se  <- pick_col(raw, c("se", "sebeta", "se.outcome"))
+  c_ea  <- pick_col(raw, c("ea", "effect_allele", "alt", "a1"))
+  c_oa  <- pick_col(raw, c("nea", "other_allele", "ref", "a0"))
+  c_eaf <- pick_col(raw, c("eaf", "freq", "af"))
+  c_p   <- pick_col(raw, c("p", "pval", "pval.outcome"))
+  c_n   <- pick_col(raw, c("n", "samplesize", "n_total"))
+  if (any(is.na(c(c_snp, c_b, c_se, c_ea, c_oa)))) {
+    log_msg("  [warn] unexpected associations schema for ", outcome_id, ": ", paste(names(raw), collapse = ","))
+    return(data.frame())
+  }
+  out <- data.frame(
+    SNP = raw[[c_snp]],
+    beta.outcome = as.numeric(raw[[c_b]]),
+    se.outcome = as.numeric(raw[[c_se]]),
+    effect_allele.outcome = as.character(raw[[c_ea]]),
+    other_allele.outcome = as.character(raw[[c_oa]]),
+    eaf.outcome = if (!is.na(c_eaf)) suppressWarnings(as.numeric(raw[[c_eaf]])) else NA_real_,
+    pval.outcome = if (!is.na(c_p)) suppressWarnings(as.numeric(raw[[c_p]])) else NA_real_,
+    samplesize.outcome = if (!is.na(c_n)) suppressWarnings(as.numeric(raw[[c_n]])) else NA_real_,
+    outcome_id = outcome_id,
+    stringsAsFactors = FALSE
+  )
+  out <- out[!is.na(out$SNP) & !is.na(out$beta.outcome) & !is.na(out$se.outcome), ]
+  saveRDS(out, cache)
+  out
+}
+
+# =============================================================================
+# 3. Harmonisation
+# =============================================================================
+harmonise_pair <- function(exp, out, cfg) {
+  if (is.null(exp) || nrow(exp) == 0 || is.null(out) || nrow(out) == 0) return(NULL)
+  m <- merge(exp, out, by = "SNP")
+  if (nrow(m) == 0) return(NULL)
+  m$ea_x <- toupper(m$effect_allele.exposure); m$oa_x <- toupper(m$other_allele.exposure)
+  m$ea_y <- toupper(m$effect_allele.outcome);  m$oa_y <- toupper(m$other_allele.outcome)
+  same    <- (m$ea_x == m$ea_y & m$oa_x == m$oa_y)
+  flipped <- (m$ea_x == m$oa_y & m$oa_x == m$ea_y)
+  m$aligned <- same | flipped
+  palindromic <- (paste0(m$ea_x, m$oa_x) %in% c("AT", "TA", "CG", "GC"))
+  m$ambiguous <- palindromic & (is.na(m$eaf.exposure) | (m$eaf.exposure > 0.42 & m$eaf.exposure < 0.58))
+  m$beta.outcome <- ifelse(flipped, -m$beta.outcome, m$beta.outcome)
+  m$eaf.outcome  <- ifelse(flipped, 1 - m$eaf.outcome, m$eaf.outcome)
+  m$effect_allele.outcome <- ifelse(flipped, m$oa_y, m$ea_y)
+  m$other_allele.outcome  <- ifelse(flipped, m$ea_y, m$oa_y)
+  m <- m[m$aligned & !m$ambiguous, , drop = FALSE]
+  if (nrow(m) == 0) return(NULL)
+  m
+}
+
+# =============================================================================
+# 4. MR estimators (native implementations)
+# =============================================================================
+mr_wald <- function(bx, by, sx, sy) {
+  b <- by / bx
+  se <- abs(sy / bx)
+  list(method = "Wald ratio", b = b, se = se, pval = 2 * pnorm(-abs(b / se)))
+}
+
+mr_ivw <- function(bx, by, sx, sy, random = TRUE) {
+  w <- 1 / sy^2
+  b <- sum(w * bx * by) / sum(w * bx^2)
+  se_fixed <- sqrt(1 / sum(w * bx^2))
+  Q <- sum(w * (by - b * bx)^2)
+  df <- length(bx) - 1
+  phi <- if (df > 0) Q / df else 1
+  se <- if (random) se_fixed * sqrt(max(1, phi)) else se_fixed
+  list(method = if (random) "IVW (random)" else "IVW (fixed)",
+       b = b, se = se, se_fixed = se_fixed, Q = Q, Q_df = df,
+       Q_pval = if (df > 0) pchisq(Q, df, lower.tail = FALSE) else NA_real_,
+       I2 = if (df > 0) max(0, (Q - df) / Q) else NA_real_,
+       pval = 2 * pnorm(-abs(b / se)))
+}
+
+mr_egger <- function(bx, by, sx, sy) {
+  ori <- ifelse(bx < 0, -1, 1)
+  bx_o <- bx * ori; by_o <- by * ori
+  fit <- lm(by_o ~ bx_o, weights = 1 / sy^2)
+  s <- summary(fit)
+  b <- unname(coef(fit)[2]); se <- unname(s$coefficients[2, 2])
+  ic <- unname(coef(fit)[1]); ic_se <- unname(s$coefficients[1, 2])
+  list(method = "MR-Egger", b = b, se = se,
+       pval = 2 * pt(-abs(b / se), df = max(1, length(bx) - 2)),
+       intercept = ic, intercept_se = ic_se,
+       intercept_pval = unname(s$coefficients[1, 4]),
+       df = max(1, length(bx) - 2))
+}
+
+wmedian_point <- function(bi, wi) {
+  o <- order(bi); bi <- bi[o]; wi <- wi[o]
+  cw <- cumsum(wi) / sum(wi)
+  bi[which(cw >= 0.5)[1]]
+}
+
+mr_wmedian <- function(bx, by, sx, sy, nboot = 1000, seed = 42) {
+  bi <- by / bx
+  wi <- bx^2 / sy^2
+  b <- wmedian_point(bi, wi)
+  set.seed(seed)
+  n <- length(bx); bs <- numeric(nboot)
+  for (k in seq_len(nboot)) {
+    idx <- sample.int(n, n, replace = TRUE)
+    bs[k] <- wmedian_point(bi[idx], wi[idx])
+  }
+  se <- sd(bs, na.rm = TRUE)
+  list(method = "Weighted median", b = b, se = se, pval = 2 * pnorm(-abs(b / se)))
+}
+
+mr_wmode <- function(bx, by, sx, sy, nboot = 500, seed = 42) {
+  bi <- by / bx
+  wi <- bx^2 / sy^2
+  wmode <- function(b, w) {
+    if (length(unique(b)) == 1) return(b[1])
+    rng <- range(b); grid <- seq(rng[1], rng[2], length.out = 256)
+    bw <- tryCatch(bw.nrd(b), error = function(e) (rng[2] - rng[1]) / 20)
+    if (!is.finite(bw) || bw <= 0) bw <- (rng[2] - rng[1]) / 20
+    M <- dnorm(outer(b, grid, "-") / bw)      # n x length(grid)
+    d <- as.vector(w %*% M) / sum(w)
+    grid[which.max(d)]
+  }
+  b <- wmode(bi, wi)
+  set.seed(seed)
+  n <- length(bx); bs <- numeric(nboot)
+  for (k in seq_len(nboot)) {
+    idx <- sample.int(n, n, replace = TRUE)
+    bs[k] <- wmode(bi[idx], wi[idx])
+  }
+  se <- sd(bs, na.rm = TRUE)
+  list(method = "Weighted mode", b = b, se = se, pval = 2 * pnorm(-abs(b / se)))
+}
+
+r2_approx <- function(beta, se, n) {
+  v <- beta^2
+  tot <- beta^2 + se^2 * n
+  ifelse(is.na(tot) | tot <= 0, NA_real_, v / tot)
+}
+
+# =============================================================================
+# 5. Per gene x outcome analysis
+# =============================================================================
+analyse_pair <- function(h, gene, ensembl, outcome, cfg) {
+  bx <- h$beta.exposure; by <- h$beta.outcome
+  sx <- h$se.exposure;   sy <- h$se.outcome
+  n  <- length(bx)
+  res <- list()
+  add <- function(r, note = NA_character_) {
+    if (is.null(r)) return(invisible(NULL))
+    res[[length(res) + 1]] <<- data.frame(
+      gene = gene, ensembl = ensembl,
+      outcome_id = outcome$id, outcome_short = outcome$short, outcome_label = outcome$label,
+      outcome_role = outcome$role,
+      method = r$method, n_snp = n,
+      b = r$b, se = r$se, pval = r$pval,
+      OR = exp(r$b),
+      OR_low = exp(r$b - 1.96 * r$se), OR_high = exp(r$b + 1.96 * r$se),
+      stringsAsFactors = FALSE)
+    invisible(NULL)
+  }
+  if (n == 1) {
+    add(mr_wald(bx, by, sx, sy))
+  } else {
+    add(mr_ivw(bx, by, sx, sy, random = TRUE))
+    if (n >= 3) add(mr_egger(bx, by, sx, sy))
+    if (n >= 3) add(mr_wmedian(bx, by, sx, sy))
+    if (n >= 3) add(mr_wmode(bx, by, sx, sy))
+  }
+  tab <- rbind_fill(res)
+  if (is.null(tab)) return(NULL)
+
+  # sensitivity metrics attached to every row
+  ivw <- if (n == 1) mr_wald(bx, by, sx, sy) else mr_ivw(bx, by, sx, sy, random = TRUE)
+  egg <- if (n >= 3) try(mr_egger(bx, by, sx, sy), silent = TRUE) else NULL
+  if (inherits(egg, "try-error")) egg <- NULL
+
+  loo <- NA_character_
+  if (n >= 3) {
+    full <- mr_ivw(bx, by, sx, sy, random = FALSE)$b
+    loo_b <- vapply(seq_len(n), function(i) {
+      tryCatch(mr_ivw(bx[-i], by[-i], sx[-i], sy[-i], random = FALSE)$b, error = function(e) NA_real_)
+    }, numeric(1))
+    loo <- sprintf("%.3f~%.3f", min(loo_b, na.rm = TRUE), max(loo_b, na.rm = TRUE))
+  }
+
+  F_mean <- mean((bx / sx)^2, na.rm = TRUE)
+  r2x <- sum(r2_approx(bx, sx, h$samplesize.exposure %||% NA_real_), na.rm = TRUE)
+  r2y <- sum(r2_approx(by, sy, h$samplesize.outcome %||% NA_real_), na.rm = TRUE)
+  steiger <- if (is.na(r2x) || is.na(r2y) || (r2x == 0 && r2y == 0)) NA else (r2x > r2y)
+
+  tab$Q <- ivw$Q %||% NA_real_
+  tab$Q_pval <- ivw$Q_pval %||% NA_real_
+  tab$I2 <- ivw$I2 %||% NA_real_
+  tab$egger_intercept <- if (!is.null(egg)) egg$intercept else NA_real_
+  tab$egger_intercept_p <- if (!is.null(egg)) egg$intercept_pval else NA_real_
+  tab$F_mean <- F_mean
+  tab$r2_exposure <- r2x
+  tab$r2_outcome <- r2y
+  tab$steiger_correct <- steiger
+  tab$loo_range <- loo
+  tab$role <- outcome$role
+
+  list(table = tab,
+       harmonised = h,
+       summary = data.frame(
+         gene = gene, ensembl = ensembl,
+         outcome_short = outcome$short, outcome_id = outcome$id, outcome_role = outcome$role,
+         n_snp = n, b = ivw$b, se = ivw$se, pval = ivw$pval,
+         OR = exp(ivw$b), OR_low = exp(ivw$b - 1.96 * ivw$se), OR_high = exp(ivw$b + 1.96 * ivw$se),
+         Q_pval = ivw$Q_pval %||% NA_real_, I2 = ivw$I2 %||% NA_real_,
+         egger_intercept_p = if (!is.null(egg)) egg$intercept_pval else NA_real_,
+         F_mean = F_mean, steiger_correct = steiger, loo_range = loo,
+         stringsAsFactors = FALSE))
+}
+
+# =============================================================================
+# 6. Plots (base graphics)
+# =============================================================================
+plot_forest <- function(summ, outcome_short, path) {
+  d <- summ[summ$outcome_short == outcome_short & !is.na(summ$OR), , drop = FALSE]
+  if (nrow(d) == 0) return(invisible(NULL))
+  d <- d[order(d$OR), , drop = FALSE]
+  ensure_dir(dirname(path))
+  h <- max(300, 90 + 26 * nrow(d))
+  png(path, width = 1100, height = h, res = 130)
+  on.exit(dev.off(), add = TRUE)
+  x <- d$OR; lo <- pmax(d$OR_low, 1e-3); hi <- d$OR_high
+  rng <- range(c(lo, hi, 1), na.rm = TRUE)
+  rng <- c(max(rng[1], 1e-3), rng[2])
+  par(mar = c(4.5, 13, 3, 2))
+  plot(NA, xlim = log10(rng), ylim = c(0.5, nrow(d) + 0.5), log = "", yaxt = "n",
+       xlab = "Odds ratio per 1-SD higher genetically proxied expression (log scale)",
+       ylab = "", main = sprintf("MR forest plot - outcome: %s", outcome_short))
+  abline(v = 0, lty = 2, col = "grey40")
+  cols <- ifelse(d$outcome_role == "positive_control", "#d95f02",
+                 ifelse(d$pval < 0.05 / nrow(d), "#1b9e77", "grey55"))
+  segments(log10(lo), seq_len(nrow(d)), log10(hi), seq_len(nrow(d)), col = cols, lwd = 2)
+  points(log10(x), seq_len(nrow(d)), pch = 19, col = cols, cex = 1.1)
+  axis(2, at = seq_len(nrow(d)), labels = sprintf("%s (n=%d)", d$gene, d$n_snp), las = 1, cex.axis = 0.85)
+  legend("bottomright", bty = "n", cex = 0.8,
+         legend = c("Bonferroni-significant", "nominal p<0.05", "positive control"),
+         col = c("#1b9e77", "grey55", "#d95f02"), pch = 19)
+  invisible(NULL)
+}
+
+plot_scatter <- function(h, gene, outcome_short, path) {
+  ensure_dir(dirname(path))
+  png(path, width = 900, height = 900, res = 130)
+  on.exit(dev.off(), add = TRUE)
+  bx <- h$beta.exposure; by <- h$beta.outcome; sx <- h$se.exposure; sy <- h$se.outcome
+  fit <- mr_ivw(bx, by, sx, sy, random = FALSE)
+  par(mar = c(4.5, 4.5, 3, 1.5))
+  plot(bx, by, xlab = "SNP effect on gene expression (beta)",
+       ylab = sprintf("SNP effect on %s (beta)", outcome_short),
+       main = sprintf("%s -> %s  (IVW b=%.3f)", gene, outcome_short, fit$b),
+       pch = 19, col = "#2c7fb8")
+  abline(0, fit$b, col = "#d95f02", lwd = 2)
+  abline(0, 0, lty = 3, col = "grey60")
+  invisible(NULL)
+}
+
+# =============================================================================
+# 7. CLI
+# =============================================================================
+parse_args <- function(a) {
+  cfg <- list(stage = "all", proj = ".", panel = "priority", genes = NULL, outcomes = NULL,
+              api = "https://api.opengwas.io/api", token = Sys.getenv("OPENGWAS_JWT"),
+              pval = 5e-8, pval_fallback = c(5e-6, 1e-5), r2 = 0.001, kb = 10000, pop = "EUR",
+              batch = 200, reuse = TRUE, verbose = TRUE, figs = TRUE)
+  i <- 1
+  stage_seen <- FALSE
+  while (i <= length(a)) {
+    k <- a[i]
+    nxt <- function() { if (i + 1 > length(a)) stop(paste("missing value for", k)); a[i + 1] }
+    if (substr(k, 1, 2) != "--" && !stage_seen && k %in% c("probe","fetch","analyse","analyze","all","selftest")) {
+      cfg$stage <- if (k == "analyze") "analyse" else k
+      stage_seen <- TRUE; i <- i + 1
+    }
+    else if (k == "--stage")    { cfg$stage <- nxt(); stage_seen <- TRUE; i <- i + 2 }
+    else if (k == "--proj")     { cfg$proj <- nxt(); i <- i + 2 }
+    else if (k == "--panel")    { cfg$panel <- nxt(); i <- i + 2 }
+    else if (k == "--genes")    { cfg$genes <- strsplit(nxt(), ",")[[1]]; i <- i + 2 }
+    else if (k == "--outcomes") { cfg$outcomes <- strsplit(nxt(), ",")[[1]]; i <- i + 2 }
+    else if (k == "--api")      { cfg$api <- sub("/+$", "", nxt()); i <- i + 2 }
+    else if (k == "--token")    { cfg$token <- nxt(); i <- i + 2 }
+    else if (k == "--pval")     { cfg$pval <- as.numeric(nxt()); i <- i + 2 }
+    else if (k == "--r2")       { cfg$r2 <- as.numeric(nxt()); i <- i + 2 }
+    else if (k == "--kb")       { cfg$kb <- as.numeric(nxt()); i <- i + 2 }
+    else if (k == "--pop")      { cfg$pop <- nxt(); i <- i + 2 }
+    else if (k == "--no-figs")  { cfg$figs <- FALSE; i <- i + 1 }
+    else if (k == "--no-cache") { cfg$reuse <- FALSE; i <- i + 1 }
+    else if (k == "--quiet")    { cfg$verbose <- FALSE; i <- i + 1 }
+    else if (k == "--help" || k == "-h") {
+      cat("Usage: Rscript 05_mr_validation.R [stage] [options]\n",
+          "  stage            probe | fetch | analyse | all | selftest  (default all)\n",
+          "  --proj DIR       project root (default .)\n",
+          "  --panel NAME     priority | full   (default priority)\n",
+          "  --genes A,B,C    explicit gene symbols (overrides --panel)\n",
+          "  --outcomes X,Y   outcome short names, comma separated (see OUTCOMES)\n",
+          "  --api URL        OpenGWAS API base (default https://api.opengwas.io/api)\n",
+          "  --token JWT      OpenGWAS token (or env OPENGWAS_JWT)\n",
+          "  --pval P         instrument p threshold (default 5e-8, auto-relaxed)\n",
+          "  --r2 / --kb      clumping r2 / window kb (default 0.001 / 10000)\n",
+          "  --pop EUR        clumping reference population\n",
+          "  --no-figs / --no-cache / --quiet\n", sep = "")
+      quit(save = "no", status = 0)
+    }
+    else stop(paste("unknown argument:", k))
+  }
+  cfg$pval_ladder <- unique(c(cfg$pval, cfg$pval_fallback))
+  cfg$instruments_dir <- file.path(cfg$proj, "data", "processed", "mr")
+  cfg$cache_dir <- file.path(cfg$proj, "data", "interim", "mr_cache")
+  cfg$raw_dir <- file.path(cfg$proj, "data", "interim", "mr_raw")
+  cfg$tab_dir <- file.path(cfg$proj, "results", "tables")
+  cfg$fig_dir <- file.path(cfg$proj, "results", "figures")
+  for (d in c(cfg$instruments_dir, cfg$cache_dir, cfg$raw_dir, cfg$tab_dir, cfg$fig_dir)) ensure_dir(d)
+  cfg
+}
+
+# =============================================================================
+# 8. Stages
+# =============================================================================
+stage_probe <- function(cfg) {
+  log_msg("=== STAGE probe ===")
+  log_msg("api = ", cfg$api)
+  if (!nzchar(cfg$token %||% "")) {
+    log_msg("!! No OpenGWAS token found.")
+    log_msg("   Register free at https://api.opengwas.io/profile/ then either")
+    log_msg("     export OPENGWAS_JWT=<your token>     (recommended, add to ~/.bashrc)")
+    log_msg("   or pass --token <your token>")
+  } else {
+    log_msg("token: present (", nchar(cfg$token), " chars )")
+  }
+  log_msg("panel = ", cfg$panel, " (", length(genes_of(cfg)), " genes )")
+  for (o in outcomes_of(cfg)) log_msg("  outcome ", o$short, "  ", o$id, "  ", o$label)
+  invisible(TRUE)
+}
+
+genes_of <- function(cfg) {
+  if (!is.null(cfg$genes)) {
+    g <- intersect(cfg$genes, names(GENE_ENSEMBL))
+    miss <- setdiff(cfg$genes, names(GENE_ENSEMBL))
+    if (length(miss)) log_msg("  [warn] genes not in verified panel, skipped: ", paste(miss, collapse = ","))
+    return(g)
+  }
+  if (cfg$panel == "full") PANEL_FULL else PANEL_PRIORITY
+}
+
+outcomes_of <- function(cfg) {
+  if (is.null(cfg$outcomes)) return(OUTCOMES)
+  keep <- OUTCOMES[vapply(OUTCOMES, function(o) o$short %in% cfg$outcomes, logical(1))]
+  if (length(keep) == 0) stop("no matching outcome short names")
+  keep
+}
+
+stage_fetch <- function(cfg) {
+  log_msg("=== STAGE fetch ===")
+  genes <- genes_of(cfg)
+  outs <- outcomes_of(cfg)
+  inst <- list()
+  for (g in genes) {
+    e <- GENE_ENSEMBL[[g]]
+    log_msg("[instruments] ", g, " (", e, ")")
+    d <- fetch_instruments(e, cfg)
+    if (is.null(d) || nrow(d) == 0) {
+      log_msg("  [warn] no instrument SNP for ", g, " - gene skipped")
+      Sys.sleep(0.2)
+      next
+    }
+    d$gene <- g; d$ensembl <- e
+    inst[[g]] <- d
+  }
+  inst_all <- rbind_fill(inst)
+  if (is.null(inst_all)) inst_all <- data.frame()
+  saveRDS(inst_all, file.path(cfg$instruments_dir, "mr_instruments.rds"))
+  if (ncol(inst_all) > 0 && nrow(inst_all) > 0) {
+    write.csv(inst_all, file.path(cfg$tab_dir, "mr_instruments.csv"), row.names = FALSE)
+    log_msg("[instruments] total ", nrow(inst_all), " SNPs across ",
+            length(unique(inst_all$gene)), "/", length(genes), " genes")
+    empty <- setdiff(genes, unique(inst_all$gene))
+    if (length(empty)) log_msg("[instruments] no instrument for: ", paste(empty, collapse = ", "))
+  } else {
+    log_msg("[instruments] WARNING: no instruments retrieved at all")
+    log_msg("  hints: (1) is OPENGWAS_JWT valid?  (2) is the token account confirmed?")
+    log_msg("         (3) run --stage probe, then --stage fetch again")
+    return(invisible(FALSE))
+  }
+  rsids <- unique(inst_all$SNP)
+  log_msg("[outcome] querying ", length(rsids), " rsids across ", length(outs), " outcomes")
+  for (o in outs) {
+    log_msg("  outcome ", o$short, " (", o$id, ")")
+    try(fetch_outcome(o$id, rsids, cfg), silent = TRUE)
+  }
+  invisible(TRUE)
+}
+
+stage_analyse <- function(cfg) {
+  log_msg("=== STAGE analyse ===")
+  f <- file.path(cfg$instruments_dir, "mr_instruments.rds")
+  if (!file.exists(f)) stop("instruments not found; run --stage fetch first")
+  inst_all <- readRDS(f)
+  if (is.null(inst_all) || nrow(inst_all) == 0) stop("no instruments")
+  outs <- outcomes_of(cfg)
+  all_rows <- list(); all_harm <- list(); all_summ <- list()
+  n_tests <- 0
+  for (g in unique(inst_all$gene)) {
+    exp_df <- inst_all[inst_all$gene == g, , drop = FALSE]
+    ens <- exp_df$ensembl[1]
+    for (o in outs) {
+      cache <- file.path(cfg$cache_dir, paste0("out_", o$id, ".rds"))
+      if (!file.exists(cache)) { log_msg("  [skip] no outcome cache for ", o$short); next }
+      out_df <- readRDS(cache)
+      out_df <- out_df[out_df$SNP %in% exp_df$SNP, , drop = FALSE]
+      h <- harmonise_pair(exp_df, out_df, cfg)
+      if (is.null(h) || nrow(h) == 0) next
+      r <- try(analyse_pair(h, g, ens, o, cfg), silent = TRUE)
+      if (inherits(r, "try-error") || is.null(r)) next
+      all_rows[[length(all_rows) + 1]] <- r$table
+      all_harm[[length(all_harm) + 1]] <- cbind(gene = g, outcome_short = o$short, h)
+      all_summ[[length(all_summ) + 1]] <- r$summary
+      n_tests <- n_tests + 1
+      if (cfg$figs && nrow(h) >= 2) {
+        plot_scatter(h, g, o$short, file.path(cfg$fig_dir, sprintf("mr_scatter_%s_%s.png", g, o$short)))
+      }
+    }
+  }
+  methods_tab <- rbind_fill(all_rows)
+  harm_tab <- rbind_fill(all_harm)
+  summ <- rbind_fill(all_summ)
+  if (is.null(summ) || nrow(summ) == 0) { log_msg("no analysable gene-outcome pairs"); return(invisible(FALSE)) }
+
+  n_test <- nrow(summ)
+  summ$p_bonferroni <- pmin(1, summ$pval * n_test)
+  summ$bonferroni_sig <- summ$p_bonferroni < 0.05
+  summ$fdr <- p.adjust(summ$pval, method = "BH")
+  summ$fdr_sig <- summ$fdr < 0.05
+  summ$direction <- ifelse(summ$OR > 1, "risk_up", "risk_down")
+  summ <- summ[order(summ$pval), ]
+
+  write.csv(methods_tab, file.path(cfg$tab_dir, "mr_results_all_methods.csv"), row.names = FALSE)
+  if (!is.null(harm_tab)) write.csv(harm_tab, file.path(cfg$tab_dir, "mr_harmonised.csv"), row.names = FALSE)
+  write.csv(summ, file.path(cfg$tab_dir, "mr_summary.csv"), row.names = FALSE)
+
+  # per outcome
+  for (o in unique(summ$outcome_short)) {
+    write.csv(summ[summ$outcome_short == o, , drop = FALSE],
+              file.path(cfg$tab_dir, sprintf("mr_summary_%s.csv", o)), row.names = FALSE)
+    if (cfg$figs) plot_forest(summ, o, file.path(cfg$fig_dir, sprintf("mr_forest_%s.png", o)))
+  }
+
+  safe <- summ[!is.na(summ$steiger_correct) & summ$steiger_correct &
+               (is.na(summ$F_mean) | summ$F_mean >= 10), , drop = FALSE]
+
+  save_json(list(
+    version = VERSION, generated = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
+    n_gene_outcome_tests = n_test,
+    n_genes = length(unique(summ$gene)),
+    n_outcomes = length(unique(summ$outcome_short)),
+    n_bonferroni_sig = sum(summ$bonferroni_sig, na.rm = TRUE),
+    n_fdr_sig = sum(summ$fdr_sig, na.rm = TRUE),
+    n_pass_sensitivity = nrow(safe),
+    top_hits = head(summ[, c("gene","outcome_short","n_snp","OR","OR_low","OR_high","pval","p_bonferroni","steiger_correct","F_mean")], 30)
+  ), file.path(cfg$tab_dir, "mr_summary.json"))
+
+  log_msg("--- summary ---")
+  log_msg("tests: ", n_test, " | Bonferroni sig: ", sum(summ$bonferroni_sig, na.rm = TRUE),
+          " | FDR sig: ", sum(summ$fdr_sig, na.rm = TRUE),
+          " | pass sensitivity: ", nrow(safe))
+  show <- head(summ, 15)
+  for (i in seq_len(nrow(show))) {
+    log_msg(sprintf("  %-9s -> %-8s n=%-3d OR=%.3f (%.3f-%.3f) p=%s %s",
+                    show$gene[i], show$outcome_short[i], show$n_snp[i], show$OR[i],
+                    show$OR_low[i], show$OR_high[i], fmt_p(show$pval[i]),
+                    ifelse(show$bonferroni_sig[i], "[BONF]", "")))
+  }
+  log_msg("tables -> ", cfg$tab_dir)
+  invisible(TRUE)
+}
+
+# =============================================================================
+# 9. Self-test (offline, no token, no network)
+# =============================================================================
+stage_selftest <- function(cfg) {
+  log_msg("=== STAGE selftest (offline) ===")
+  ok <- TRUE
+  check <- function(cond, msg) {
+    log_msg(if (isTRUE(cond)) "  PASS  " else "  FAIL  ", msg)
+    if (!isTRUE(cond)) ok <<- FALSE
+  }
+  set.seed(12345)
+  n <- 20
+  bx <- runif(n, 0.1, 0.6) * sample(c(-1, 1), n, TRUE)
+  sx <- runif(n, 0.02, 0.05)
+  TRUE_B <- 0.35
+  by <- TRUE_B * bx + rnorm(n, 0, 0.01)
+  sy <- runif(n, 0.02, 0.06)
+
+  ivw <- mr_ivw(bx, by, sx, sy, random = FALSE)
+  check(abs(ivw$b - TRUE_B) < 0.05, sprintf("IVW recovers true effect (b=%.4f vs %.2f)", ivw$b, TRUE_B))
+  egg <- mr_egger(bx, by, sx, sy)
+  check(abs(egg$b - TRUE_B) < 0.1, sprintf("MR-Egger slope near truth (%.4f)", egg$b))
+  check(abs(egg$intercept) < 0.05, sprintf("MR-Egger intercept ~0 (%.4f)", egg$intercept))
+  wm <- mr_wmedian(bx, by, sx, sy, nboot = 500)
+  check(abs(wm$b - TRUE_B) < 0.1, sprintf("Weighted median near truth (%.4f)", wm$b))
+  wmo <- mr_wmode(bx, by, sx, sy, nboot = 300)
+  check(abs(wmo$b - TRUE_B) < 0.15, sprintf("Weighted mode near truth (%.4f)", wmo$b))
+  w1 <- mr_wald(bx[1], by[1], sx[1], sy[1])
+  check(abs(w1$b - by[1] / bx[1]) < 1e-10, "Wald ratio formula")
+  check(is.finite(ivw$Q) && ivw$Q_df == n - 1, "Cochran Q computed")
+  r2 <- r2_approx(c(0.3, 0.1), c(0.02, 0.02), 10000)
+  check(all(r2 > 0 & r2 < 1), "r2 approximation in (0,1)")
+
+  # harmonisation: rs1 allele-flipped, rs2 palindromic+ambiguous (must drop), rs3 clean
+  exp_df <- data.frame(SNP = c("rs1","rs2","rs3"), beta.exposure = c(0.5,-0.3,0.2),
+                       se.exposure = 0.03, effect_allele.exposure = c("A","A","G"),
+                       other_allele.exposure = c("G","T","A"), eaf.exposure = c(0.3,0.5,0.4),
+                       samplesize.exposure = 30000, stringsAsFactors = FALSE)
+  out_df <- data.frame(SNP = c("rs1","rs2","rs3"), beta.outcome = c(0.2, 0.1, 0.15),
+                       se.outcome = 0.05, effect_allele.outcome = c("G","A","G"),
+                       other_allele.outcome = c("A","T","A"), eaf.outcome = 0.3,
+                       samplesize.outcome = 400000, stringsAsFactors = FALSE)
+  hh <- harmonise_pair(exp_df, out_df, cfg)
+  check(nrow(hh) == 2, sprintf("harmonisation drops ambiguous palindromic SNP (kept %d/3)", nrow(hh)))
+  check(!"rs2" %in% hh$SNP, "palindromic/ambiguous rs2 removed")
+  check(abs(hh$beta.outcome[hh$SNP == "rs1"] - (-0.2)) < 1e-12, "allele flip applied on rs1")
+
+  # end-to-end mini pipeline through analyse_pair
+  h <- data.frame(SNP = paste0("rs", 1:n), beta.exposure = bx, se.exposure = sx,
+                  effect_allele.exposure = "A", other_allele.exposure = "G", eaf.exposure = 0.3,
+                  samplesize.exposure = 30000, pval.exposure = 1e-9,
+                  beta.outcome = by, se.outcome = sy, effect_allele.outcome = "A",
+                  other_allele.outcome = "G", eaf.outcome = 0.3, samplesize.outcome = 4e5,
+                  stringsAsFactors = FALSE)
+  o <- list(id = "TEST", label = "synthetic", short = "TEST", role = "primary")
+  r <- analyse_pair(h, "TESTGENE", "ENSGTEST", o, cfg)
+  check(!is.null(r) && nrow(r$table) >= 4, "analyse_pair returns all methods")
+  check(abs(r$summary$OR - exp(TRUE_B)) < 0.1, "summary OR matches truth")
+  check(r$summary$F_mean > 10, sprintf("F-statistic strong (%.0f)", r$summary$F_mean))
+
+  # curl availability (informational only)
+  log_msg("  INFO  system curl available: ", have_curl_bin())
+  log_msg(if (ok) "=== selftest PASSED ===" else "=== selftest FAILED ===")
+  invisible(ok)
+}
+
+# =============================================================================
+# 10. Main
+# =============================================================================
+main <- function() {
+  cfg <- parse_args(commandArgs(trailingOnly = TRUE))
+  log_msg("05_mr_validation.R v", VERSION, " | stage=", cfg$stage)
+  need_pkg("jsonlite")
+  if (cfg$stage == "selftest") return(stage_selftest(cfg))
+  if (cfg$stage %in% c("probe", "all")) stage_probe(cfg)
+  if (cfg$stage %in% c("fetch", "all")) {
+    if (!nzchar(cfg$token %||% "")) stop("OpenGWAS token required for fetch/probe against the live API. See --help.")
+    stage_fetch(cfg)
+  }
+  if (cfg$stage %in% c("analyse", "all")) stage_analyse(cfg)
+  log_msg("done.")
+  invisible(TRUE)
+}
+
+if (sys.nframe() == 0) main()

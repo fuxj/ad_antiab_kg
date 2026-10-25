@@ -1,0 +1,429 @@
+{
+  "version": "4.3.0",
+  "generated_at": "2026-10-24 12:59:04",
+  "n_novel_candidates": 550,
+  "outcome_strata": {
+    "AD_efficacy": [
+      "ad",
+      "ad_repl1",
+      "ad_repl2"
+    ],
+    "AD_efficacy_powered": [
+      "ad",
+      "ad_repl1"
+    ],
+    "bleeding": [
+      "ich",
+      "ich_fin",
+      "sah"
+    ],
+    "control_not_scored": [
+      "is",
+      "ldl",
+      "svd"
+    ]
+  },
+  "genetic_strata": {
+    "ad_efficacy_genes": [
+      "ACE",
+      "BIN1",
+      "LRP1",
+      "PLCG2"
+    ],
+    "ad_efficacy_direction": {
+      "ACE": "protective",
+      "BIN1": "risk",
+      "LRP1": "protective",
+      "PLCG2": "risk"
+    },
+    "bleeding_genes": [
+      "ACE",
+      "APP",
+      "F10",
+      "PTGS1",
+      "VKORC1"
+    ],
+    "bleeding_gene_direction": {
+      "ACE": "risk",
+      "APP": "risk",
+      "F10": "risk",
+      "PTGS1": "protective",
+      "VKORC1": "protective"
+    },
+    "control_genes": [
+      "CLU",
+      "CR1",
+      "F10",
+      "HMGCR",
+      "PSEN1",
+      "VKORC1"
+    ]
+  },
+  "genetic_strata_rules": {
+    "ad_efficacy": "powered AD outcome (ad / ad_repl1) OR >= 2 AD outcomes",
+    "bleeding": "nominal-significant bleeding outcome (MR p<0.05) or coloc PP.H4>=0.80; pleiotropy (Egger p<0.05) rows are FLAGGED but retained",
+    "direction_assumption": "a drug's net engagement of its target is INHIBITORY (documented agonists are manual exceptions)",
+    "manual_drop_ad": [],
+    "manual_drop_bleed": []
+  },
+  "genetic_audit": {
+    "pleiotropy_column": "egger_intercept_p",
+    "pleiotropy_mode": "flag-retain",
+    "pleiotropy_flagged_rows": [
+      "APP->SAH",
+      "PTGS1->ICH"
+    ],
+    "pleiotropy_dropped_rows": [],
+    "ad_repl2_only_dropped": [
+      "APP",
+      "VKORC1"
+    ],
+    "ad_outcomes_by_gene": {
+      "BIN1": [
+        "ad",
+        "ad_repl2"
+      ],
+      "ACE": [
+        "ad",
+        "ad_repl2"
+      ],
+      "PLCG2": [
+        "ad"
+      ],
+      "VKORC1": [
+        "ad_repl2"
+      ],
+      "LRP1": [
+        "ad_repl1"
+      ],
+      "APP": [
+        "ad_repl2"
+      ]
+    },
+    "bleed_outcomes_by_gene": {
+      "APP": [
+        "sah"
+      ],
+      "PTGS1": [
+        "ich"
+      ],
+      "VKORC1": [
+        "ich"
+      ],
+      "F10": [
+        "ich_fin"
+      ],
+      "ACE": [
+        "ich"
+      ]
+    }
+  },
+  "coverage_audit": {
+    "ad_efficacy_covered": {
+      "ACE": [
+        "BENAZEPRIL",
+        "BENAZEPRIL HYDROCHLORIDE",
+        "CAPTOPRIL",
+        "CILAZAPRIL",
+        "DELAPRIL",
+        "ENALAPRIL",
+        "ENALAPRIL MALEATE",
+        "ENALAPRILAT",
+        "FOSINOPRIL",
+        "FOSINOPRIL SODIUM",
+        "IMIDAPRIL",
+        "LISINOPRIL",
+        "LISINOPRIL ANHYDROUS",
+        "MOEXIPRIL",
+        "MOEXIPRIL HYDROCHLORIDE",
+        "PERINDOPRIL ARGININE",
+        "PERINDOPRIL ERBUMINE",
+        "QUINAPRIL",
+        "QUINAPRIL HYDROCHLORIDE",
+        "RAMIPRIL",
+        "SPIRAPRIL",
+        "TRANDOLAPRIL"
+      ]
+    },
+    "ad_efficacy_uncovered": [
+      "BIN1",
+      "LRP1",
+      "PLCG2"
+    ],
+    "bleeding_covered": {
+      "ACE": [
+        "BENAZEPRIL",
+        "BENAZEPRIL HYDROCHLORIDE",
+        "CAPTOPRIL",
+        "CILAZAPRIL",
+        "DELAPRIL",
+        "ENALAPRIL",
+        "ENALAPRIL MALEATE",
+        "ENALAPRILAT",
+        "FOSINOPRIL",
+        "FOSINOPRIL SODIUM",
+        "IMIDAPRIL",
+        "LISINOPRIL",
+        "LISINOPRIL ANHYDROUS",
+        "MOEXIPRIL",
+        "MOEXIPRIL HYDROCHLORIDE",
+        "PERINDOPRIL ARGININE",
+        "PERINDOPRIL ERBUMINE",
+        "QUINAPRIL",
+        "QUINAPRIL HYDROCHLORIDE",
+        "RAMIPRIL",
+        "SPIRAPRIL",
+        "TRANDOLAPRIL"
+      ],
+      "F10": [
+        "APIXABAN",
+        "BETRIXABAN",
+        "EDOXABAN",
+        "EDOXABAN TOSYLATE",
+        "RIVAROXABAN"
+      ],
+      "PTGS1": [
+        "ACEMETACIN",
+        "ACETAMINOPHEN",
+        "ALCLOFENAC",
+        "ANTIPYRINE",
+        "APAZONE",
+        "ASPIRIN",
+        "BALSALAZIDE",
+        "BALSALAZIDE DISODIUM",
+        "BENZYDAMINE",
+        "BENZYDAMINE HYDROCHLORIDE",
+        "BISMUTH SUBSALICYLATE",
+        "BROMFENAC",
+        "BROMFENAC SODIUM",
+        "CLOMETACIN",
+        "DEXIBUPROFEN",
+        "DEXKETOPROFEN",
+        "DICLOFENAC",
+        "DICLOFENAC EPOLAMINE",
+        "DICLOFENAC POTASSIUM",
+        "DICLOFENAC SODIUM",
+        "DIFLUNISAL",
+        "DIPYRONE",
+        "ESFLURBIPROFEN",
+        "FENCLOFENAC",
+        "FENOPROFEN",
+        "FENOPROFEN CALCIUM",
+        "FLURBIPROFEN",
+        "GLAFENINE",
+        "IBUFENAC",
+        "IBUPROFEN",
+        "IBUPROFEN LYSINE",
+        "INDOMETHACIN",
+        "INDOPROFEN",
+        "ISOXICAM",
+        "KETOPROFEN",
+        "KETOROLAC",
+        "KETOROLAC TROMETHAMINE",
+        "LOXOPROFEN",
+        "MECLOFENAMATE SODIUM",
+        "MECLOFENAMIC ACID",
+        "MEFENAMIC ACID",
+        "MESALAMINE",
+        "METAMIZOLE",
+        "NAPROXCINOD",
+        "NAPROXEN",
+        "NAPROXEN SODIUM",
+        "NEPAFENAC",
+        "OLSALAZINE",
+        "OLSALAZINE SODIUM",
+        "OXAPROZIN",
+        "OXYPHENBUTAZONE",
+        "OXYPHENBUTAZONE ANHYDROUS",
+        "PHENYLBUTAZONE",
+        "PIROXICAM",
+        "PIRPROFEN",
+        "SULFASALAZINE",
+        "SULINDAC",
+        "SUPROFEN",
+        "TOLMETIN",
+        "TOLMETIN SODIUM"
+      ],
+      "VKORC1": [
+        "ACENOCOUMAROL",
+        "DICUMAROL",
+        "PHENINDIONE",
+        "PHENPROCOUMON",
+        "WARFARIN",
+        "WARFARIN SODIUM"
+      ]
+    },
+    "bleeding_uncovered": [
+      "APP"
+    ],
+    "ad_efficacy_kg_reachable": {
+      "ACE": [
+        "BENAZEPRIL",
+        "BENAZEPRIL HYDROCHLORIDE",
+        "CAPTOPRIL",
+        "CILAZAPRIL",
+        "DELAPRIL",
+        "ENALAPRIL",
+        "ENALAPRIL MALEATE",
+        "ENALAPRILAT",
+        "FOSINOPRIL",
+        "FOSINOPRIL SODIUM",
+        "IMIDAPRIL",
+        "LISINOPRIL",
+        "LISINOPRIL ANHYDROUS",
+        "MOEXIPRIL",
+        "MOEXIPRIL HYDROCHLORIDE",
+        "PERINDOPRIL ARGININE",
+        "PERINDOPRIL ERBUMINE",
+        "PERINDOPRIL[unscored]",
+        "QUINAPRIL",
+        "QUINAPRIL HYDROCHLORIDE",
+        "RAMIPRIL",
+        "SPIRAPRIL",
+        "TRANDOLAPRIL"
+      ]
+    },
+    "bleeding_kg_reachable": {
+      "ACE": [
+        "BENAZEPRIL",
+        "BENAZEPRIL HYDROCHLORIDE",
+        "CAPTOPRIL",
+        "CILAZAPRIL",
+        "DELAPRIL",
+        "ENALAPRIL",
+        "ENALAPRIL MALEATE",
+        "ENALAPRILAT",
+        "FOSINOPRIL",
+        "FOSINOPRIL SODIUM",
+        "IMIDAPRIL",
+        "LISINOPRIL",
+        "LISINOPRIL ANHYDROUS",
+        "MOEXIPRIL",
+        "MOEXIPRIL HYDROCHLORIDE",
+        "PERINDOPRIL ARGININE",
+        "PERINDOPRIL ERBUMINE",
+        "PERINDOPRIL[unscored]",
+        "QUINAPRIL",
+        "QUINAPRIL HYDROCHLORIDE",
+        "RAMIPRIL",
+        "SPIRAPRIL",
+        "TRANDOLAPRIL"
+      ],
+      "APP": [
+        "ADUCANUMAB[unscored]",
+        "DONANEMAB[unscored]",
+        "LECANEMAB[unscored]",
+        "TRAMIPROSATE[unscored]"
+      ],
+      "F10": [
+        "APIXABAN",
+        "BETRIXABAN",
+        "EDOXABAN",
+        "EDOXABAN TOSYLATE",
+        "RIVAROXABAN"
+      ],
+      "PTGS1": [
+        "ACEMETACIN",
+        "ACETAMINOPHEN",
+        "ALCLOFENAC",
+        "ANTIPYRINE",
+        "APAZONE",
+        "ASPIRIN",
+        "BALSALAZIDE",
+        "BALSALAZIDE DISODIUM",
+        "BENZYDAMINE",
+        "BENZYDAMINE HYDROCHLORIDE",
+        "BISMUTH SUBSALICYLATE",
+        "BROMFENAC",
+        "BROMFENAC SODIUM",
+        "CLOMETACIN",
+        "DEXIBUPROFEN",
+        "DEXKETOPROFEN",
+        "DICLOFENAC",
+        "DICLOFENAC EPOLAMINE",
+        "DICLOFENAC POTASSIUM",
+        "DICLOFENAC SODIUM",
+        "DIFLUNISAL",
+        "DIPYRONE",
+        "ESFLURBIPROFEN",
+        "FENCLOFENAC",
+        "FENOPROFEN",
+        "FENOPROFEN CALCIUM",
+        "FLURBIPROFEN",
+        "GLAFENINE",
+        "IBUFENAC",
+        "IBUPROFEN",
+        "IBUPROFEN LYSINE",
+        "INDOMETHACIN",
+        "INDOPROFEN",
+        "ISOXICAM",
+        "KETOPROFEN",
+        "KETOROLAC",
+        "KETOROLAC TROMETHAMINE",
+        "LORNOXICAM[unscored]",
+        "LOXOPROFEN",
+        "MECLOFENAMATE SODIUM",
+        "MECLOFENAMIC ACID",
+        "MEFENAMIC ACID",
+        "MESALAMINE",
+        "METAMIZOLE",
+        "NAPROXCINOD",
+        "NAPROXEN",
+        "NAPROXEN SODIUM",
+        "NEPAFENAC",
+        "OLSALAZINE",
+        "OLSALAZINE SODIUM",
+        "OXAPROZIN",
+        "OXYPHENBUTAZONE",
+        "OXYPHENBUTAZONE ANHYDROUS",
+        "PHENYLBUTAZONE",
+        "PIROXICAM",
+        "PIRPROFEN",
+        "SULFASALAZINE",
+        "SULINDAC",
+        "SUPROFEN",
+        "TOLMETIN",
+        "TOLMETIN SODIUM"
+      ],
+      "VKORC1": [
+        "ACENOCOUMAROL",
+        "DICUMAROL",
+        "PHENINDIONE",
+        "PHENPROCOUMON",
+        "WARFARIN",
+        "WARFARIN SODIUM"
+      ]
+    }
+  },
+  "score_definition": {
+    "f_repurpose": "0.40*pct_pool(gnn_repurpose)+0.25*pct_pool(gnn_synergy)+0.25*ad_eff_evidence+0.10*CNS",
+    "liability": "0.60*clinical_bleed_grade + 0.20*bleed_penalty_MR + 0.20*pct_pool(max_aria_risk)",
+    "clinical_bleed_grade": "graded pharmacology (pool-independent): anticoagulant 1.00, antiplatelet receptor 0.95, non-selective NSAID (PTGS1) 0.80, COX-2 selective (PTGS2) 0.50",
+    "pct_pool": "percentile rank computed WITHIN each pool stratum (HGT_scored vs OT_expanded); missing value -> neutral 0.5",
+    "ad_eff_evidence": "clip(sum over targeted AD genes of {risk:1.0, protective:0.0, unknown:0.5}, 0, 1)",
+    "bleed_evidence": "max( clinical_bleed_grade , clip(sum over targeted bleeding genes of {protective:1.0, risk:0.0, unknown:0.5}, 0, 1) )",
+    "f_partner": "partner_eligible * [0.50*pct_pool(gnn_synergy)+0.30*(1-liability)+0.20*CNS]",
+    "evidence_tier": "genetic-anchored (aligned) > genetic-counter > target-prior (n_prior_targets>0) > structural-only"
+  },
+  "counts": {
+    "with_AD_efficacy_gene": 22,
+    "with_AD_aligned_evidence": 0,
+    "with_AD_counter_evidence": 22,
+    "with_AD_prior_target": 28,
+    "with_bleeding_liability": 96,
+    "CNS_penetrant": 107,
+    "taskA_anchored": 28,
+    "taskA_structural": 522,
+    "taskC_eligible": 8,
+    "taskC_tier2": 397,
+    "passive_only_demoted": 424,
+    "bleed_excluded_from_partners": 96,
+    "counter_excluded_from_partners": 22,
+    "from_HGT_pool": 107,
+    "from_OT_expanded": 443,
+    "CNS_known": 107,
+    "CNS_unknown": 443,
+    "non_CNS": 0,
+    "clinical_bleed_forced": 96
+  }
+}

@@ -1,0 +1,19 @@
+# R package list for the ad_antiab_kg pipeline (R 4.4)
+#
+# Recommended: install binary packages from conda-forge to avoid compiling C/C++:
+#   conda create -n rneuro -c conda-forge r-base=4.4 r-coloc r-twosamplemr
+#
+# If installing from CRAN into a conda R, use:
+#   install.packages(c("remotes", "BiocManager"))
+#   remotes::install_github("MRCIEU/TwoSampleMR")
+#   install.packages("coloc")        # v5.2.3
+#
+# Core packages used by the pipeline:
+TwoSampleMR        # two-sample Mendelian randomization (05_mr_validation.R)
+coloc              # Bayesian colocalization v5.2.3 (06_coloc.R, 07_coloc_brain.R)
+data.table
+dplyr
+ggplot2
+readr
+httr              # eQTL Catalogue REST calls
+jsonlite

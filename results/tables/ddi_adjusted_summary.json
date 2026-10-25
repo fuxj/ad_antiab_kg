@@ -1,0 +1,16 @@
+{
+  "n_reports": 6951,
+  "n_exposed": 534,
+  "covariates": [
+    "age",
+    "female",
+    "year_c",
+    "tgt_aducanumab",
+    "tgt_donanemab",
+    "tgt_lecanemab"
+  ],
+  "adj_OR_any_bleeding": 1.4866858816475241,
+  "adj_OR_any_nonbleeding": 1.6116163481143064,
+  "bleeding_over_nonbleeding_ratio": 0.9224812613666032,
+  "generated_at": "2026-10-24 00:23:42"
+}

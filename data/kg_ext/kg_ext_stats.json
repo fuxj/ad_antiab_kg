@@ -1,0 +1,31 @@
+{
+  "nodes": 3163,
+  "edges": 15547,
+  "node_type": {
+    "Drug": 229,
+    "Gene": 285,
+    "Indication": 812,
+    "Pathway": 247,
+    "AdverseEvent": 1590
+  },
+  "edge_type": {
+    "drug_target": 481,
+    "drug_indication": 2432,
+    "gene_indication": 60,
+    "gene_pathway": 397,
+    "drug_ae": 4307,
+    "gene_ae": 7870
+  },
+  "added": {
+    "drug": 226,
+    "gene": 225,
+    "edge_drug_target": 478,
+    "indication": 807,
+    "edge_drug_indication": 2422,
+    "adverse_event": 1509,
+    "edge_drug_ae": 4177,
+    "edge_gene_ae": 7789
+  },
+  "n_candidate_drugs": 226,
+  "generated_at": "2026-10-23 09:41:45"
+}

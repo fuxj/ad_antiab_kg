@@ -1,0 +1,10 @@
+drug,stratum,n,median_days,q1_days,q3_days
+lecanemab,All,1787,28,0,103
+lecanemab,ARIA,115,70,40,182
+lecanemab,Non-ARIA,1672,21,0,91.25
+donanemab,All,746,25,0,58
+donanemab,ARIA,59,37,12.5,99
+donanemab,Non-ARIA,687,23,0,56
+aducanumab,All,232,163.5,93.5,341.25
+aducanumab,ARIA,17,146,88,221
+aducanumab,Non-ARIA,215,168,95,341.5

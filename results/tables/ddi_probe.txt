@@ -1,0 +1,25 @@
+======================================================================
+04c 共报告(DDI)分析 -- 数据自检
+======================================================================
+FAERS 目录：/home/hyzyai/ad_antiab_kg/data/processed/faers
+[drug] drug.parquet | 行数 76,228,400 | 列 ['primaryid', 'drug_seq', 'role_cod', 'drugname', 'route', 'caseid', 'prod_ai']
+[reac] reac.parquet | 行数 61,986,127 | 列 ['primaryid', 'pt', 'caseid']
+[demo] demo.parquet | 行数 20,692,683 | 列 ['primaryid', 'caseid', 'fda_dt', 'event_dt', 'age', 'age_cod', 'sex', 'wt', 'wt_cod', 'rept_cod', 'occp_cod', 'mfr_sndr', 'reporter_country', 'caseversion', 'occr_country']
+[列] drug.primaryid=primaryid drug.drugname=drugname prod_ai=prod_ai role_cod=role_cod
+[列] reac.primaryid=primaryid reac.pt=pt | demo.primaryid=primaryid
+[列] demo 可选：age=age sex=sex fda_dt=fda_dt event_dt=event_dt
+[抽样] 前 3,000,000 行用于匹配自检
+  目标药 lecanemab    命中 0 行
+  目标药 donanemab    命中 0 行
+  目标药 aducanumab   命中 0 行
+  暴露药 dabigatran   命中 20 行
+  暴露药 clopidogrel  命中 16,722 行
+  暴露药 aspirin      命中 48,217 行
+  暴露药 warfarin     命中 22,794 行
+  暴露药 apixaban     命中 13 行
+  暴露药 dipyridamole 命中 935 行
+  暴露药 heparin      命中 6,105 行
+  暴露药 enoxaparin   命中 5,269 行
+  暴露药 ticlopidine  命中 922 行
+  暴露药 cilostazol   命中 1,070 行
+[提示] 命中为 0 的药可能在抽样范围内没有报告，属正常；以 coreport 全量结果为准

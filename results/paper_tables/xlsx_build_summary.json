@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0",
+  "output_dir": "/home/hyzyai/ad_antiab_kg/results/paper_tables",
+  "sheets": {
+    "S1_repositioning": {
+      "rows": 421,
+      "roles": {
+        "structural-only": 400,
+        "genetic-counter": 15,
+        "target-prior": 5,
+        "false-positive-direction": 1
+      },
+      "false_positive_tagged": 1
+    },
+    "S2_comedication": {
+      "rows": 421,
+      "core_risk_rows": 23
+    },
+    "S3_partners": {
+      "rows": 303
+    }
+  },
+  "generated_at": "2026-10-24 13:28:22"
+}

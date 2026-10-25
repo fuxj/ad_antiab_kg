@@ -1,0 +1,544 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+04d 共报告(DDI)分析 —— 多因素校正层（case/non-case）
+
+回答审稿人一定会问的问题：
+  "合并抗凝/抗血小板药与 ARIA 的关联，是否独立于年龄、性别、报告年代和靶药本身？"
+
+方法：在 04c 建出的抗 Aβ 单抗报告队列内部，做 case/non-case 分析。
+  case    = 该报告出现目标 ARIA 概念
+  noncase = 该报告未出现该概念
+  暴露    = 该报告同时含出血风险类药物
+  校正变量= 年龄、性别、报告年代、靶药（lecanemab/donanemab/aducanumab）
+
+实现约束（重要）：
+  不依赖 statsmodels / sklearn，logistic 回归用 IRLS 自行实现（仅需 numpy + pandas），
+  这样在装不上额外包的共享服务器上也能直接运行。
+
+输入
+  results/tables/ddi_report_flags.parquet    由 04c 产出（报告级标记表）
+
+输出
+  results/tables/ddi_adjusted_or.csv         粗 OR 与校正 OR 逐结局对照
+  results/tables/ddi_dose_response.csv       暴露药数量的剂量-反应
+  results/tables/ddi_adjusted_summary.json   汇总（含出血性/非出血性对比）
+  results/figures/ddi_adjusted_forest.png    校正 OR 森林图
+
+用法
+  python 04d_ddi_adjusted.py selftest                 # 离线自检（不读数据）
+  python 04d_ddi_adjusted.py adjusted --proj .        # 拟合校正模型
+  python 04d_ddi_adjusted.py figures  --proj .        # 出图
+  python 04d_ddi_adjusted.py all      --proj .        # adjusted + figures
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import math
+import time
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+
+try:
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    HAS_MPL = True
+except Exception:
+    HAS_MPL = False
+
+
+# ----------------------------------------------------------------------------
+# 基础工具
+# ----------------------------------------------------------------------------
+
+def log(msg: str) -> None:
+    print(f"[{time.strftime('%H:%M:%S')}] {msg}", flush=True)
+
+
+def norm_cdf(x: float) -> float:
+    """标准正态分布函数。"""
+    return 0.5 * (1.0 + math.erf(x / math.sqrt(2.0)))
+
+
+# 结局定义：列名前缀统一为 ev_
+#   复合结局（04c 直接生成）：ev_any_aria / ev_any_bleeding / ev_any_nonbleeding
+#   单概念（04c 直接生成）：  ev_ARIA-E / ev_ARIA-H / ...
+OUTCOMES = [
+    ("any_aria", "Any ARIA"),
+    ("any_bleeding", "Any bleeding-related ARIA"),
+    ("any_nonbleeding", "Any non-bleeding ARIA"),
+    ("ARIA-E", "ARIA-E"),
+    ("ARIA-H", "ARIA-H"),
+    ("ARIA-NOS", "ARIA-NOS"),
+    ("CEREBRAL_EDEMA", "Cerebral edema"),
+    ("CEREBRAL_HEMORRHAGE", "Cerebral hemorrhage"),
+    ("CEREBRAL_MICROHEMORRHAGE", "Cerebral microhemorrhage"),
+    ("SUPERFICIAL_SIDEROSIS", "Superficial siderosis"),
+]
+
+# 出血性 / 非出血性子集（与 04c 保持一致）
+BLEEDING_KEYS = ["ARIA-H", "CEREBRAL_HEMORRHAGE", "CEREBRAL_MICROHEMORRHAGE",
+                 "SUPERFICIAL_SIDEROSIS"]
+NONBLEEDING_KEYS = ["ARIA-E", "CEREBRAL_EDEMA"]
+
+
+# ----------------------------------------------------------------------------
+# IRLS logistic 回归（自行实现，零额外依赖）
+# ----------------------------------------------------------------------------
+
+def irls_logit(X: np.ndarray, y: np.ndarray, max_iter: int = 200,
+               tol: float = 1e-9):
+    """
+    用迭代重加权最小二乘拟合 logistic 回归。
+
+    参数
+      X : (n, p) 设计矩阵，必须已含截距列
+      y : (n,)   0/1 结局
+    返回
+      beta : (p,) 系数
+      se   : (p,) 系数标准误（基于观测信息矩阵的逆）
+    """
+    X = np.asarray(X, dtype=float)
+    y = np.asarray(y, dtype=float)
+    n, p = X.shape
+    beta = np.zeros(p)
+
+    for _ in range(max_iter):
+        eta = np.clip(X @ beta, -30.0, 30.0)
+        mu = 1.0 / (1.0 + np.exp(-eta))
+        w = np.clip(mu * (1.0 - mu), 1e-10, None)
+        z = eta + (y - mu) / w
+        XW = X * w[:, None]
+        H = X.T @ XW
+        try:
+            Hinv = np.linalg.pinv(H, rcond=1e-12)
+        except np.linalg.LinAlgError:
+            break
+        beta_new = Hinv @ (XW.T @ z)
+        if np.max(np.abs(beta_new - beta)) < tol:
+            beta = beta_new
+            break
+        beta = beta_new
+
+    # 最终一次计算协方差矩阵
+    eta = np.clip(X @ beta, -30.0, 30.0)
+    mu = 1.0 / (1.0 + np.exp(-eta))
+    w = np.clip(mu * (1.0 - mu), 1e-10, None)
+    H = X.T @ (X * w[:, None])
+    cov = np.linalg.pinv(H, rcond=1e-12)
+    se = np.sqrt(np.clip(np.diag(cov), 0.0, None))
+    return beta, se
+
+
+def crude_or(exposed: pd.Series, outcome: pd.Series) -> dict:
+    """2x2 粗 OR 与 95%CI（Woolf 对数法）。"""
+    e = exposed.astype(bool)
+    y = outcome.astype(bool)
+    a = int((e & y).sum())
+    b = int((e & ~y).sum())
+    c = int((~e & y).sum())
+    d = int((~e & ~y).sum())
+    out = {"a": a, "b": b, "c": c, "d": d}
+    if min(a, b, c, d) == 0:
+        out.update({"OR": float("nan"), "OR_lo": float("nan"), "OR_hi": float("nan")})
+        return out
+    orv = (a * d) / (b * c)
+    se = math.sqrt(1.0 / a + 1.0 / b + 1.0 / c + 1.0 / d)
+    out.update({
+        "OR": orv,
+        "OR_lo": math.exp(math.log(orv) - 1.96 * se),
+        "OR_hi": math.exp(math.log(orv) + 1.96 * se),
+    })
+    return out
+
+
+# ----------------------------------------------------------------------------
+# 数据准备
+# ----------------------------------------------------------------------------
+
+def _n_items(x) -> int:
+    """统计 list 类字段的元素个数，异常一律记 0。"""
+    if x is None:
+        return 0
+    try:
+        if isinstance(x, float) and math.isnan(x):
+            return 0
+    except Exception:
+        pass
+    try:
+        return len(x)
+    except TypeError:
+        return 0
+
+
+def prepare_covariates(rep: pd.DataFrame) -> pd.DataFrame:
+    """
+    从 04c 的报告级标记表构造协变量矩阵。
+
+    注意：04c 写入的 age 是 demo 原始值，未带 age_cod；极少数记录单位可能是月/日，
+    数值会明显偏离人群，故按 18~110 岁区间截断为缺失（AD 人群不应出现区间外值）。
+    """
+    d = pd.DataFrame(index=rep.index)
+    d["exposed"] = rep["exposed"].astype(bool).astype(int)
+    d["n_exp"] = rep["exposure_drugs"].map(_n_items).astype(float)
+
+    if "age" in rep.columns:
+        a = pd.to_numeric(rep["age"], errors="coerce")
+        d["age"] = a.where((a >= 18) & (a <= 110))
+
+    if "sex" in rep.columns:
+        s = rep["sex"].astype(str).str.upper().str.strip().str[:1]
+        d["female"] = s.map({"F": 1.0, "M": 0.0})
+
+    if "year" in rep.columns:
+        y = pd.to_numeric(rep["year"], errors="coerce")
+        d["year_c"] = (y - 2022.0).where((y >= 1990) & (y <= 2030))
+
+    if "target_primary" in rep.columns:
+        tp = rep["target_primary"].astype(str).str.upper()
+        for key, short in [("LECANEMAB", "lecanemab"),
+                           ("DONANEMAB", "donanemab"),
+                           ("ADUCANUMAB", "aducanumab")]:
+            if (tp == key).any():
+                d[f"tgt_{short}"] = (tp == key).astype(float)
+
+    return d
+
+
+def available_covariates(design: pd.DataFrame) -> list:
+    """按固定顺序挑选可用校正变量（保证模型可复现）。"""
+    base = ["age", "female", "year_c"]
+    tgt = [c for c in sorted(design.columns) if c.startswith("tgt_")]
+    return [c for c in base if c in design.columns] + tgt
+
+
+# ----------------------------------------------------------------------------
+# 校正模型
+# ----------------------------------------------------------------------------
+
+def fit_adjusted(design: pd.DataFrame, y: pd.Series, cols: list):
+    """
+    拟合 logistic 回归，返回 exposed 的校正 OR。
+    采用完整案例分析（缺失值整行剔除），并报告实际纳入样本量。
+    """
+    use = ["exposed"] + cols
+    sub = design[use].dropna()
+    if len(sub) < 50:
+        return None
+    yv = y.loc[sub.index].astype(int).values
+    if yv.min() == yv.max():
+        return None
+
+    X = np.column_stack([np.ones(len(sub)), sub.values.astype(float)])
+    beta, se = irls_logit(X, yv)
+    if not np.all(np.isfinite(beta)) or not np.all(np.isfinite(se)):
+        return None
+
+    i = 1  # exposed 位于第 1 列（第 0 列为截距）
+    b, s = float(beta[i]), float(se[i])
+    if s <= 0 or not math.isfinite(s):
+        return None
+    z = b / s
+    pval = 2.0 * (1.0 - norm_cdf(abs(z)))
+    return {
+        "n_model": int(len(sub)),
+        "n_event": int(yv.sum()),
+        "adj_beta": b,
+        "adj_se": s,
+        "adj_OR": math.exp(b),
+        "adj_OR_lo": math.exp(b - 1.96 * s),
+        "adj_OR_hi": math.exp(b + 1.96 * s),
+        "adj_p": pval,
+        "n_covariates": len(use),
+    }
+
+
+def analyze(design: pd.DataFrame, rep: pd.DataFrame) -> pd.DataFrame:
+    covs = available_covariates(design)
+    log(f"[校正变量] {covs if covs else '（无，仅粗 OR）'}")
+
+    rows = []
+    for key, label in OUTCOMES:
+        col = f"ev_{key}"
+        if col not in rep.columns:
+            log(f"[跳过] 缺列 {col}")
+            continue
+        y = rep[col].astype(bool)
+        cr = crude_or(design["exposed"], y)
+        row = {"outcome": key, "label": label, "n_total": int(len(rep)),
+               "n_event": int(y.sum()),
+               "crude_OR": cr["OR"], "crude_OR_lo": cr["OR_lo"], "crude_OR_hi": cr["OR_hi"],
+               "crude_a": cr["a"], "crude_b": cr["b"], "crude_c": cr["c"], "crude_d": cr["d"]}
+        if covs:
+            ad = fit_adjusted(design, y, covs)
+            if ad:
+                row.update(ad)
+        rows.append(row)
+        if row.get("adj_OR") is not None:
+            log(f"  {label:28s} crude OR={row['crude_OR']:.3f} | "
+                f"adj OR={row['adj_OR']:.3f} "
+                f"({row['adj_OR_lo']:.3f}-{row['adj_OR_hi']:.3f}) p={row['adj_p']:.2e} "
+                f"n={row['n_model']:,}")
+        else:
+            log(f"  {label:28s} crude OR={row['crude_OR']:.3f}（校正模型未产出）")
+    return pd.DataFrame(rows)
+
+
+def dose_response(design: pd.DataFrame, rep: pd.DataFrame) -> pd.DataFrame:
+    """按暴露药数量分层（0=参照），看是否存在剂量-反应关系。"""
+    y = rep["ev_any_aria"].astype(bool)
+    n = design["n_exp"].fillna(0).astype(int)
+
+    def level(v):
+        if v <= 0:
+            return "0"
+        if v == 1:
+            return "1"
+        if v == 2:
+            return "2"
+        return "3+"
+
+    lv = n.map(level)
+    rows = []
+    for l in ["1", "2", "3+"]:
+        e = (lv == l)
+        cr = crude_or(e, y)
+        rows.append({"n_exposure_drugs": l, "n": int(e.sum()),
+                     "n_event": int((e & y).sum()),
+                     "crude_OR": cr["OR"], "crude_OR_lo": cr["OR_lo"],
+                     "crude_OR_hi": cr["OR_hi"], "a": cr["a"], "b": cr["b"],
+                     "c": cr["c"], "d": cr["d"]})
+    return pd.DataFrame(rows)
+
+
+# ----------------------------------------------------------------------------
+# 出图
+# ----------------------------------------------------------------------------
+
+def plot_forest(df: pd.DataFrame, outpath: Path) -> None:
+    if not HAS_MPL:
+        log("[跳过] 未安装 matplotlib")
+        return
+    d = df.dropna(subset=["crude_OR"]).copy()
+    if d.empty:
+        return
+    d = d.iloc[::-1].reset_index(drop=True)   # 反转，使第一个结局在顶部
+    ypos = np.arange(len(d))
+
+    fig, ax = plt.subplots(figsize=(9.2, 0.62 * len(d) + 2.0))
+    ax.errorbar(d["crude_OR"], ypos + 0.16,
+                xerr=[d["crude_OR"] - d["crude_OR_lo"], d["crude_OR_hi"] - d["crude_OR"]],
+                fmt="o", color="#8a8a8a", ecolor="#bdbdbd", elinewidth=2,
+                markersize=6, capsize=3, label="Crude OR")
+
+    if "adj_OR" in d.columns and d["adj_OR"].notna().any():
+        m = d["adj_OR"].notna()
+        ax.errorbar(d.loc[m, "adj_OR"], ypos[m] - 0.16,
+                    xerr=[d.loc[m, "adj_OR"] - d.loc[m, "adj_OR_lo"],
+                          d.loc[m, "adj_OR_hi"] - d.loc[m, "adj_OR"]],
+                    fmt="s", color="#c0392b", ecolor="#e6a6a0", elinewidth=2,
+                    markersize=6, capsize=3, label="Adjusted OR (age/sex/era/target)")
+
+    ax.axvline(1.0, color="black", linestyle="--", linewidth=1)
+    ax.set_yticks(ypos)
+    ax.set_yticklabels(d["label"])
+    ax.set_xscale("log")
+    ax.set_xlabel("Odds ratio (log scale)")
+    ax.set_title("Co-reporting of bleeding-risk drugs and ARIA outcomes\n"
+                 "case/non-case analysis within anti-Abeta mAb reports")
+    ax.legend(loc="lower right", fontsize=9)
+    ax.grid(axis="x", alpha=0.25)
+    fig.tight_layout()
+    fig.savefig(outpath, dpi=170)
+    plt.close(fig)
+    log(f"[图] {outpath}")
+
+
+# ----------------------------------------------------------------------------
+# 离线自检
+# ----------------------------------------------------------------------------
+
+def run_selftest() -> int:
+    log("=" * 70)
+    log("04d 自检：IRLS logistic 回归能否恢复已知效应")
+    log("=" * 70)
+    checks = []
+    rng = np.random.RandomState(42)
+    n = 60000
+    TRUE_OR = 1.5
+
+    x = (rng.rand(n) < 0.10).astype(float)
+    age = rng.normal(72, 9, n)
+    female = (rng.rand(n) < 0.60).astype(float)
+    year = rng.uniform(2018, 2026, n)
+    lp = (math.log(0.30) + math.log(TRUE_OR) * x
+          + 0.010 * (age - 72) - 0.10 * female + 0.05 * (year - 2022))
+    p = 1.0 / (1.0 + np.exp(-lp))
+    y = (rng.rand(n) < p).astype(int)
+
+    design = pd.DataFrame({"exposed": x, "age": age, "female": female,
+                           "year_c": year - 2022.0})
+    ys = pd.Series(y, index=design.index)
+
+    res = fit_adjusted(design, ys, ["age", "female", "year_c"])
+    ok_fit = res is not None and abs(res["adj_OR"] - TRUE_OR) < 0.15
+    checks.append(("IRLS 校正 OR 恢复真值 1.5", ok_fit,
+                   f"得到 {res['adj_OR']:.4f}" if res else "拟合失败"))
+
+    cr = crude_or(design["exposed"], ys)
+    ok_crude = abs(cr["OR"] - TRUE_OR) < 0.20
+    checks.append(("粗 OR 接近真值", ok_crude, f"得到 {cr['OR']:.4f}"))
+
+    # 与 sklearn 交叉验证（若可用）
+    try:
+        from sklearn.linear_model import LogisticRegression
+        lr = LogisticRegression(max_iter=2000, C=1e6)
+        lr.fit(design[["exposed", "age", "female", "year_c"]].values, y)
+        sk_or = math.exp(float(lr.coef_[0][0]))
+        ok_sk = abs(math.log(sk_or) - res["adj_beta"]) < 0.02
+        checks.append(("与 sklearn 系数一致", ok_sk,
+                       f"sklearn OR={sk_or:.4f} vs 本实现 {res['adj_OR']:.4f}"))
+    except Exception as e:
+        checks.append(("sklearn 交叉验证（可选）", True, f"跳过：{type(e).__name__}"))
+
+    # 无效应场景：真实 OR=1 时不应误报
+    lp0 = math.log(0.30) + 0.010 * (age - 72)
+    p0 = 1.0 / (1.0 + np.exp(-lp0))
+    y0 = (rng.rand(n) < p0).astype(int)
+    r0 = fit_adjusted(design, pd.Series(y0, index=design.index), ["age", "female", "year_c"])
+    ok_null = r0 is not None and r0["adj_OR_lo"] <= 1.0 <= r0["adj_OR_hi"]
+    checks.append(("零效应时 95%CI 覆盖 1", ok_null,
+                   f"OR={r0['adj_OR']:.3f} ({r0['adj_OR_lo']:.3f}-{r0['adj_OR_hi']:.3f})"
+                   if r0 else "拟合失败"))
+
+    # 完全分离不应崩溃
+    ds = pd.DataFrame({"exposed": np.r_[np.ones(20), np.zeros(20)],
+                       "age": np.full(40, 70.0)})
+    ys2 = pd.Series(np.r_[np.ones(20), np.zeros(20)], index=ds.index)
+    try:
+        fit_adjusted(ds, ys2, ["age"])
+        checks.append(("完全分离不崩溃", True, "已优雅处理"))
+    except Exception as e:
+        checks.append(("完全分离不崩溃", False, f"{type(e).__name__}: {e}"))
+
+    # 空设计矩阵
+    try:
+        fit_adjusted(pd.DataFrame({"exposed": []}), pd.Series([], dtype=float), [])
+        checks.append(("空数据不崩溃", True, "已优雅处理"))
+    except Exception as e:
+        checks.append(("空数据不崩溃", False, f"{type(e).__name__}: {e}"))
+
+    print()
+    npass = 0
+    for name, ok, detail in checks:
+        print(f"  [{'PASS' if ok else 'FAIL'}] {name}  —— {detail}")
+        npass += int(ok)
+    print()
+    if npass == len(checks):
+        print("=== selftest PASSED ===")
+        return 0
+    print(f"=== selftest FAILED（{npass}/{len(checks)}）===")
+    return 1
+
+
+# ----------------------------------------------------------------------------
+# 主流程
+# ----------------------------------------------------------------------------
+
+def load_flags(proj: Path) -> pd.DataFrame:
+    p = proj / "results" / "tables" / "ddi_report_flags.parquet"
+    if not p.exists():
+        raise FileNotFoundError(f"缺 {p}，请先运行 04c 的 coreport 阶段")
+    rep = pd.read_parquet(p)
+    log(f"[读入] {p.name}：{len(rep):,} 行")
+    log(f"[列] {list(rep.columns)}")
+    return rep
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser(description="04d 共报告分析多因素校正")
+    ap.add_argument("stage", choices=["adjusted", "figures", "all", "selftest"])
+    ap.add_argument("--proj", default=".")
+    args = ap.parse_args()
+
+    if args.stage == "selftest":
+        return run_selftest()
+
+    proj = Path(args.proj).resolve()
+    tdir = proj / "results" / "tables"
+    fdir = proj / "results" / "figures"
+    tdir.mkdir(parents=True, exist_ok=True)
+    fdir.mkdir(parents=True, exist_ok=True)
+
+    log("=" * 70)
+    log(f"04d 共报告(DDI)多因素校正 | 项目根 {proj}")
+    log("=" * 70)
+
+    if args.stage in ("adjusted", "all"):
+        rep = load_flags(proj)
+        design = prepare_covariates(rep)
+
+        log(f"[样本] 报告 {len(rep):,} 份 | 暴露 {int(design['exposed'].sum()):,} 份")
+        for c in ["age", "female", "year_c"]:
+            if c in design.columns:
+                nn = int(design[c].notna().sum())
+                log(f"  {c:8s} 非缺失 {nn:,}（{nn / len(design):.1%}）")
+
+        df = analyze(design, rep)
+        # 浮点列统一保留 6 位，便于阅读
+        out_csv = tdir / "ddi_adjusted_or.csv"
+        df.to_csv(out_csv, index=False, float_format="%.6g")
+        log(f"[输出] {out_csv}")
+
+        dr = dose_response(design, rep)
+        out_dr = tdir / "ddi_dose_response.csv"
+        dr.to_csv(out_dr, index=False, float_format="%.6g")
+        log(f"[输出] {out_dr}")
+
+        # 出血性 vs 非出血性（校正后）汇总
+        def get_or(key):
+            r = df[df["outcome"] == key]
+            if r.empty:
+                return None
+            return float(r.iloc[0].get("adj_OR", float("nan")))
+
+        bl = get_or("any_bleeding")
+        nbl = get_or("any_nonbleeding")
+        summary = {
+            "n_reports": int(len(rep)),
+            "n_exposed": int(design["exposed"].sum()),
+            "covariates": available_covariates(design),
+            "adj_OR_any_bleeding": bl,
+            "adj_OR_any_nonbleeding": nbl,
+            "bleeding_over_nonbleeding_ratio":
+                (bl / nbl) if (bl and nbl and nbl > 0) else None,
+            "generated_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+        }
+        out_json = tdir / "ddi_adjusted_summary.json"
+        out_json.write_text(json.dumps(summary, ensure_ascii=False, indent=2),
+                            encoding="utf-8")
+        log(f"[输出] {out_json}")
+        if summary["bleeding_over_nonbleeding_ratio"]:
+            log(f"[对比] 校正后 出血性/非出血性 OR 比值 = "
+                f"{summary['bleeding_over_nonbleeding_ratio']:.3f}")
+
+    if args.stage in ("figures", "all"):
+        p = tdir / "ddi_adjusted_or.csv"
+        if p.exists():
+            plot_forest(pd.read_csv(p), fdir / "ddi_adjusted_forest.png")
+        else:
+            log(f"[跳过] 缺 {p}，请先运行 adjusted 阶段")
+
+    log(f"完成，用时 {time.time() - _T0:.1f} 秒")
+    return 0
+
+
+_T0 = time.time()
+
+if __name__ == "__main__":
+    raise SystemExit(main())

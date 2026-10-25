@@ -1,0 +1,4 @@
+drug,n_reports,n_PT_observed,n_PT_screened,n_sig_ROR,n_sig_PRR,n_sig_BCPNN,n_sig_MGPS,n_sig_any,n_sig_robust,n_sig_ARIA
+lecanemab,3552,863,294,89,80,74,56,89,52,8
+donanemab,2780,777,238,89,80,76,61,89,56,9
+aducanumab,515,335,68,35,35,22,22,35,18,7

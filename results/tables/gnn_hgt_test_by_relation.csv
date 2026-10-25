@@ -1,0 +1,7 @@
+relation,n_test,auc_roc,auc_pr
+Drug-drug_ae->AdverseEvent,431,0.8225300251398302,0.8207220301867753
+Drug-drug_indication->Indication,243,0.7025182475571136,0.7481016286582036
+Drug-drug_target->Gene,48,0.892361111111111,0.8951962755183346
+Gene-gene_ae->AdverseEvent,787,0.9564209703746879,0.9486926446971516
+Gene-gene_indication->Indication,6,1.0,1.0
+Gene-gene_pathway->Pathway,40,0.5403125,0.5857136397273057
