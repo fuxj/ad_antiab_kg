@@ -15,9 +15,8 @@ date-released: "2026-10-25"
 url: "https://github.com/fuxj/ad_antiab_kg"
 repository-code: "https://github.com/fuxj/ad_antiab_kg"
 license: "MIT"
-# DOI to be registered upon acceptance: create a GitHub Release, let Zenodo mint
-# the DOI, then replace the placeholder below with the real DOI.
-doi: "10.5281/zenodo.XXXXXXX"
+# Registered via Zenodo on 2026-10-26 (GitHub release archive v1.0.0).
+doi: "10.5281/zenodo.23654815"
 keywords:
   - "Alzheimer's disease"
   - "ARIA"
